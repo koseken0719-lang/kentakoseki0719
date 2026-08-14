@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sphenos.pages.dev/sitemap.xml
+Sitemap: https://sphenos.com/sitemap.xml

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 独自ドメイン移行時はURLを差し替えてください -->
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sphenos.pages.dev/</loc><lastmod>2026-08-14</lastmod></url>
-  <url><loc>https://sphenos.pages.dev/consulting/</loc><lastmod>2026-08-14</lastmod></url>
-  <url><loc>https://sphenos.pages.dev/dojo/</loc><lastmod>2026-08-14</lastmod></url>
-  <url><loc>https://sphenos.pages.dev/company/</loc><lastmod>2026-08-14</lastmod></url>
-  <url><loc>https://sphenos.pages.dev/news/</loc><lastmod>2026-08-14</lastmod></url>
-  <url><loc>https://sphenos.pages.dev/privacy/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/consulting/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/dojo/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/company/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/news/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://sphenos.com/privacy/</loc><lastmod>2026-08-14</lastmod></url>
 </urlset>
