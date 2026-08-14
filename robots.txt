@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sphenos.pages.dev/sitemap.xml
