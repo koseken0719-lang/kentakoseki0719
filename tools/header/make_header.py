@@ -65,7 +65,8 @@ def spans(text: str) -> str:
 def build_html(cfg: dict) -> str:
     title_lines = cfg["title"]
     max_chars = max(len(re.sub(r"[《》]", "", l)) for l in title_lines)
-    size = cfg.get("title_size") or max(56, min(102, int(1080 / max_chars)))
+    cap = 102 if len(title_lines) <= 2 else 82  # 3行以上はフッターと重ならないよう小さく
+    size = cfg.get("title_size") or max(56, min(cap, int(1080 / max_chars)))
     title_html = "".join(f'<div class="tl">{spans(l)}</div>' for l in title_lines)
     subtitle = cfg.get("subtitle", "")
     subtitle_html = f'<div class="subtitle">{spans(subtitle)}</div>' if subtitle else ""
