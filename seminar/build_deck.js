@@ -64,7 +64,7 @@ async function icon(Comp, color, size = 256) {
     background: { color: C.background1 },
     objects: [
       { placeholder: { options: { name: "kicker", type: "body", x: M, y: 0.38, w: 6, h: 0.3, fontSize: 13, bold: true, color: C.accent2, valign: "middle", align: "left", margin: 0 }, text: "" } },
-      { placeholder: { options: { name: "title", type: "title", x: M, y: 0.68, w: CW, h: 0.75, fontSize: 32, bold: true, color: C.text2, valign: "middle", align: "left", margin: 0 }, text: "" } },
+      { placeholder: { options: { name: "title", type: "title", x: M, y: 0.68, w: 8.3, h: 0.75, fontSize: 32, bold: true, color: C.text2, valign: "middle", align: "left", margin: 0 }, text: "" } },
       { text: { text: "株式会社スフェノス｜黒字なのに、お金が残らない会社の共通点", options: { x: M, y: 6.98, w: 8, h: 0.3, fontSize: 11, color: C.accent4, margin: 0 } } },
     ],
     slideNumber: { x: 12.13, y: 6.98, w: 0.6, h: 0.3, fontSize: 11, color: C.accent4, align: "right", margin: 0 },
@@ -82,10 +82,24 @@ async function icon(Comp, color, size = 256) {
   const txt = (s, name, text, o) => s.addText(text, { objectName: name, isTextBox: true, margin: 0, ...o });
   const rule = (s, name, x, y, w, color = HEX.rule, width = 1) => s.addShape(pres.shapes.LINE, { objectName: name, x, y, w, h: 0, line: { color, width } });
   const notes = (s, time, total, body) => s.addNotes(`【目安時間】${time}（累計 ${total}）\n\n${body}`);
-  const content = (kicker, title, section) => {
+  const imgData = (n) => "image/png;base64," + fs.readFileSync(path.join(ASSETS, n)).toString("base64");
+  const IMG = { factory: imgData("case_factory.png"), receivable: imgData("dest_receivable.png"), bank: imgData("dest_bank.png"), machine: imgData("dest_machine.png") };
+  // ケース企業（架空）：A社＝金属部品の加工、年商1.2億円、社員12名
+  const caseBadge = (sl) => {
+    const bx = 9.05, by = 0.38, bw = W - M - bx, bh2 = 1.05;
+    card(sl, "case_badge", bx, by, bw, bh2, C.background2);
+    shape(sl, pres.shapes.ROUNDED_RECTANGLE, "case_img_frame", { x: bx + 0.1, y: by + 0.1, w: 0.85, h: 0.85, rectRadius: 0.08, fill: { color: C.background1 } });
+    sl.addImage({ objectName: "case_img", data: IMG.factory, x: bx + 0.12, y: by + 0.12, w: 0.81, h: 0.81, altText: "A社（金属部品の加工会社）のイラスト" });
+    txt(sl, "case_text", [
+      { text: "ケース：A社（架空）", options: { fontSize: 13, bold: true, color: C.accent2, breakLine: true } },
+      { text: "金属部品の加工\n年商1.2億円・社員12名", options: { fontSize: 13, color: C.text1 } },
+    ], { x: bx + 1.1, y: by + 0.08, w: bw - 1.2, h: bh2 - 0.16, valign: "middle", lineSpacingMultiple: 1.0 });
+  };
+  const content = (kicker, title, section, withCase = true) => {
     const sl = pres.addSlide({ masterName: "CONTENT", sectionTitle: section });
     sl.addText(kicker, { placeholder: "kicker" });
     sl.addText(title, { placeholder: "title" });
+    if (withCase) caseBadge(sl);
     return sl;
   };
 
@@ -135,9 +149,9 @@ async function icon(Comp, color, size = 256) {
   pres.addSection({ title: "仕組み" });
   s = content("01　なぜズレるのか", "利益と通帳残高は、動く時期が違う", "仕組み");
   const ex = [
-    { n: "例1", scene: "100万円を売り上げた。\nでも、入金は来月", p: "＋100万円", c: "±0円",
+    { n: "例1", scene: "A社が100万円分の部品を納品。\nでも、入金は来月", p: "＋100万円", c: "±0円",
       note: "※まだ入金されていない売上を「売掛金」といいます\n（説明のため、仕入などの経費は省略）" },
-    { n: "例2", scene: "借入金の元本を\n100万円返した", p: "±0円", c: "−100万円",
+    { n: "例2", scene: "A社が銀行に、借入金の\n元本100万円を返した", p: "±0円", c: "−100万円",
       note: "※元本の返済は経費になりません\n（利息の部分は経費になります）" },
   ];
   ex.forEach((e, i) => {
@@ -158,20 +172,22 @@ async function icon(Comp, color, size = 256) {
   notes(s, "1:15", "2:00",
 `最初に、いちばん大事なことをお伝えします。利益と通帳残高は、動く時期が違います。
 
-左の例を見てください。今月、100万円の仕事を納めて請求しました。売上は今月の数字に入るので、利益の計算ではプラス100万円です。でも、入金が来月なら、今月の通帳は1円も増えていません。
+ここからは、A社という会社を例にします。金属部品の加工をしている、年商1億2千万円、社員12名の会社です。架空の会社ですが、よくある姿です。
 
-右の例は逆です。借入金の元本を100万円返しました。通帳からは確かに100万円出ていきます。でも、元本の返済は経費になりません。だから利益は減らないんです。ちなみに、利息の部分は経費になります。
+左の例です。A社が今月、100万円分の部品を納品しました。売上は今月の数字に入るので、利益の計算ではプラス100万円。でも、入金が来月なら、今月の通帳は1円も増えていません。
 
-つまり、利益の計算と通帳の動きは、もともと別のタイミングで動いている。ここを押さえておくと、この先の話がすっと入ってきます。`);
+右の例は逆です。A社が銀行に、借入金の元本を100万円返しました。通帳からは100万円出ていきますが、元本の返済は経費になりません。だから利益は減らないんです。ちなみに、利息の部分は経費になります。
+
+利益の計算と通帳は、別のタイミングで動いている。ここを押さえておいてください。`);
 
   // ================= Slide 3 (waterfall) =================
-  s = content("02　ひとつの例で見る", "利益500万円でも、現金は100万円減る", "仕組み");
+  s = content("02　A社の1年を数字で見る", "利益500万円でも、現金は100万円減る", "仕組み");
   const steps = [
-    { label: "税引後利益", v: 500, kind: "up" },
-    { label: "減価償却費の\n足し戻し", v: 100, kind: "up" },
-    { label: "売掛金・在庫\nの増加", v: -300, kind: "down" },
-    { label: "借入元本の返済\n・設備購入", v: -400, kind: "down" },
-    { label: "現金の増減", v: null, kind: "total" },
+    { label: "税引後利益", v: 500, kind: "up", d: "本業はしっかり黒字" },
+    { label: "減価償却費の\n足し戻し", v: 100, kind: "up", d: "以前買った機械の経費分\n（今年の支払いはなし）" },
+    { label: "売掛金・在庫\nの増加", v: -300, kind: "down", d: "大口先の入金は2か月後\n材料もまとめ買い" },
+    { label: "借入元本の返済\n・設備購入", v: -400, kind: "down", d: "銀行へ返済250万円\n新しい機械150万円" },
+    { label: "現金の増減", v: null, kind: "total", d: "通帳は1年で\n100万円減った" },
   ];
   const X0 = M, XW = CW, colW = XW / steps.length, barW = 1.35;
   const VMAX = 600, VMIN = -100, YT = 1.85, YB = 4.65, sc = (YB - YT) / (VMAX - VMIN);
@@ -191,33 +207,34 @@ async function icon(Comp, color, size = 256) {
     const val = st.kind === "total" ? run : st.v;
     txt(s, `value${i + 1}`, (val > 0 ? "＋" : "−") + Math.abs(val) + "万円", { x: cx - colW / 2, y: 4.8, w: colW, h: 0.55, fontSize: 28, bold: true, align: "center", valign: "middle",
       color: st.kind === "total" ? C.accent3 : st.kind === "up" ? C.text2 : C.text1 });
-    txt(s, `cat${i + 1}`, st.label, { x: cx - colW / 2 + 0.05, y: 5.4, w: colW - 0.1, h: 0.75, fontSize: 18, align: "center", valign: "top", color: C.text1, bold: st.kind === "total" });
+    txt(s, `cat${i + 1}`, st.label, { x: cx - colW / 2 + 0.05, y: 5.38, w: colW - 0.1, h: 0.62, fontSize: 17, align: "center", valign: "top", color: st.kind === "total" ? C.accent3 : C.text2, bold: true });
+    txt(s, `detail${i + 1}`, st.d, { x: cx - colW / 2 + 0.05, y: 6.02, w: colW - 0.1, h: 0.55, fontSize: 14, align: "center", valign: "top", color: C.text1 });
   });
   txt(s, "message", [
     { text: "お金が消えたわけではない。", options: { fontSize: 24, bold: true, color: C.text2, breakLine: true } },
     { text: "行き先が、ある。", options: { fontSize: 38, bold: true, color: C.accent2 } },
   ], { x: X0 + 3 * colW + 0.15, y: 1.6, w: 2 * colW - 0.15, h: 1.2, valign: "top" });
-  txt(s, "wf_note", "※説明用の例。他の入出金は省略。", { x: X0, y: 6.28, w: 8, h: 0.4, fontSize: 16, color: C.text1 });
+  txt(s, "wf_note", "※説明用の例。他の入出金は省略。", { x: W - M - 5, y: 6.62, w: 5, h: 0.3, fontSize: 13, color: C.text1, align: "right" });
   notes(s, "2:00", "4:00",
-`では、実際にどれくらいズレるのか。ひとつの例で、左から順番に見ていきます。
+`では、A社の1年を数字で見てみます。左から順番です。
 
-まず、税引後の利益が500万円出ました。ここまでは良い話です。
-次に、減価償却費の100万円を足し戻します。減価償却費は、過去に買った設備の代金を何年かに分けて経費にしているもので、今年お金が出ていったわけではありません。だから通帳の目線では足し戻します。ここで600万円分です。
+まず、税引後の利益が500万円。本業はしっかり黒字です。
+次に、減価償却費の100万円を足し戻します。以前買った機械の代金を、何年かに分けて経費にしている分で、今年お金は出ていません。ここで600万円分です。
 
-ところが、売掛金と在庫が合わせて300万円増えました。売ったけれどまだ回収していないお金と、倉庫に置いてある商品です。これで300万円。
-さらに、借入金の元本の返済と設備の購入で、400万円を支払いました。
-その結果、通帳は100万円減りました。利益は500万円なのに、通帳はマイナス100万円です。
+ところが、大口の取引先が増えて、入金は2か月後。材料もまとめ買いしました。売掛金と在庫が合わせて300万円増えています。
+さらに、銀行への返済が250万円、新しい機械の購入が150万円。合わせて400万円を支払いました。
 
-ただ、ここで強調したいのは、お金が消えたわけではない、ということです。右上に書いたとおり、ちゃんと行き先があります。
-なお、これは説明用に単純化した例で、ほかの入出金は省いています。`);
+その結果、A社の通帳は1年で100万円減りました。社長からすると「500万円も儲かったはずなのに、なぜ？」となるわけです。
+
+でも、お金が消えたわけではありません。ちゃんと行き先があります。なお、これは説明用の例で、ほかの入出金は省いています。`);
 
   // ================= Slide 4 (proportional bars) =================
-  s = content("03　お金はどこへ移ったか", "お金の行き先は、大きく３つ", "仕組み");
+  s = content("03　A社のお金はどこへ移ったか", "お金の行き先は、大きく３つ", "仕組み");
   const BX = 3.2, BWID = 9.2, per = BWID / 700, bh = 0.62;
   const made = 600, dests = [
-    { n: "①", v: 300, col: HEX.seg1, icon: I.invoice, title: "まだ回収していない\n売上・在庫", where: "お金は今：取引先の手元と、\n倉庫の中" },
-    { n: "②", v: 250, col: HEX.seg2, icon: I.bank, title: "借入金の返済", where: "お金は今：銀行へ。\nその分、借金が減った" },
-    { n: "③", v: 150, col: HEX.seg3, icon: I.factory, title: "設備への投資", where: "お金は今：機械・車・\nシステムに形を変えた" },
+    { n: "①", v: 300, col: HEX.seg1, icon: I.invoice, title: "まだ回収していない\n売上・在庫", where: "お金は今：大口先の入金待ちと、\n倉庫に積んだ材料" },
+    { n: "②", v: 250, col: HEX.seg2, icon: I.bank, title: "借入金の返済", where: "お金は今：銀行へ。\nその分、借入残高が減った" },
+    { n: "③", v: 150, col: HEX.seg3, icon: I.factory, title: "設備への投資", where: "お金は今：新しい加工機械に\n形を変えた" },
   ];
   const destTotal = dests.reduce((a, d) => a + d.v, 0);
   if (destTotal - made !== 100) throw new Error("slide4 mismatch");
@@ -237,37 +254,38 @@ async function icon(Comp, color, size = 256) {
   s.addShape(pres.shapes.RECTANGLE, { objectName: "shortfall_slot", x: overX + 0.03, y: yA, w: overW - 0.06, h: bh, fill: { color: C.background1 }, line: { color: C.accent3, width: 1.5, dashType: "dash" } });
   txt(s, "shortfall_label", "不足\n−100万円", { x: overX, y: yA, w: overW, h: bh, fontSize: 13, bold: true, color: C.accent3, align: "center", valign: "middle", lineSpacingMultiple: 0.95 });
   txt(s, "shortfall_caption", "足りない100万円は、通帳から出ていった", { x: BX + BWID - 6, y: yB + bh + 0.08, w: 6, h: 0.38, fontSize: 16, bold: true, color: C.accent3, align: "right", valign: "middle" });
-  const cy0 = 3.75, chh = 2.55, cw = (CW - 2 * 0.3) / 3;
-  const destTitles = ["① まだ回収していない\n　 売上・在庫", "② 借入金の返済", "③ 設備への投資"];
+  const cy0 = 3.78, chh = 2.7, cw = (CW - 2 * 0.3) / 3;
+  const destTitles = ["まだ回収していない\n売上・在庫", "借入金の返済", "設備への投資"];
+  const destImgs = [IMG.receivable, IMG.bank, IMG.machine];
   for (let i = 0; i < dests.length; i++) {
     const d = dests[i], x = M + i * (cw + 0.3);
     card(s, `dest${i + 1}_card`, x, cy0, cw, chh, C.background2);
-    const ic = await icon([fa.FaFileInvoice, fa.FaBuildingColumns, fa.FaIndustry][i], i === 2 ? HEX.navy : HEX.white);
-    shape(s, pres.shapes.OVAL, `dest${i + 1}_icon_bg`, { x: x + 0.3, y: cy0 + 0.25, w: 0.7, h: 0.7, fill: { color: d.col } });
-    s.addImage({ objectName: `dest${i + 1}_icon`, data: ic, x: x + 0.47, y: cy0 + 0.42, w: 0.36, h: 0.36, altText: d.title.replace("\n", "") });
-    txt(s, `dest${i + 1}_title`, destTitles[i], { x: x + 0.3, y: cy0 + 1.0, w: cw - 0.5, h: 0.75, fontSize: 20, bold: true, color: C.text2, valign: "top" });
-    txt(s, `dest${i + 1}_where`, d.where, { x: x + 0.3, y: cy0 + 1.85, w: cw - 0.5, h: 0.6, fontSize: 16, color: C.text1, valign: "top" });
+    shape(s, pres.shapes.ROUNDED_RECTANGLE, `dest${i + 1}_img_frame`, { x: x + 0.25, y: cy0 + 0.2, w: 1.05, h: 1.05, rectRadius: 0.08, fill: { color: C.background1 } });
+    s.addImage({ objectName: `dest${i + 1}_img`, data: destImgs[i], x: x + 0.28, y: cy0 + 0.23, w: 0.99, h: 0.99, altText: d.title.replace("\n", "") });
+    shape(s, pres.shapes.RECTANGLE, `dest${i + 1}_swatch`, { x: x + 1.5, y: cy0 + 0.58, w: 0.24, h: 0.24, fill: { color: d.col } });
+    txt(s, `dest${i + 1}_amount`, `${d.n} ${d.v}万円`, { x: x + 1.85, y: cy0 + 0.4, w: cw - 2.0, h: 0.6, fontSize: 24, bold: true, color: C.text2, valign: "middle" });
+    txt(s, `dest${i + 1}_title`, destTitles[i], { x: x + 0.3, y: cy0 + 1.35, w: cw - 0.5, h: 0.68, fontSize: 20, bold: true, color: C.text2, valign: "top" });
+    txt(s, `dest${i + 1}_where`, d.where, { x: x + 0.3, y: cy0 + 2.05, w: cw - 0.45, h: 0.58, fontSize: 15, color: C.text1, valign: "top" });
   }
-  txt(s, "dest_note", "※前のスライドの例。返済・設備購入の400万円を、返済250万円・設備150万円とした場合", { x: M, y: 6.42, w: CW, h: 0.4, fontSize: 15, color: C.text1 });
+  txt(s, "dest_note", "※前のスライドの例。返済・設備購入の400万円を、返済250万円・設備150万円とした場合", { x: M, y: 6.55, w: CW, h: 0.35, fontSize: 14, color: C.text1 });
   notes(s, "1:30", "5:30",
-`では、そのお金はどこへ行ったのか。上の帯は、税引後利益に減価償却費を足した600万円です。下の帯がその行き先で、合計700万円。はみ出した100万円が、通帳から出ていった分です。
+`では、A社のお金はどこへ行ったのか。上の帯が、利益と減価償却費で生まれた600万円。下の帯がその行き先で、合計700万円です。はみ出した100万円が、通帳から出ていった分です。
 
-行き先は大きく3つです。
-1つ目は、まだ回収していない売上と在庫。お金は今、取引先の手元と倉庫の中にあります。いずれお金に戻りますが、今は通帳にありません。
+1つ目は、まだ回収していない売上と在庫、300万円。大口先からの入金待ちと、倉庫に積んだ材料です。いずれお金に戻りますが、今は通帳にありません。
 
-2つ目は、借入金の返済。お金は銀行に戻りましたが、その分、借金は減っています。
+2つ目は、銀行への返済、250万円。その分、借入残高は減っています。
 
-3つ目は、設備への投資。お金は機械や車、システムに形を変えて、会社の中に残っています。
+3つ目は、新しい加工機械、150万円。お金が機械に形を変えて、会社の中に残っています。
 
-どれも無駄遣いではありません。ただ、通帳から見えなくなっているだけなんです。`);
+どれも無駄遣いではありません。通帳から見えなくなっているだけなんです。`);
 
   // ================= Slide 5 =================
   pres.addSection({ title: "打ち手" });
-  s = content("04　どこを確認するか", "原因が違えば、打ち手も違う", "打ち手");
+  s = content("04　A社なら、どこを確認するか", "原因が違えば、打ち手も違う", "打ち手");
   const pairs = [
-    { icon: I.invoice, cause: "売掛金が増える", act: "請求日・入金日・回収条件を確認", sub: "請求は遅れていないか／入金までの期間は長すぎないか" },
-    { icon: I.boxes, cause: "在庫が増える", act: "売れ残りと発注量を確認", sub: "動いていない商品はないか／必要以上に発注していないか" },
-    { icon: I.bank, cause: "返済・投資が重い", act: "時期と金額を、資金繰りに照らして確認", sub: "返済や投資の時期は、入金の見込みと合っているか" },
+    { icon: I.invoice, cause: "売掛金が増える", act: "請求日・入金日・回収条件を確認", sub: "大口先に、入金を早められないか相談する" },
+    { icon: I.boxes, cause: "在庫が増える", act: "売れ残りと発注量を確認", sub: "材料のまとめ買いが、使う量より多くないか" },
+    { icon: I.bank, cause: "返済・投資が重い", act: "時期と金額を、資金繰りに照らして確認", sub: "機械を買う月を、納税の月と重ねない" },
   ];
   txt(s, "head_cause", "原因", { x: M, y: 1.6, w: 3, h: 0.35, fontSize: 15, bold: true, color: C.accent2 });
   txt(s, "head_action", "確認すること", { x: 5.35, y: 1.6, w: 3, h: 0.35, fontSize: 15, bold: true, color: C.accent2 });
@@ -280,6 +298,7 @@ async function icon(Comp, color, size = 256) {
     shape(s, pres.shapes.RIGHT_ARROW, `pair${i + 1}_arrow`, { x: 4.55, y: y + rh5 / 2 - 0.17, w: 0.5, h: 0.34, fill: { color: C.accent2 } });
     txt(s, `action${i + 1}_text`, [
       { text: p.act, options: { fontSize: 24, bold: true, color: C.text1, breakLine: true } },
+      { text: "A社なら　", options: { fontSize: 17, bold: true, color: C.accent2 } },
       { text: p.sub, options: { fontSize: 18, color: C.text1 } },
     ], { x: 5.35, y, w: W - M - 5.35, h: rh5, valign: "middle", paraSpaceAfter: 4 });
     rule(s, `pair_rule${i + 1}`, M, y + rh5, CW, HEX.rule, 1);
@@ -287,19 +306,19 @@ async function icon(Comp, color, size = 256) {
   card(s, "invest_note_bg", M, 6.1, CW, 0.62, C.background2);
   txt(s, "invest_note", "設備投資も返済も、会社を強くする大切なお金。見るべきは「時期」と「金額」です。", { x: M + 0.35, y: 6.1, w: CW - 0.7, h: 0.62, fontSize: 18, bold: true, color: C.text2, valign: "middle" });
   notes(s, "2:00", "7:30",
-`行き先が分かれば、打つ手も見えてきます。ポイントは、原因が違えば、打ち手も違う、ということです。
+`行き先が分かれば、打つ手も見えてきます。原因が違えば、打ち手も違います。
 
-まず、売掛金が増えている場合。請求日、入金日、回収の条件を確認します。請求書を出すのが遅れていないか、入金までの期間が長すぎないか。ここを整えるだけで、通帳の残り方が変わることがあります。
+まず、売掛金が増えている場合。請求日、入金日、回収の条件を確認します。A社なら、大口の取引先に、入金を少し早められないか相談してみる。請求書を出すのが遅れていないかも見ます。
 
-次に、在庫が増えている場合。売れ残っている商品と、発注の量を確認します。動いていない商品はないか、「念のため」の多めの発注が積み重なっていないか、を見ていきます。
+次に、在庫が増えている場合。売れ残りと発注量を確認します。A社なら、材料のまとめ買いが、実際に使う量より多くなっていないか、です。
 
 そして、返済や投資が重い場合。ここは誤解のないようにお伝えしたいのですが、設備投資も返済も、会社を強くするための大切なお金です。悪いものではありません。
-確認したいのは、その時期と金額が、資金繰りに合っているかどうか。入金の見込みと照らし合わせて、無理のない計画になっているかを見ます。
+確認したいのは、時期と金額が資金繰りに合っているか。A社なら、機械を買う月を、納税の月と重ねないだけでも、通帳の山と谷はずいぶん変わります。
 
 原因を確かめずに、とにかく経費を削る、というのは順番が逆なんですね。`);
 
   // ================= Slide 6 =================
-  s = content("05　これからの通帳", "３か月先の通帳を予測する", "打ち手");
+  s = content("05　A社のこれからの通帳", "３か月先の通帳を予測する", "打ち手");
   const months = ["1か月目", "2か月目", "3か月目"];
   const inflow = [1000, 950, 900], ops = [850, 900, 950], repay = [100, 100, 100], taxInv = [0, 300, 200];
   const begin = [], end = [];
@@ -324,7 +343,7 @@ async function icon(Comp, color, size = 256) {
   ];
   s.addTable(rows, { objectName: "cash_table", x: M, y: 2.1, w: 8.3, colW: [2.9, 1.8, 1.8, 1.8], rowH: 0.47,
     border: [{ type: "none" }, { type: "none" }, { type: "solid", pt: 0.75, color: HEX.rule }, { type: "none" }], margin: [0, 0.18, 0, 0.18], valign: "middle" });
-  txt(s, "table_note", "※説明用の架空の数字。2か月目：法人税等の納付　3か月目：設備の購入", { x: M, y: 5.45, w: 8.3, h: 0.4, fontSize: 15, color: C.text1 });
+  txt(s, "table_note", "※A社の例（架空の数字）。2か月目：法人税等の納付　3か月目：機械の購入", { x: M, y: 5.45, w: 8.3, h: 0.4, fontSize: 15, color: C.text1 });
   s.addChart(pres.charts.BAR, [{ name: "月末の預金", labels: months, values: end }], {
     objectName: "balance_chart", x: 9.25, y: 1.6, w: 3.48, h: 4.2, barDir: "col",
     showTitle: true, title: "月末の預金（万円）", titleFontSize: 15, titleColor: HEX.navy, titleFontFace: "+mn-lt",
@@ -340,9 +359,9 @@ async function icon(Comp, color, size = 256) {
 
 式はシンプルです。月初の預金に入金を足して、仕入や人件費、返済、税金や投資を引く。それが月末の預金です。
 
-この表は説明用の架空の数字ですが、1か月目の月末は850万円残っています。ところが2か月目に法人税などの納付があって500万円、3か月目には設備の購入が重なって150万円まで減ります。右のグラフを見ると、減り方がよく分かりますね。
+これはA社の例です。1か月目の月末は850万円。ところが2か月目に法人税などの納付があって500万円、3か月目には機械の購入が重なって150万円まで減ります。右のグラフで、減り方がよく分かりますね。
 
-大事なのは、これが3か月前に分かっていれば、入金を早めてもらう相談をする、投資の時期をずらす、早めに銀行に相談する、といった手が打てることです。
+これが3か月前に分かっていれば、入金を早めてもらう相談をする、機械の購入をずらす、早めに銀行に相談する、といった手が打てます。
 
 足りなくなる前に、手を打つ。これが資金繰りの基本です。`);
 
