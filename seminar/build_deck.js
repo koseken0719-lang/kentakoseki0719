@@ -358,16 +358,18 @@ async function icon(Comp, color, size = 256) {
   card(s, "cta_card", cx0, cy, cwid, ch, C.background1);
   txt(s, "cta_kicker", "個別相談", { x: cx0 + 0.4, y: cy + 0.25, w: 3, h: 0.32, fontSize: 15, bold: true, color: C.accent2 });
   txt(s, "cta_title", "財務の作戦会議", { x: cx0 + 0.4, y: cy + 0.55, w: 4.8, h: 0.6, fontSize: 30, bold: true, color: C.text2, valign: "middle" });
-  const fields = [["お申込み", "（URLを入力）"], ["メール", "（メールアドレスを入力）"], ["電話", "（電話番号を入力）"]];
-  const fx = cx0 + 0.4, fw = 5.0, fy0 = cy + 1.2, fh = 0.38;
+  // 連絡先はスフェノスHP（sphenos.com/contact/ の「会社のお金の健康診断・財務相談」フォーム）から転記
+  const fields = [["お申込み", "sphenos.com/contact/"], ["メール", "info@sphenos.com"]];
+  const fx = cx0 + 0.4, fw = 5.0, fy0 = cy + 1.3, fh = 0.48;
   fields.forEach(([k, v], i) => {
     const fy = fy0 + i * fh;
     txt(s, `cta_field${i + 1}_label`, k, { x: fx, y: fy, w: 1.2, h: fh, fontSize: 15, bold: true, color: C.text1, valign: "middle" });
-    txt(s, `cta_field${i + 1}_value`, v, { x: fx + 1.25, y: fy, w: fw - 1.25, h: fh, fontSize: 15, color: C.accent4, valign: "middle" });
+    txt(s, `cta_field${i + 1}_value`, v, { x: fx + 1.25, y: fy, w: fw - 1.25, h: fh, fontSize: 19, bold: true, color: C.text2, valign: "middle" });
     rule(s, `cta_field${i + 1}_rule`, fx, fy + fh, fw, HEX.rule, 0.75);
   });
-  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { objectName: "qr_box", x: cx0 + cwid - 2.15, y: cy + 0.35, w: 1.85, h: 1.85, rectRadius: 0.06, fill: { color: C.background1 }, line: { color: HEX.slate, width: 1.25, dashType: "dash" } });
-  txt(s, "qr_label", "QRコード\n貼り付け欄", { x: cx0 + cwid - 2.15, y: cy + 0.35, w: 1.85, h: 1.85, fontSize: 13, color: C.accent4, align: "center", valign: "middle" });
+  const qrData = "image/png;base64," + fs.readFileSync(path.join(ASSETS, "qr_contact.png")).toString("base64");
+  s.addImage({ objectName: "qr_code", data: qrData, x: cx0 + cwid - 2.05, y: cy + 0.2, w: 1.75, h: 1.75, altText: "お申込みページ（https://sphenos.com/contact/）のQRコード" });
+  txt(s, "qr_label", "スマホで読み取り", { x: cx0 + cwid - 2.15, y: cy + 1.98, w: 1.95, h: 0.3, fontSize: 12, color: C.text1, align: "center", valign: "middle" });
   txt(s, "speaker_end", "株式会社スフェノス　代表　小関 健太", { x: M, y: 6.9, w: 6, h: 0.35, fontSize: 14, color: C.background1, valign: "middle" });
   txt(s, "reference", "参考：日本政策金融公庫「『黒字なのにお金がない』のはなぜ？」", { x: 6.3, y: 6.9, w: 6.43, h: 0.35, fontSize: 12, color: C.background2, align: "right", valign: "middle" });
   notes(s, "1:00", "10:00",
@@ -378,7 +380,7 @@ async function icon(Comp, color, size = 256) {
 決算書を見て終わりにせず、利益がお金として残る経営へ。
 そのために、自社の数字を使った「財務の作戦会議」という個別相談をご用意しています。御社のお金の行き先と、次の一手を一緒に整理します。
 
-気になった方は、こちらからお気軽にお声がけください。本日はありがとうございました。
+気になった方は、こちらのQRコードか、ホームページのお申し込みページから、お気軽にお申し込みください。本日はありがとうございました。
 
 ――――
 参考資料：日本政策金融公庫「『黒字なのにお金がない』のはなぜ？」
