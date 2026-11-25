@@ -1,0 +1,215 @@
+<title>サイバー保険 各社比較</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 帳票型。上に要約、中央に横スクロールの比較マトリクス（項目列固定）、下に資料台帳と関連情報 */
+:root{
+  --bg:#f5f7f4;
+  --surface:#ffffff;
+  --ink:#1c2620;
+  --ink-soft:#56635a;
+  --line:#d8ded7;
+  --line-strong:#b9c4b9;
+  --accent:#2f6a43;
+  --accent-soft:#e3eee5;
+  --hl:#fff6c7;
+  --hl-ink:#5a4a00;
+  --ok:#1f7a4a;
+  --mid:#a76a00;
+  --ng:#b3342c;
+  --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121713;--surface:#1a211c;--ink:#e3eae4;--ink-soft:#a2b0a6;--line:#2c3630;--line-strong:#3f4b43;
+  --accent:#7cc495;--accent-soft:#213328;--hl:#3a3413;--hl-ink:#f2e3a0;--ok:#6fd39b;--mid:#e6b45a;--ng:#f08a80;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121713;--surface:#1a211c;--ink:#e3eae4;--ink-soft:#a2b0a6;--line:#2c3630;--line-strong:#3f4b43;
+  --accent:#7cc495;--accent-soft:#213328;--hl:#3a3413;--hl-ink:#f2e3a0;--ok:#6fd39b;--mid:#e6b45a;--ng:#f08a80;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.7}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:flex;flex-direction:column;gap:36px}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:2px solid var(--accent);padding-bottom:16px}
+header.top h1{font-family:var(--display);font-weight:900;font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:.02em;text-wrap:balance}
+header.top p{margin:4px 0 0;color:var(--ink-soft);max-width:70ch}
+.stamp{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-align:right;line-height:1.6}
+.stamp b{color:var(--ink);font-weight:500}
+h2{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font-family:var(--body);font-weight:400;font-size:12px;color:var(--ink-soft)}
+section{min-width:0}
+
+/* summary */
+.changes{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.changes ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+.changes li b{font-weight:700}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.filters span.lbl{font-size:12px;color:var(--ink-soft);margin-right:4px}
+.chip{display:inline-flex;align-items:center}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{cursor:pointer;border:1px solid var(--line-strong);border-radius:999px;padding:3px 12px;font-size:12.5px;background:var(--surface);color:var(--ink-soft);user-select:none}
+.chip input:checked+label{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn{cursor:pointer;border:1px solid var(--line-strong);background:transparent;color:var(--ink);border-radius:4px;padding:3px 10px;font:inherit;font-size:12px}
+
+/* matrix */
+.scroller{overflow-x:auto;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface)}
+table.m{border-collapse:separate;border-spacing:0;font-size:12.5px;line-height:1.6;min-width:100%}
+table.m th,table.m td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+table.m thead th{position:sticky;top:0;background:var(--accent);color:#fff;z-index:2;font-family:var(--display);font-weight:700;font-size:13.5px;min-width:230px;max-width:300px}
+table.m thead th .p{display:block;font-family:var(--body);font-weight:400;font-size:11.5px;opacity:.85}
+table.m thead th .r{display:block;font-family:var(--mono);font-weight:500;font-size:11px;opacity:.85}
+table.m .k{position:sticky;left:0;background:var(--surface);z-index:1;min-width:150px;max-width:170px;font-weight:700;color:var(--ink)}
+table.m thead th.k{z-index:3;background:var(--accent);color:#fff}
+table.m tr.grp td{background:var(--accent-soft);font-family:var(--display);font-weight:700;color:var(--accent);position:sticky;left:0}
+table.m tr.hl td,table.m tr.hl th.k{background:var(--hl)}
+table.m tr.hl th.k{color:var(--hl-ink)}
+.k .note{display:block;font-weight:400;font-size:11px;color:var(--ink-soft)}
+.mk{display:inline-block;font-weight:700;font-size:14px;line-height:1;margin-right:4px}
+.mk.o{color:var(--ok)}.mk.t{color:var(--mid)}.mk.x{color:var(--ng)}
+.uv{color:var(--ink-soft);font-style:normal}
+td .docs{display:flex;flex-direction:column;gap:4px}
+td .docs a{word-break:break-all}
+td .docs .d{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+
+/* features */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+.card h3{margin:0;font-family:var(--display);font-size:15px}
+.card .p{font-size:12px;color:var(--ink-soft);margin-bottom:8px}
+.card ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+.card .svc{margin-top:10px;font-size:12px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:8px}
+
+/* news */
+.news{display:flex;flex-direction:column;gap:22px}
+.news h3{font-family:var(--display);font-size:14.5px;margin:0 0 6px;color:var(--accent)}
+.news ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.news li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
+.news .dt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding-top:2px}
+.news .t a{font-weight:500}
+.news .src{font-size:12px;color:var(--ink-soft)}
+.news .sum{grid-column:2;font-size:12.5px;color:var(--ink-soft)}
+@media (max-width:560px){.news li{grid-template-columns:1fr}.news .sum{grid-column:1}}
+
+footer{font-size:12px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:4px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>サイバー保険・個人情報漏えい保険 各社比較</h1>
+      <p>損害保険各社の公開パンフレット・約款をもとに、補償の差分と特長を整理した比較表です。○は補償対象、△は条件付き、×は対象外を示します。</p>
+    </div>
+    <div class="stamp">最終確認 <b id="checked"></b><br>掲載 <b id="count"></b></div>
+  </header>
+
+  <section id="sec-changes">
+    <h2>今回の更新で変わった点<small>前回の比較表（2026年3月版）からの差分</small></h2>
+    <div class="changes"><ul id="changes"></ul></div>
+  </section>
+
+  <section id="sec-matrix">
+    <h2>補償内容の比較<small>黄色の行はフォレンジック調査費用の発動要件（各社で差が大きい箇所）</small></h2>
+    <div class="filters" id="filters"><span class="lbl">表示する会社</span></div>
+    <div class="scroller"><table class="m" id="matrix"></table></div>
+  </section>
+
+  <section id="sec-features">
+    <h2>各社の特長</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="sec-news">
+    <h2>損保各社のサイバー関連情報<small>レポート・調査、無料診断、商品改定、制度動向</small></h2>
+    <div class="news" id="news"></div>
+  </section>
+
+  <footer>
+    <div>出典は各社公式サイトの公開資料です。保険金額・発動要件は契約プラン・特約で変わるため、提案時は必ず最新の約款・重要事項説明書で確認してください。</div>
+    <div>「未確認」は公開資料で確認できなかった項目です（代理店向け資料・個別見積で確認が必要）。</div>
+  </footer>
+</div>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function(){
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var P = D.products;
+  var esc = function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  document.getElementById('checked').textContent = D.checked_at;
+  document.getElementById('count').textContent = P.length + '商品';
+
+  var ch = document.getElementById('changes');
+  (D.changes||[]).forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(c.company)+'</b>：'+esc(c.text); ch.appendChild(li); });
+  if(!(D.changes||[]).length){ ch.innerHTML='<li>変更はありませんでした。</li>'; }
+
+  function cell(v){
+    if(v==null||v==='') return '<span class="uv">未確認</span>';
+    var s = esc(v);
+    var m = s.match(/^\s*([○◯△×])\s*/);
+    if(m){ var c = m[1]==='×'?'x':(m[1]==='△'?'t':'o'); s = '<span class="mk '+c+'">'+m[1]+'</span>'+s.slice(m[0].length); }
+    s = s.replace(/未確認/g,'<span class="uv">未確認</span>');
+    return s.replace(/\n/g,'<br>');
+  }
+  function docs(list){
+    if(!list||!list.length) return '<span class="uv">公開なし／未確認</span>';
+    return '<div class="docs">'+list.map(function(d){
+      return '<div><a href="'+esc(d.url)+'" target="_blank" rel="noopener">'+esc(d.title||'資料')+'</a>'+(d.version_or_date?'<div class="d">'+esc(d.version_or_date)+'</div>':'')+'</div>';
+    }).join('')+'</div>';
+  }
+
+  var KEY='cyber-cmp-cols';
+  var shown;
+  try{ shown = JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ shown=null; }
+  if(!Array.isArray(shown)) shown = P.filter(function(p){return p.group==='major';}).map(function(p){return p.id;});
+  var save=function(){ try{ localStorage.setItem(KEY, JSON.stringify(shown)); }catch(e){} };
+
+  var F = document.getElementById('filters');
+  P.forEach(function(p){
+    var w=document.createElement('span'); w.className='chip';
+    w.innerHTML='<input type="checkbox" id="c-'+esc(p.id)+'"'+(shown.indexOf(p.id)>=0?' checked':'')+'><label for="c-'+esc(p.id)+'">'+esc(p.short||p.company)+'</label>';
+    w.querySelector('input').addEventListener('change',function(e){
+      if(e.target.checked){ if(shown.indexOf(p.id)<0) shown.push(p.id);} else { shown=shown.filter(function(x){return x!==p.id;}); }
+      save(); render();
+    });
+    F.appendChild(w);
+  });
+  var all=document.createElement('button'); all.className='btn'; all.type='button'; all.textContent='すべて表示';
+  all.onclick=function(){ shown=P.map(function(p){return p.id;}); F.querySelectorAll('input').forEach(function(i){i.checked=true;}); save(); render(); };
+  var maj=document.createElement('button'); maj.className='btn'; maj.type='button'; maj.textContent='大手5社のみ';
+  maj.onclick=function(){ shown=P.filter(function(p){return p.group==='major';}).map(function(p){return p.id;}); F.querySelectorAll('input').forEach(function(i){ i.checked = shown.indexOf(i.id.slice(2))>=0; }); save(); render(); };
+  F.appendChild(all); F.appendChild(maj);
+
+  function render(){
+    var cols = P.filter(function(p){return shown.indexOf(p.id)>=0;});
+    var h = '<thead><tr><th class="k">項目</th>'+cols.map(function(p){
+      return '<th>'+esc(p.company)+'<span class="p">'+esc(p.product)+'</span><span class="r">'+esc(p.revision||'')+'</span></th>';
+    }).join('')+'</tr></thead><tbody>';
+    D.rows.forEach(function(r){
+      if(r.group){ h+='<tr class="grp"><td colspan="'+(cols.length+1)+'">'+esc(r.group)+'</td></tr>'; return; }
+      h+='<tr'+(r.hl?' class="hl"':'')+'><th class="k">'+esc(r.label)+(r.note?'<span class="note">'+esc(r.note)+'</span>':'')+'</th>';
+      cols.forEach(function(p){ h+='<td>'+(r.docs?docs(p[r.key]):cell(p[r.key]))+'</td>'; });
+      h+='</tr>';
+    });
+    document.getElementById('matrix').innerHTML = h+'</tbody>';
+  }
+  render();
+
+  document.getElementById('cards').innerHTML = P.map(function(p){
+    return '<div class="card"><h3>'+esc(p.company)+'</h3><div class="p">'+esc(p.product)+(p.target?'／'+esc(p.target):'')+'</div><ul>'+
+      (p.strengths||[]).map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>'+
+      (p.services?'<div class="svc">付帯サービス：'+esc(p.services)+'</div>':'')+'</div>';
+  }).join('');
+
+  document.getElementById('news').innerHTML = (D.news||[]).map(function(g){
+    return '<div><h3>'+esc(g.category)+'</h3><ol>'+g.items.map(function(n){
+      return '<li><span class="dt">'+esc(n.date||'')+'</span><div class="t"><a href="'+esc(n.url)+'" target="_blank" rel="noopener">'+esc(n.title)+'</a> <span class="src">'+esc(n.source||'')+'</span></div>'+(n.summary?'<div class="sum">'+esc(n.summary)+'</div>':'')+'</li>';
+    }).join('')+'</ol></div>';
+  }).join('');
+})();
+</script>

@@ -1,0 +1,215 @@
+<title>サイバー保険 各社比較</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 帳票型。上に要約、中央に横スクロールの比較マトリクス（項目列固定）、下に資料台帳と関連情報 */
+:root{
+  --bg:#f5f7f4;
+  --surface:#ffffff;
+  --ink:#1c2620;
+  --ink-soft:#56635a;
+  --line:#d8ded7;
+  --line-strong:#b9c4b9;
+  --accent:#2f6a43;
+  --accent-soft:#e3eee5;
+  --hl:#fff6c7;
+  --hl-ink:#5a4a00;
+  --ok:#1f7a4a;
+  --mid:#a76a00;
+  --ng:#b3342c;
+  --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121713;--surface:#1a211c;--ink:#e3eae4;--ink-soft:#a2b0a6;--line:#2c3630;--line-strong:#3f4b43;
+  --accent:#7cc495;--accent-soft:#213328;--hl:#3a3413;--hl-ink:#f2e3a0;--ok:#6fd39b;--mid:#e6b45a;--ng:#f08a80;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121713;--surface:#1a211c;--ink:#e3eae4;--ink-soft:#a2b0a6;--line:#2c3630;--line-strong:#3f4b43;
+  --accent:#7cc495;--accent-soft:#213328;--hl:#3a3413;--hl-ink:#f2e3a0;--ok:#6fd39b;--mid:#e6b45a;--ng:#f08a80;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.7}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:flex;flex-direction:column;gap:36px}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:2px solid var(--accent);padding-bottom:16px}
+header.top h1{font-family:var(--display);font-weight:900;font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:.02em;text-wrap:balance}
+header.top p{margin:4px 0 0;color:var(--ink-soft);max-width:70ch}
+.stamp{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-align:right;line-height:1.6}
+.stamp b{color:var(--ink);font-weight:500}
+h2{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font-family:var(--body);font-weight:400;font-size:12px;color:var(--ink-soft)}
+section{min-width:0}
+
+/* summary */
+.changes{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.changes ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+.changes li b{font-weight:700}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.filters span.lbl{font-size:12px;color:var(--ink-soft);margin-right:4px}
+.chip{display:inline-flex;align-items:center}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{cursor:pointer;border:1px solid var(--line-strong);border-radius:999px;padding:3px 12px;font-size:12.5px;background:var(--surface);color:var(--ink-soft);user-select:none}
+.chip input:checked+label{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn{cursor:pointer;border:1px solid var(--line-strong);background:transparent;color:var(--ink);border-radius:4px;padding:3px 10px;font:inherit;font-size:12px}
+
+/* matrix */
+.scroller{overflow-x:auto;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface)}
+table.m{border-collapse:separate;border-spacing:0;font-size:12.5px;line-height:1.6;min-width:100%}
+table.m th,table.m td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+table.m thead th{position:sticky;top:0;background:var(--accent);color:#fff;z-index:2;font-family:var(--display);font-weight:700;font-size:13.5px;min-width:230px;max-width:300px}
+table.m thead th .p{display:block;font-family:var(--body);font-weight:400;font-size:11.5px;opacity:.85}
+table.m thead th .r{display:block;font-family:var(--mono);font-weight:500;font-size:11px;opacity:.85}
+table.m .k{position:sticky;left:0;background:var(--surface);z-index:1;min-width:150px;max-width:170px;font-weight:700;color:var(--ink)}
+table.m thead th.k{z-index:3;background:var(--accent);color:#fff}
+table.m tr.grp td{background:var(--accent-soft);font-family:var(--display);font-weight:700;color:var(--accent);position:sticky;left:0}
+table.m tr.hl td,table.m tr.hl th.k{background:var(--hl)}
+table.m tr.hl th.k{color:var(--hl-ink)}
+.k .note{display:block;font-weight:400;font-size:11px;color:var(--ink-soft)}
+.mk{display:inline-block;font-weight:700;font-size:14px;line-height:1;margin-right:4px}
+.mk.o{color:var(--ok)}.mk.t{color:var(--mid)}.mk.x{color:var(--ng)}
+.uv{color:var(--ink-soft);font-style:normal}
+td .docs{display:flex;flex-direction:column;gap:4px}
+td .docs a{word-break:break-all}
+td .docs .d{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+
+/* features */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+.card h3{margin:0;font-family:var(--display);font-size:15px}
+.card .p{font-size:12px;color:var(--ink-soft);margin-bottom:8px}
+.card ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+.card .svc{margin-top:10px;font-size:12px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:8px}
+
+/* news */
+.news{display:flex;flex-direction:column;gap:22px}
+.news h3{font-family:var(--display);font-size:14.5px;margin:0 0 6px;color:var(--accent)}
+.news ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.news li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
+.news .dt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);padding-top:2px}
+.news .t a{font-weight:500}
+.news .src{font-size:12px;color:var(--ink-soft)}
+.news .sum{grid-column:2;font-size:12.5px;color:var(--ink-soft)}
+@media (max-width:560px){.news li{grid-template-columns:1fr}.news .sum{grid-column:1}}
+
+footer{font-size:12px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:4px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>サイバー保険・個人情報漏えい保険 各社比較</h1>
+      <p>損害保険各社の公開パンフレット・約款をもとに、補償の差分と特長を整理した比較表です。○は補償対象、△は条件付き、×は対象外を示します。</p>
+    </div>
+    <div class="stamp">最終確認 <b id="checked"></b><br>掲載 <b id="count"></b></div>
+  </header>
+
+  <section id="sec-changes">
+    <h2>今回の更新で変わった点<small>前回の比較表（2026年3月版）からの差分</small></h2>
+    <div class="changes"><ul id="changes"></ul></div>
+  </section>
+
+  <section id="sec-matrix">
+    <h2>補償内容の比較<small>黄色の行はフォレンジック調査費用の発動要件（各社で差が大きい箇所）</small></h2>
+    <div class="filters" id="filters"><span class="lbl">表示する会社</span></div>
+    <div class="scroller"><table class="m" id="matrix"></table></div>
+  </section>
+
+  <section id="sec-features">
+    <h2>各社の特長</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="sec-news">
+    <h2>損保各社のサイバー関連情報<small>レポート・調査、無料診断、商品改定、制度動向</small></h2>
+    <div class="news" id="news"></div>
+  </section>
+
+  <footer>
+    <div>出典は各社公式サイトの公開資料です。保険金額・発動要件は契約プラン・特約で変わるため、提案時は必ず最新の約款・重要事項説明書で確認してください。</div>
+    <div>「未確認」は公開資料で確認できなかった項目です（代理店向け資料・個別見積で確認が必要）。</div>
+  </footer>
+</div>
+
+<script type="application/json" id="data">{"checked_at": "2026-11-25", "changes": [{"company": "AIG損保", "text": "社内で発見しただけでは調査費用の対象になりません。公表・公的機関への援助の申出・警察への被害届のいずれかが必要です（旧表の「公表や被害届は不要」は誤り）。取引先・カード会社など外部からの通報は対象です。"}, {"company": "AIG損保", "text": "事故対応費用の上限を訂正。危機管理実行費用は「5,000万円か漏洩特約限度額の10%の低い方」（自己負担10%）。旧表の「1億円か20%」は倍額支払特約をセットした場合の値です。調査費用はサイバー攻撃対応費用特約で別に1,500万円。"}, {"company": "AIG損保", "text": "版は「2024年6月版・2025年2月1日以降始期用」。訴訟費用は危機管理実行費用ではなく、賠償の限度額内の争訟費用として支払われます。"}, {"company": "損保ジャパン", "text": "2026年2月改定で「サイバー攻撃緊急初動費用」を新設。自社で検知した段階の調査・遮断費用も対象となり、旧表の社内発見「×」が変わる見込みです（同社の商工会団体制度パンフレットで同じ設計を確認。単独商品の限度額は代理店で要確認）。"}, {"company": "東京海上日動", "text": "賠償の上限は1請求・保険期間中10億円（旧表は空欄）。調査費用の要件は公式サイトでは「外部通報」とだけ書かれ、取引先・カード会社が含まれるかは未確認です。掲載中のパンフレットは「2026年12月31日以前始期用」のため、2027年1月始期から改定版に切り替わる可能性があります。"}, {"company": "三井住友海上", "text": "社内発見時の調査費用には、運用管理委託先か三井住友海上の通報・確認が必要です。取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件に含まれません。ワイドではサイバー攻撃による身体障害の被害者に1名10万円の見舞金。"}, {"company": "あいおいニッセイ同和", "text": "賠償の限度額は2,000万円〜10億円から選択（IT業務特約付きは最大5億円）。工業所有権（特許・意匠・商標等）の侵害は基本契約で対象外で、旧表の知財「○」は確認できませんでした。調査費用の発動要件は公開資料に記載がありません。"}], "products": [{"id": "tmn", "group": "major", "company": "東京海上日動", "short": "東京海上日動", "product": "サイバーリスク保険", "target": "法人・事業者（代理店扱い）。情報漏えい限定補償プランあり", "revision": "未確認（旧表: 2025年1月改定）。パンフは2026年12月31日以前始期用", "overview": "自社システムの所有・使用・管理（ITユーザー行為）に起因する他人の事業休止・阻害やデータ損壊、情報漏えいまたはそのおそれ、提供データによる人格権・著作権等の侵害。海外での損害賠償請求も補償", "liability_limit": "1請求・保険期間中10億円（一部業種は異なる）。全保険金を合算して賠償の限度額が上限", "incident_response_limit": "1事故・保険期間中5億円。費用の種類ごとに個別の限度額・縮小支払割合あり", "ip_infringement": "△ 人格権・著作権等の侵害は基本補償。特許権等・営業秘密は対象外（外部者のサイバー攻撃による漏えいに起因するものは補償）", "cyber_bodily_property": "△ オプション（日本国内の業務で、サイバー攻撃により国内で生じた対人・対物）", "forensic_internal": "△ 攻撃なし: 緊急対応費用で調査（限定プランは対象外）。攻撃あり: サイバー攻撃対応費用・原因調査費用。金額は未確認（旧表: 1,000万円＋縮小90%／1億円）", "forensic_public_vendor": "○ 外部通報で発見した場合は、攻撃がなくてもサイバー攻撃対応費用で補償。金額は未確認（旧表: 1億円）", "forensic_third_party": "△ 攻撃ありなら対象。攻撃なしの場合は「外部通報」に取引先・カード会社が含まれるかが未確認（旧表: 含まれず、緊急対応費用1,000万円＋縮小90%）", "system_restoration": "○ データ・ウェブサイトの復元、サーバ修理、代替機の賃借（携帯機器・ノートPCの修理は除く）。金額は未確認（旧表: 3,000万円）", "mimaikin": "公表等で漏えいが客観的に明らかな場合の見舞費用。単価は未確認（旧表: 個人1,000円／法人5万円）", "recurrence_prevention": "○ 外部認証の取得・報告書作成を含む。金額は未確認（旧表: 3,000万円・縮小90%）", "litigation": "意見書・鑑定書の作成費用、超過勤務手当等。金額は未確認（旧表: 1,000万円）", "business_interruption": "オプション。喪失利益・収益減少防止費用1億円、営業継続費用1億円", "ransom_or_other": "風評被害拡大防止費用、IT業務担保特約（受託開発等）。身代金の記載なし", "services": "サイバーリスク総合支援サービス、Tokio Cyber Port、サプライチェーンサイバーリスク対策強化プログラム（2026年6月〜）", "strengths": ["賠償10億円・事故対応5億円の大きな上限", "攻撃の「おそれ」段階の調査費用（緊急対応費用）を補償", "海外での損害賠償請求を基本補償", "利益損失・対人対物・IT業務をオプションで追加"], "product_page_url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/", "pamphlet": [{"title": "サイバーリスク保険パンフレット（Tコンシェル）", "url": "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4", "version_or_date": "2026年12月31日以前始期用（公開終了 2026/12/30）"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/"}]}, {"id": "sj", "group": "major", "company": "損害保険ジャパン", "short": "損保ジャパン", "product": "サイバー保険", "target": "法人・事業者（業務過誤賠償責任保険＋サイバー保険特約）", "revision": "2026年2月改定（公式記事の題名による）", "overview": "第三者への賠償責任、事故対応の各種費用、喪失利益・営業継続費用の3補償。※公式サイトは自動取得不可のため、旧表（2024年2月版）と検索で確認できた改定情報による", "liability_limit": "未確認（旧表: 20億円）", "incident_response_limit": "未確認（旧表: 費用保険金10億円・基本の内枠）", "ip_infringement": "△ 著作権・商標権・意匠権の侵害は補償（商工会団体版で確認）。特許等は対象外", "cyber_bodily_property": "△ オプション（サイバー攻撃による対人・対物事故補償追加条項）", "forensic_internal": "△ 2026年2月改定で「サイバー攻撃緊急初動費用」を新設し、自社で検知した段階の調査・遮断費用も対象に（旧表: ×）。限度額は未確認", "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先からの通報で、攻撃の有無を問わずサイバー攻撃対応費用を補償（旧表: 公表不要、費用保険金の限度額まで）", "forensic_third_party": "△ 通報要件は「公的機関・委託先からの通報など」。取引先・カード会社が含まれるかは未確認（旧表: ×）。攻撃が明らかになれば事故対応特別費用", "system_restoration": "○ データ復旧費用・システム修復費用。金額は未確認（旧表: 費用保険金の限度額内）", "mimaikin": "個人・法人とも1名／1法人あたりの単価制。単価は未確認（旧表: 個人1,000円、法人10万円〈情報漏えい〉／5万円〈その他〉）", "recurrence_prevention": "○ 認証取得・報告書発行を含む。金額は未確認（旧表: 費用保険金の限度額内）", "litigation": "争訟費用・協力費用、法令等対応費用。金額は未確認（旧表: 費用保険金の限度額内）", "business_interruption": "喪失利益・収益減少防止費用・営業継続費用。自主的なシステム停止による利益損害も補償する追加条項あり（団体版で確認）", "ransom_or_other": "漏えい情報の不正使用監視費用、使用人の犯罪行為による損害。身代金は対象外", "services": "SOMPOサイバーインシデントサポートデスク（24時間365日）、緊急時サポート総合サービス、SOMPO Cyber Risk Scan（2026年12月〜）", "strengths": ["旧表時点で賠償20億円と最大級の上限", "自社検知段階の初動費用を独立した費用項目で補償（2026年2月〜）", "自主的なシステム停止による利益損害まで補償可能", "外部公開資産の継続スキャン（Cyber Risk Scan）を契約者に提供"], "product_page_url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/", "pamphlet": [{"title": "サイバー保険パンフレット 2024年2月改定（旧版）", "url": "https://www.sompo-japan.co.jp/-/media/SJNK/files/hinsurance/contents1/cyber_2402.pdf?la=ja-JP", "version_or_date": "2024年2月改定。2026年2月改定版は未取得"}, {"title": "2026年2月改定の解説記事", "url": "https://www.sompo-japan.co.jp/hinsurance/entrisksolution/entsolution/s7/index.html", "version_or_date": "2026年2月"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/"}]}, {"id": "ms", "group": "major", "company": "三井住友海上", "short": "三井住友海上", "product": "サイバープロテクター", "target": "事業者。エコノミー（賠償のみ）／ベーシック／ワイドの3プラン。IT業務特約あり", "revision": "2024年4月1日以降始期契約用（パンフ）", "overview": "情報の漏えいまたはそのおそれ、システムの所有・使用・管理に起因する他人の業務阻害等による賠償。ワイドはサイバー攻撃起因の対人・対物も対象で、全世界が適用地域", "liability_limit": "1,000万円〜10億円から選択（1請求・保険期間中）", "incident_response_limit": "100万円〜5億円から選択。原則外枠、総支払限度額設定特約で内枠も可", "ip_infringement": "○ 著作権・意匠権・商標権・ドメイン名（システムで提供するデータの表示・配信による侵害に限る）", "cyber_bodily_property": "○ ワイドプランのみ", "forensic_internal": "△ 社内発見だけでは対象外。運用管理委託先か三井住友海上の通報・確認が必要。攻撃なし: サイバー攻撃調査費用3,000万円・縮小90%。攻撃あり: 原因・被害範囲調査費用 最大5億円", "forensic_public_vendor": "○ 公的機関（IPA等を含む）またはセキュリティ運用管理の委託先の通報（監視サービスの通知を含む）。委託先以外の無償診断は除く", "forensic_third_party": "△ 取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件外。委託先・三井住友海上の確認があれば対象", "system_restoration": "3,000万円（縮小なし・ワイドのみ）。マルウェア駆除・初期化を含む", "mimaikin": "個人1名1,000円、法人1社5万円。ワイドはサイバー攻撃による身体障害の被害者1名10万円", "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）。認証取得費用を含む", "litigation": "1,000万円（賠償限度額の内枠）", "business_interruption": "利益損害補償特約（ベーシック・ワイド、売上高100億円以下）。1,000万〜1億円、免責12時間", "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺の預貯金被害500万円、免責10万円。身代金は対象外", "services": "MS&ADサイバーセキュリティ基本態勢診断、標的型メール訓練、専門事業者紹介", "strengths": ["賠償のみのエコノミーから選べる3プラン", "費用損害は原則外枠で賠償枠を食わない", "不正送金・ビジネスメール詐欺の資金損害を補償（ワイド）", "知財はドメイン名まで対象"], "product_page_url": "https://www.ms-ins.com/business/indemnity/pd-protector/", "pamphlet": [{"title": "サイバープロテクター パンフレット", "url": "https://www.ms-ins.com/pdf/business/indemnity/pd-protector.pdf", "version_or_date": "2024年4月1日以降始期契約用"}, {"title": "商品特設サイト（代理店ファーストプレイス運営）", "url": "https://www.cyber-protector.com/compensation/", "version_or_date": "2026年7月承認 A26-100584"}], "yakkan": [{"title": "Web約款", "url": "https://web-yakkan.ms-ins.com/clause/item/detail/?id=925890000", "version_or_date": "版は未確認"}], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.ms-ins.com/business/indemnity/pd-protector/"}]}, {"id": "adi", "group": "major", "company": "あいおいニッセイ同和", "short": "あいおいニッセイ同和", "product": "サイバーセキュリティ保険", "target": "事業者。ベーシック／ワイドの2プラン。IT業務特約・利益損害・資金損害等のオプション", "revision": "未確認（旧表: 2024年4月改定）。特設サイトは2025年3月承認", "overview": "包括職業賠償責任保険（E&O型）がベースで、サイバー攻撃を含むIT事故による賠償損害と費用損害を補償。ベーシックは海外での損害賠償請求を補償しない", "liability_limit": "2,000万円〜10億円から選択（IT業務特約付きは最大5億円）", "incident_response_limit": "1,000万円〜5億円（賠償限度額以内）。内枠/外枠は未確認", "ip_infringement": "× 特許・実用新案・意匠・商標の侵害は基本契約で対象外。著作権の扱いは未確認", "cyber_bodily_property": "○ ワイドプランのみ", "forensic_internal": "サイバー攻撃調査費用3,000万円・縮小90%。発動要件は公開資料に記載なし（旧表: △）", "forensic_public_vendor": "未確認（旧表: ○）", "forensic_third_party": "未確認（旧表: △）", "system_restoration": "3,000万円・縮小なし（ワイドのみ）", "mimaikin": "見舞金は費用損害として支払われる。単価は未確認（旧表: 個人1,000円／法人5万円）", "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）", "litigation": "1,000万円（賠償限度額の範囲内）", "business_interruption": "利益損害補償特約（ベーシック・ワイド）。1,000万〜1億円、免責12時間", "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺、500万円、免責10万円。身代金は対象外", "services": "専門業者紹介サービス。専用告知書で対策状況を確認し最大60%割引", "strengths": ["E&O型でIT事故の賠償に強い", "セキュリティ対策状況に応じて最大60%割引", "国内子会社を含むグループを1契約で補償（追加記名被保険者特約）", "利益損害をベーシックからセット可能"], "product_page_url": "https://www.ad-cybersecurity.com/", "pamphlet": [{"title": "商品特設サイト（代理店ファーストプレイス運営）", "url": "https://www.ad-cybersecurity.com/terms/", "version_or_date": "2025年3月承認 B24-202239"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.ad-cybersecurity.com/"}]}, {"id": "aig", "group": "major", "company": "AIG損害保険", "short": "AIG損保", "product": "個人情報漏洩保険", "target": "法人。サイバー部分はオプション特約で追加。保険料は業務内容・売上高で算出", "revision": "2024年6月版・2025年2月1日以降始期用", "overview": "個人情報漏洩特約（自動セット）で国内業務の個人情報漏えいの賠償金・争訟費用。オプションで企業情報漏洩、セキュリティ賠償（踏み台）、海外担保など", "liability_limit": "漏洩特約の限度額は契約時に設定。最高額は資料に記載なし（旧表: 5億円）。全特約がこの限度額の内枠", "incident_response_limit": "危機管理実行費用: 5,000万円か限度額の10%の低い方（自己負担10%）、倍額特約で1億円か20%。危機管理コンサル費用500万円。いずれも内枠", "ip_infringement": "△ 特許等知的財産権特約（オプション）で1,000万円か3,000万円。国外での請求は対象外", "cyber_bodily_property": "× 対象外", "forensic_internal": "△ 社内で認識しただけでは対象外。公表・公的機関への援助の申出・警察への被害届のいずれかが必要。サイバー攻撃対応費用特約1,500万円（自己負担なし）", "forensic_public_vendor": "○ 公的機関・セキュリティ運用管理会社からの通報で、事故の発生が合理的に推察できれば対象。1,500万円（倍額特約で3,000万円）", "forensic_third_party": "○ カード会社・決済代行会社・取引先からの通報や報道による発覚も対象", "system_restoration": "△ データ復元費用特約（オプション）1,000万円。機器購入費・システム修復費は対象外", "mimaikin": "1被害者500円（危機管理実行費用の中。公的機関への届出か報道が要件）。法人単価は未確認（旧表: 5万円）", "recurrence_prevention": "△ サイバー攻撃対応費用特約のセキュリティ対策コンサル（再発防止の助言）の報酬のみ", "litigation": "争訟費用は賠償限度額の内枠。裁判所出頭費用は1日あたり役員等5万円・従業員2.5万円", "business_interruption": "記載なし", "ransom_or_other": "クレジットカード番号等の漏えいの賠償、私物デバイスも対象。恐喝金は対象外", "services": "フォレンジック調査機関・危機管理コンサルの案内、体験型ワークショップ、サイバーリスク簡易診断", "strengths": ["取引先・カード会社からの通報でもフォレンジック費用が出る", "調査費用1,500万円は自己負担なし（倍額で3,000万円）", "特許等の知財侵害を特約で補償", "従業員の持ち出し・委託先での漏えいも補償"], "product_page_url": "https://www.aig.co.jp/sonpo/business/product/leak", "pamphlet": [{"title": "個人情報漏洩保険パンフレット 5A1-574", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/pamphlets/5A1-574.pdf", "version_or_date": "2024年6月版・2025年2月1日以降始期用"}], "yakkan": [{"title": "重要事項説明書 5B1-144（旧版）", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/jusetu/leak_20180101_jyu.pdf", "version_or_date": "2022年10月版。2025年2月以降始期分はWeb約款ページ"}], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.aig.co.jp/sonpo/business/product/leak"}]}, {"id": "nisshin", "group": "other", "company": "日新火災", "short": "日新火災", "product": "サイバー・情報漏えい保険（ビジサポ＋特約）", "target": "中小・中堅事業者（統合賠償責任保険ビジサポにセット）", "revision": "2026年1月改定", "overview": "ITユーザー行為・IT業務による他人の事業休止やデータ消失、個人・法人情報の漏えいとそのおそれ、サイバー攻撃による対人・対物の賠償", "liability_limit": "5,000万円／1億円／3億円から選択。カード番号等の不正使用損害は1,000万円", "incident_response_limit": "各種費用の合計で1億円（5千万円型は5千万円）、内枠。発見から180日以内の費用", "ip_infringement": "△ 原則対象外。提供データによる著作権侵害と、外部者の攻撃による漏えいに起因するものは対象", "cyber_bodily_property": "○ 基本補償に含む", "forensic_internal": "△ 攻撃ありなら対象。攻撃なしの場合は外部通報で発見した場合に限る", "forensic_public_vendor": "○ セキュリティ運用会社・公的機関からの通報なら攻撃がなくても調査・遮断費用を補償", "forensic_third_party": "△ 攻撃ありなら対象。攻撃なしは×（「外部」に取引先・カード会社を含まない）", "system_restoration": "1,000万円（データ・ウェブサイト復元、サーバ修理、代替機）", "mimaikin": "個人1名1,000円、法人1社10万円、合計3,000万円", "recurrence_prevention": "セキュリティ強化費用1,000万円・縮小90%（認証取得を含む）", "litigation": "訴訟対応費用は各種費用の枠内。争訟費用は別枠", "business_interruption": "記載なし", "ransom_or_other": "公的調査対応費用、マスメディアでの謝罪費用。売上3億円以下は対人対物事故で示談交渉あり", "services": "サイバー緊急連絡先（サイバーディフェンス研究所、ラック、日本サイバーディフェンス）。委託料は自己負担", "strengths": ["サイバー攻撃による対人・対物を基本補償", "法人見舞金10万円と厚め", "小規模事業者は示談交渉サービスあり"], "product_page_url": "https://www.nisshinfire.co.jp/corp/risk04.html", "pamphlet": [{"title": "サイバー・情報漏えい保険", "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf", "version_or_date": "2026年1月改定"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.nisshinfire.co.jp/corp/risk04.html"}]}, {"id": "chubb", "group": "other", "company": "Chubb損害保険", "short": "Chubb", "product": "Cyber Pro v2／Cyber Pro Ignite（中小企業向け）", "target": "法人。Igniteは中小企業向けパッケージ。グローバル対応", "revision": "未確認", "overview": "情報管理・ネットワークセキュリティ賠償、コンテンツ賠償。個人情報の取得方法や第三者提供の過誤による賠償も補償", "liability_limit": "未確認", "incident_response_limit": "未確認（事故対応費用・緊急事故対応費用の拡張補償あり）", "ip_infringement": "△ オプションでウェブサイト上のコンテンツによる著作権・商標権等の侵害", "cyber_bodily_property": "未確認", "forensic_internal": "未確認", "forensic_public_vendor": "未確認", "forensic_third_party": "未確認", "system_restoration": "○ データ・システム復元費用補償", "mimaikin": "未確認", "recurrence_prevention": "○ 改善費用拡張補償", "litigation": "未確認", "business_interruption": "○ 事業中断損害補償", "ransom_or_other": "○ サイバー恐喝対応費用、サイバークライム損害、通信損害の拡張補償", "services": "事故事例集・セキュリティアドバイスを公開", "strengths": ["サイバー恐喝（ランサムウェア）対応費用を明示的に補償", "海外子会社を含むグローバル補償", "サイバークライム（不正送金等）の拡張補償"], "product_page_url": "https://www.chubb.com/jp-jp/businesses/cyber-pro.html", "pamphlet": [], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.chubb.com/jp-jp/businesses/cyber-pro.html"}]}, {"id": "kyoei", "group": "other", "company": "共栄火災", "short": "共栄火災", "product": "サイバーリスク保険（包括職業賠償＋サイバーリスク特約）", "target": "事業者。ワイド／ベーシック", "revision": "パンフ2025年11月版（検索抜粋による）", "overview": "個人・法人情報の漏えいまたはそのおそれ、ネットワーク事故、それらを引き起こすサイバー攻撃による賠償と費用。※公式サイトは自動取得できず、検索抜粋による", "liability_limit": "未確認", "incident_response_limit": "コンサル費用500万円、被害拡大防止・再発防止合算1,000万円、データ復旧1,000万円", "ip_infringement": "未確認", "cyber_bodily_property": "未確認", "forensic_internal": "△ 攻撃の有無を判断する外部調査費用1,000万円。社内発見のみで発動するかは未確認", "forensic_public_vendor": "未確認（資料間で記載が食い違う）", "forensic_third_party": "未確認", "system_restoration": "データ復旧費用1,000万円", "mimaikin": "対象。単価は未確認", "recurrence_prevention": "被害拡大防止費用と合算で1,000万円", "litigation": "未確認", "business_interruption": "ワイドのみ: ネットワーク中断による喪失利益", "ransom_or_other": "クレジットモニタリング費用（ワイド）", "services": "事故発生時サポートサービス（専門事業者の紹介）", "strengths": ["法人情報の漏えいも対象", "ワイドで喪失利益・クレジットモニタリングまで補償"], "product_page_url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html", "pamphlet": [{"title": "事業者向け サイバーリスク保険", "url": "https://www.kyoeikasai.co.jp/pdf/corp/liability/roei.pdf", "version_or_date": "2025年11月（検索抜粋）"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html"}]}, {"id": "sj-shokokai", "group": "other", "company": "損保ジャパン（商工会団体制度）", "short": "商工会 情報セキュリティサポート保険", "product": "商工会の情報セキュリティサポート保険", "target": "商工会会員事業者（契約者: 全国商工会連合会）", "revision": "2026年3月1日以降始期（2027年2月1日始期まで）", "overview": "サイバー攻撃、情報漏えいとそのおそれ（紙の紛失を含む）、ITユーザー業務の事故による賠償。全世界の事故・請求が対象", "liability_limit": "未確認（申込書で確認）", "incident_response_limit": "未確認", "ip_infringement": "△ 著作権・商標権・意匠権は補償。特許等は対象外", "cyber_bodily_property": "△ オプション", "forensic_internal": "△ 自社でおそれを発見した場合は「サイバー攻撃緊急初動費用」（調査・遮断の外部委託費）。限度額は未確認", "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先からの通報で、調査・遮断の外部委託費を補償", "forensic_third_party": "△ 要件は「公的機関・委託先からの通報など」。取引先・カード会社は未確認", "system_restoration": "○ データ復旧費用・システム修復費用", "mimaikin": "個人・法人とも単価制（単価は未確認）", "recurrence_prevention": "○ 認証取得・報告書発行を含む", "litigation": "争訟費用・協力費用・法令等対応費用", "business_interruption": "オプション。自主的なシステム停止による利益損害も追加可能", "ransom_or_other": "漏えい情報の不正使用監視費用。身代金は対象外", "services": "SOMPOサイバーインシデントサポートデスク、緊急時サポート総合サービス自動セット。対策確認シートで最大60%以上割引", "strengths": ["自社検知段階の初動費用を補償", "緊急時サポートの費用を保険金で支払い", "対策状況で最大60%以上割引"], "product_page_url": "https://www.shokokai.or.jp/support/security-support.html", "pamphlet": [{"title": "商工会の情報セキュリティサポート保険", "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf", "version_or_date": "2026年3月1日始期"}], "yakkan": [], "product_page_url_docs": [{"title": "公式ページ", "url": "https://www.shokokai.or.jp/support/security-support.html"}]}], "rows": [{"group": "基本情報"}, {"key": "target", "label": "対象・販売形態"}, {"key": "revision", "label": "最新改定"}, {"group": "① 賠償責任の補償"}, {"key": "overview", "label": "賠償責任に関する補償"}, {"key": "liability_limit", "label": "填補限度額（賠償責任）", "note": "最大"}, {"key": "ip_infringement", "label": "知的財産権等侵害の賠償責任"}, {"key": "cyber_bodily_property", "label": "サイバー起因の対人・対物事故"}, {"group": "② 事故対応費用"}, {"key": "incident_response_limit", "label": "填補限度額（事故対応費用）", "note": "最大"}, {"key": "forensic_internal", "label": "フォレンジック発動要件：社内発見", "note": "サイバー攻撃のおそれを社内で認識", "hl": true}, {"key": "forensic_public_vendor", "label": "フォレンジック発動要件：公的機関・委託ベンダーからの通報", "hl": true}, {"key": "forensic_third_party", "label": "フォレンジック発動要件：その他第三者からの通報", "note": "取引先・クレジットカード会社等", "hl": true}, {"key": "system_restoration", "label": "コンピュータシステム復旧費用"}, {"key": "mimaikin", "label": "見舞金・見舞品購入費用"}, {"key": "recurrence_prevention", "label": "再発防止費用"}, {"key": "litigation", "label": "訴訟対応費用", "note": "意見書・鑑定書の作成費用等"}, {"group": "③ 自社の損害・その他"}, {"key": "business_interruption", "label": "利益損害・営業継続費用"}, {"key": "ransom_or_other", "label": "その他の特徴的な補償", "note": "身代金・不正送金等"}, {"key": "services", "label": "付帯サービス"}, {"group": "資料"}, {"key": "pamphlet", "label": "パンフレット等", "docs": true}, {"key": "yakkan", "label": "約款・特約", "docs": true}, {"key": "product_page_url_docs", "label": "商品ページ", "docs": true}], "news": [{"category": "無料診断・サービス", "items": [{"date": "2026-10-28", "title": "SOMPO Cyber Risk Scan（外部公開資産の継続スキャン）提供開始（2026年12月1日〜）", "source": "損保ジャパン／SOMPOリスクマネジメント／トレンドマイクロ", "url": "https://www.trendmicro.com/ja_jp/about/newsroom/press-releases/2026/pr-20261022-01.html", "summary": "サイバー保険契約者の外部公開資産をASMで継続診断しダッシュボード化。未契約企業も1回の簡易診断が可能。診断データは引受精度向上にも活用。"}, {"date": "2026-06-08", "title": "サプライチェーンサイバーリスク対策強化プログラム 提供開始", "source": "東京海上日動", "url": "https://www.tokiomarine-nichido.co.jp/company/release/pdf/260608_01.pdf", "summary": "委託元には委託先リスクの可視化、委託先には経産省SCS評価制度への適合診断・取得支援を提供。保険の改定ではなくサービスの追加。"}, {"date": "2025-02-17", "title": "SMBCサイバーフロント設立（三井住友海上が参画）", "source": "三井住友フィナンシャルグループ", "url": "https://www.smfg.co.jp/news/pdf/j20250217_01.pdf", "summary": "中堅・中小企業向けにサイバー対策を支援する合弁会社。"}, {"date": "常設", "title": "Tokio Cyber Port（サイバーセキュリティ情報サイト）", "source": "東京海上日動", "url": "https://tokiocyberport.tokiomarine-nichido.co.jp/cybersecurity/s/", "summary": "サイバーリスク保険の商品ページからリンクされている情報発信サイト。"}, {"date": "常設", "title": "保険金お支払い例", "source": "あいおいニッセイ同和損保", "url": "https://www.ad-cybersecurity.com/fee/", "summary": "サイバーセキュリティ保険の支払事例。調査費用や賠償金の目安をつかむのに使える。"}]}, {"category": "各社レポート・調査", "items": [{"date": "2026-03-05", "title": "ランサムウェア攻撃によるITシステム停止期間の長期化とその対応", "source": "東京海上ディーアール", "url": "https://www.tokio-dr.jp/publication/report/riskmanagement/riskmanagement-413.html", "summary": "重大事例22件を分析。ITシステムの平均停止期間は45日、1か月以上が56.3%。紙・FAXなど代替手段で事業停止を短く抑えた例も。"}, {"date": "2026-02", "title": "SMSフィッシング詐欺の実態調査", "source": "MS&ADインターリスク総研", "url": "https://newscast.jp/smart/news/2239556", "summary": "1,000人中45.2%が直近1か月で詐欺メッセージを受信。"}, {"date": "2025-11", "title": "企業のリスクマネジメント実態アンケート", "source": "MS&ADインターリスク総研", "url": "https://scan.netsecurity.ne.jp/article/2025/11/11/53992.html", "summary": "関心のあるリスクでサイバーセキュリティが気候変動に次ぐ2位。"}, {"date": "2026", "title": "Chubb Cyber Claims Report 2026（アジア太平洋版）", "source": "Chubb", "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/business/cyber-insurance/chubb-cyber-claims-report-2026-final-apac.pdf", "summary": "アジア太平洋全体の請求データ。日本単独の数字ではない点に注意。"}, {"date": "常設", "title": "【サイバーリスク】企業のためのケーススタディ", "source": "Chubb", "url": "https://www.chubb.com/jp-jp/resources2021/cyber-case-studies-for-smes.html", "summary": "中小企業向けの事故事例集。"}]}, {"category": "業界団体", "items": [{"date": "2025-12-11", "title": "中小企業におけるリスク意識・対策実態調査2025", "source": "日本損害保険協会", "url": "https://www.sonpo.or.jp/sme_insurance/", "summary": "経営者・従業員1,050名が対象。4社に1社が被害を経験し、対策は「損害保険への加入」が最多の55.5%。"}, {"date": "常設", "title": "中小企業向け保険の取扱会社一覧", "source": "日本損害保険協会", "url": "https://www.sonpo.or.jp/sme_insurance/list/", "summary": "サイバー保険を含む中小企業向け保険の取扱会社一覧。比較対象の会社を洗い出す起点になる。"}]}, {"category": "商品改定・新商品", "items": [{"date": "2026-02", "title": "損保ジャパンのサイバー保険が2026年2月改定（サイバー攻撃緊急初動費用を新設）", "source": "損害保険ジャパン", "url": "https://www.sompo-japan.co.jp/hinsurance/entrisksolution/entsolution/s7/index.html", "summary": "自社で疑わしい事象を検知した段階の初動・調査費用も補償する方向の改定（記事の検索抜粋による。限度額は代理店で要確認）。"}, {"date": "2026-03-01", "title": "商工会の情報セキュリティサポート保険（2026年3月1日始期）", "source": "全国商工会連合会／損保ジャパン", "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf", "summary": "セキュリティ対策確認シートの提出で保険料割引。緊急時サポート総合サービス付帯。"}, {"date": "2026-01", "title": "日新火災 サイバー・情報漏えい保険 2026年1月改定", "source": "日新火災海上保険", "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf", "summary": "統合賠償責任保険「ビジサポ」のサイバー特約。2025年6月版からの改定。"}, {"date": "2025-11", "title": "船舶サイバー保険の発売", "source": "損害保険ジャパン", "url": "https://www.logi-today.com/866976", "summary": "船内システムへの攻撃による物理損害、不稼働損失、事故対応費用を補償。"}]}, {"category": "制度・市場動向", "items": [{"date": "2026-10-01", "title": "サイバー対処能力強化法（能動的サイバー防御法）一部施行", "source": "内閣官房", "url": "https://www.cas.go.jp/jp/seisaku/cyber_anzen_hosyo_torikumi/", "summary": "基幹インフラ事業者にインシデント報告・資産届出を義務化。2025年5月成立。"}, {"date": "2026-07-17", "title": "令和8年改正個人情報保護法 公布（課徴金制度の導入）", "source": "個人情報保護委員会", "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou", "summary": "課徴金制度を初めて導入。施行は公布から2年以内。漏えい時の費用・賠償リスクを通じて保険設計に影響しうる。"}, {"date": "2025-12-26", "title": "SCS評価制度（サプライチェーン強化に向けたセキュリティ対策評価制度）", "source": "経済産業省", "url": "https://www.meti.go.jp/policy/netsecurity/scs.html", "summary": "★3・★4が中心、運営はIPA。取引先からの対策要求が強まり、保険の割引・付帯サービスと連動し始めている。"}, {"date": "2026", "title": "日本のサイバー保険活用の課題", "source": "PwC Japan", "url": "https://www.pwc.com/jp/ja/knowledge/column/awareness-cyber-security/cyber-insurance-issues.html", "summary": "調査・復旧に1,000万円以上かかった組織は50%から56%に増加した一方、保険の活用は進んでいない。"}]}]}</script>
+<script>
+(function(){
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var P = D.products;
+  var esc = function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  document.getElementById('checked').textContent = D.checked_at;
+  document.getElementById('count').textContent = P.length + '商品';
+
+  var ch = document.getElementById('changes');
+  (D.changes||[]).forEach(function(c){ var li=document.createElement('li'); li.innerHTML='<b>'+esc(c.company)+'</b>：'+esc(c.text); ch.appendChild(li); });
+  if(!(D.changes||[]).length){ ch.innerHTML='<li>変更はありませんでした。</li>'; }
+
+  function cell(v){
+    if(v==null||v==='') return '<span class="uv">未確認</span>';
+    var s = esc(v);
+    var m = s.match(/^\s*([○◯△×])\s*/);
+    if(m){ var c = m[1]==='×'?'x':(m[1]==='△'?'t':'o'); s = '<span class="mk '+c+'">'+m[1]+'</span>'+s.slice(m[0].length); }
+    s = s.replace(/未確認/g,'<span class="uv">未確認</span>');
+    return s.replace(/\n/g,'<br>');
+  }
+  function docs(list){
+    if(!list||!list.length) return '<span class="uv">公開なし／未確認</span>';
+    return '<div class="docs">'+list.map(function(d){
+      return '<div><a href="'+esc(d.url)+'" target="_blank" rel="noopener">'+esc(d.title||'資料')+'</a>'+(d.version_or_date?'<div class="d">'+esc(d.version_or_date)+'</div>':'')+'</div>';
+    }).join('')+'</div>';
+  }
+
+  var KEY='cyber-cmp-cols';
+  var shown;
+  try{ shown = JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ shown=null; }
+  if(!Array.isArray(shown)) shown = P.filter(function(p){return p.group==='major';}).map(function(p){return p.id;});
+  var save=function(){ try{ localStorage.setItem(KEY, JSON.stringify(shown)); }catch(e){} };
+
+  var F = document.getElementById('filters');
+  P.forEach(function(p){
+    var w=document.createElement('span'); w.className='chip';
+    w.innerHTML='<input type="checkbox" id="c-'+esc(p.id)+'"'+(shown.indexOf(p.id)>=0?' checked':'')+'><label for="c-'+esc(p.id)+'">'+esc(p.short||p.company)+'</label>';
+    w.querySelector('input').addEventListener('change',function(e){
+      if(e.target.checked){ if(shown.indexOf(p.id)<0) shown.push(p.id);} else { shown=shown.filter(function(x){return x!==p.id;}); }
+      save(); render();
+    });
+    F.appendChild(w);
+  });
+  var all=document.createElement('button'); all.className='btn'; all.type='button'; all.textContent='すべて表示';
+  all.onclick=function(){ shown=P.map(function(p){return p.id;}); F.querySelectorAll('input').forEach(function(i){i.checked=true;}); save(); render(); };
+  var maj=document.createElement('button'); maj.className='btn'; maj.type='button'; maj.textContent='大手5社のみ';
+  maj.onclick=function(){ shown=P.filter(function(p){return p.group==='major';}).map(function(p){return p.id;}); F.querySelectorAll('input').forEach(function(i){ i.checked = shown.indexOf(i.id.slice(2))>=0; }); save(); render(); };
+  F.appendChild(all); F.appendChild(maj);
+
+  function render(){
+    var cols = P.filter(function(p){return shown.indexOf(p.id)>=0;});
+    var h = '<thead><tr><th class="k">項目</th>'+cols.map(function(p){
+      return '<th>'+esc(p.company)+'<span class="p">'+esc(p.product)+'</span><span class="r">'+esc(p.revision||'')+'</span></th>';
+    }).join('')+'</tr></thead><tbody>';
+    D.rows.forEach(function(r){
+      if(r.group){ h+='<tr class="grp"><td colspan="'+(cols.length+1)+'">'+esc(r.group)+'</td></tr>'; return; }
+      h+='<tr'+(r.hl?' class="hl"':'')+'><th class="k">'+esc(r.label)+(r.note?'<span class="note">'+esc(r.note)+'</span>':'')+'</th>';
+      cols.forEach(function(p){ h+='<td>'+(r.docs?docs(p[r.key]):cell(p[r.key]))+'</td>'; });
+      h+='</tr>';
+    });
+    document.getElementById('matrix').innerHTML = h+'</tbody>';
+  }
+  render();
+
+  document.getElementById('cards').innerHTML = P.map(function(p){
+    return '<div class="card"><h3>'+esc(p.company)+'</h3><div class="p">'+esc(p.product)+(p.target?'／'+esc(p.target):'')+'</div><ul>'+
+      (p.strengths||[]).map(function(s){return '<li>'+esc(s)+'</li>';}).join('')+'</ul>'+
+      (p.services?'<div class="svc">付帯サービス：'+esc(p.services)+'</div>':'')+'</div>';
+  }).join('');
+
+  document.getElementById('news').innerHTML = (D.news||[]).map(function(g){
+    return '<div><h3>'+esc(g.category)+'</h3><ol>'+g.items.map(function(n){
+      return '<li><span class="dt">'+esc(n.date||'')+'</span><div class="t"><a href="'+esc(n.url)+'" target="_blank" rel="noopener">'+esc(n.title)+'</a> <span class="src">'+esc(n.source||'')+'</span></div>'+(n.summary?'<div class="sum">'+esc(n.summary)+'</div>':'')+'</li>';
+    }).join('')+'</ol></div>';
+  }).join('');
+})();
+</script>

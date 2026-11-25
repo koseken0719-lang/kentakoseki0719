@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-11-25",
+  "categories": [
+    {
+      "category": "無料診断・サービス",
+      "items": [
+        {"date": "2026-10-28", "title": "SOMPO Cyber Risk Scan（外部公開資産の継続スキャン）提供開始（2026年12月1日〜）", "source": "損保ジャパン／SOMPOリスクマネジメント／トレンドマイクロ", "url": "https://www.trendmicro.com/ja_jp/about/newsroom/press-releases/2026/pr-20261022-01.html", "summary": "サイバー保険契約者の外部公開資産をASMで継続診断しダッシュボード化。未契約企業も1回の簡易診断が可能。診断データは引受精度向上にも活用。"},
+        {"date": "2026-06-08", "title": "サプライチェーンサイバーリスク対策強化プログラム 提供開始", "source": "東京海上日動", "url": "https://www.tokiomarine-nichido.co.jp/company/release/pdf/260608_01.pdf", "summary": "委託元には委託先リスクの可視化、委託先には経産省SCS評価制度への適合診断・取得支援を提供。保険の改定ではなくサービスの追加。"},
+        {"date": "2025-02-17", "title": "SMBCサイバーフロント設立（三井住友海上が参画）", "source": "三井住友フィナンシャルグループ", "url": "https://www.smfg.co.jp/news/pdf/j20250217_01.pdf", "summary": "中堅・中小企業向けにサイバー対策を支援する合弁会社。"},
+        {"date": "常設", "title": "Tokio Cyber Port（サイバーセキュリティ情報サイト）", "source": "東京海上日動", "url": "https://tokiocyberport.tokiomarine-nichido.co.jp/cybersecurity/s/", "summary": "サイバーリスク保険の商品ページからリンクされている情報発信サイト。"},
+        {"date": "常設", "title": "保険金お支払い例", "source": "あいおいニッセイ同和損保", "url": "https://www.ad-cybersecurity.com/fee/", "summary": "サイバーセキュリティ保険の支払事例。調査費用や賠償金の目安をつかむのに使える。"}
+      ]
+    },
+    {
+      "category": "各社レポート・調査",
+      "items": [
+        {"date": "2026-03-05", "title": "ランサムウェア攻撃によるITシステム停止期間の長期化とその対応", "source": "東京海上ディーアール", "url": "https://www.tokio-dr.jp/publication/report/riskmanagement/riskmanagement-413.html", "summary": "重大事例22件を分析。ITシステムの平均停止期間は45日、1か月以上が56.3%。紙・FAXなど代替手段で事業停止を短く抑えた例も。"},
+        {"date": "2026-02", "title": "SMSフィッシング詐欺の実態調査", "source": "MS&ADインターリスク総研", "url": "https://newscast.jp/smart/news/2239556", "summary": "1,000人中45.2%が直近1か月で詐欺メッセージを受信。"},
+        {"date": "2025-11", "title": "企業のリスクマネジメント実態アンケート", "source": "MS&ADインターリスク総研", "url": "https://scan.netsecurity.ne.jp/article/2025/11/11/53992.html", "summary": "関心のあるリスクでサイバーセキュリティが気候変動に次ぐ2位。"},
+        {"date": "2026", "title": "Chubb Cyber Claims Report 2026（アジア太平洋版）", "source": "Chubb", "url": "https://www.chubb.com/content/dam/chubb-sites/chubb-com/hk-en/business/cyber-insurance/chubb-cyber-claims-report-2026-final-apac.pdf", "summary": "アジア太平洋全体の請求データ。日本単独の数字ではない点に注意。"},
+        {"date": "常設", "title": "【サイバーリスク】企業のためのケーススタディ", "source": "Chubb", "url": "https://www.chubb.com/jp-jp/resources2021/cyber-case-studies-for-smes.html", "summary": "中小企業向けの事故事例集。"}
+      ]
+    },
+    {
+      "category": "業界団体",
+      "items": [
+        {"date": "2025-12-11", "title": "中小企業におけるリスク意識・対策実態調査2025", "source": "日本損害保険協会", "url": "https://www.sonpo.or.jp/sme_insurance/", "summary": "経営者・従業員1,050名が対象。4社に1社が被害を経験し、対策は「損害保険への加入」が最多の55.5%。"},
+        {"date": "常設", "title": "中小企業向け保険の取扱会社一覧", "source": "日本損害保険協会", "url": "https://www.sonpo.or.jp/sme_insurance/list/", "summary": "サイバー保険を含む中小企業向け保険の取扱会社一覧。比較対象の会社を洗い出す起点になる。"}
+      ]
+    },
+    {
+      "category": "商品改定・新商品",
+      "items": [
+        {"date": "2026-02", "title": "損保ジャパンのサイバー保険が2026年2月改定（サイバー攻撃緊急初動費用を新設）", "source": "損害保険ジャパン", "url": "https://www.sompo-japan.co.jp/hinsurance/entrisksolution/entsolution/s7/index.html", "summary": "自社で疑わしい事象を検知した段階の初動・調査費用も補償する方向の改定（記事の検索抜粋による。限度額は代理店で要確認）。"},
+        {"date": "2026-03-01", "title": "商工会の情報セキュリティサポート保険（2026年3月1日始期）", "source": "全国商工会連合会／損保ジャパン", "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf", "summary": "セキュリティ対策確認シートの提出で保険料割引。緊急時サポート総合サービス付帯。"},
+        {"date": "2026-01", "title": "日新火災 サイバー・情報漏えい保険 2026年1月改定", "source": "日新火災海上保険", "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf", "summary": "統合賠償責任保険「ビジサポ」のサイバー特約。2025年6月版からの改定。"},
+        {"date": "2025-11", "title": "船舶サイバー保険の発売", "source": "損害保険ジャパン", "url": "https://www.logi-today.com/866976", "summary": "船内システムへの攻撃による物理損害、不稼働損失、事故対応費用を補償。"}
+      ]
+    },
+    {
+      "category": "制度・市場動向",
+      "items": [
+        {"date": "2026-10-01", "title": "サイバー対処能力強化法（能動的サイバー防御法）一部施行", "source": "内閣官房", "url": "https://www.cas.go.jp/jp/seisaku/cyber_anzen_hosyo_torikumi/", "summary": "基幹インフラ事業者にインシデント報告・資産届出を義務化。2025年5月成立。"},
+        {"date": "2026-07-17", "title": "令和8年改正個人情報保護法 公布（課徴金制度の導入）", "source": "個人情報保護委員会", "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou", "summary": "課徴金制度を初めて導入。施行は公布から2年以内。漏えい時の費用・賠償リスクを通じて保険設計に影響しうる。"},
+        {"date": "2025-12-26", "title": "SCS評価制度（サプライチェーン強化に向けたセキュリティ対策評価制度）", "source": "経済産業省", "url": "https://www.meti.go.jp/policy/netsecurity/scs.html", "summary": "★3・★4が中心、運営はIPA。取引先からの対策要求が強まり、保険の割引・付帯サービスと連動し始めている。"},
+        {"date": "2026", "title": "日本のサイバー保険活用の課題", "source": "PwC Japan", "url": "https://www.pwc.com/jp/ja/knowledge/column/awareness-cyber-security/cyber-insurance-issues.html", "summary": "調査・復旧に1,000万円以上かかった組織は50%から56%に増加した一方、保険の活用は進んでいない。"}
+      ]
+    }
+  ]
+}
