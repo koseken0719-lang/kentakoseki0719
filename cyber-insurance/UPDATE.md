@@ -13,6 +13,11 @@
 | `check_sources.py` | 公式資料を取得し、変わったものを検知する |
 | `build.py` + `template.html` | JSONを埋め込んで `index.html` を生成する |
 
+## 対象範囲
+
+- 日本損害保険協会「サイバー保険取扱い保険会社」掲載会社＋Chubb等の外資＋主な団体制度。
+- **大同火災は対象外**（2026-11-26 ユーザー指示）。
+
 ## 手順
 
 1. **変更検知**: `python3 cyber-insurance/check_sources.py` を実行し、`changed` / `new` / `failed` を確認する。
