@@ -1,236 +1,438 @@
 {
-  "checked_at": "2026-11-25",
-  "changes": [
-    {"company": "AIG損保", "text": "社内で発見しただけでは調査費用の対象になりません。公表・公的機関への援助の申出・警察への被害届のいずれかが必要です（旧表の「公表や被害届は不要」は誤り）。取引先・カード会社など外部からの通報は対象です。"},
-    {"company": "AIG損保", "text": "事故対応費用の上限を訂正。危機管理実行費用は「5,000万円か漏洩特約限度額の10%の低い方」（自己負担10%）。旧表の「1億円か20%」は倍額支払特約をセットした場合の値です。調査費用はサイバー攻撃対応費用特約で別に1,500万円。"},
-    {"company": "AIG損保", "text": "版は「2024年6月版・2025年2月1日以降始期用」。訴訟費用は危機管理実行費用ではなく、賠償の限度額内の争訟費用として支払われます。"},
-    {"company": "損保ジャパン", "text": "2026年2月改定で「サイバー攻撃緊急初動費用」を新設。自社で検知した段階の調査・遮断費用も対象となり、旧表の社内発見「×」が変わる見込みです（同社の商工会団体制度パンフレットで同じ設計を確認。単独商品の限度額は代理店で要確認）。"},
-    {"company": "東京海上日動", "text": "賠償の上限は1請求・保険期間中10億円（旧表は空欄）。調査費用の要件は公式サイトでは「外部通報」とだけ書かれ、取引先・カード会社が含まれるかは未確認です。掲載中のパンフレットは「2026年12月31日以前始期用」のため、2027年1月始期から改定版に切り替わる可能性があります。"},
-    {"company": "三井住友海上", "text": "社内発見時の調査費用には、運用管理委託先か三井住友海上の通報・確認が必要です。取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件に含まれません。ワイドではサイバー攻撃による身体障害の被害者に1名10万円の見舞金。"},
-    {"company": "あいおいニッセイ同和", "text": "賠償の限度額は2,000万円〜10億円から選択（IT業務特約付きは最大5億円）。工業所有権（特許・意匠・商標等）の侵害は基本契約で対象外で、旧表の知財「○」は確認できませんでした。調査費用の発動要件は公開資料に記載がありません。"}
-  ],
-  "products": [
+ "checked_at": "2026-11-26",
+ "changes": [
+  {
+   "company": "東京海上日動",
+   "text": "最新パンフ（2024年9月改定）を取得し、未確認だった金額を確定。緊急対応費用1,000万円・縮小90%、見舞金 個人1,000円・法人5万円、再発防止3,000万円、訴訟1,000万円。「外部通報」は公的機関とセキュリティ運用委託先だけで、取引先・カード会社は含まれません。"
+  },
+  {
+   "company": "損保ジャパン",
+   "text": "2026年2月改定パンフで「サイバー攻撃緊急初動費用」を確認。社内でおそれを発見すれば通報なしで調査・遮断費用が出ます（社内発見 ×→△）。賠償20億円・費用10億円はパンフに記載がなく、限度額は代理店での確認が必要です。"
+  },
+  {
+   "company": "共栄火災",
+   "text": "公式パンフ（2025年11月）を取得。賠償は最大3億円、費用は最大3,000万円。見舞金は個人1万円・法人3万円と高め。クレジットモニタリングはワイド限定ではなく両プラン共通でした。"
+  },
+  {
+   "company": "AIG CyberEdge",
+   "text": "損保協会の取扱会社一覧でAIGのサイバー保険として掲載されている商品のため追加。自社検知の不正アクセスも保険事故として初期対応します（限度額は非公開）。"
+  },
+  {
+   "company": "AIG損保",
+   "text": "社内で発見しただけでは調査費用の対象になりません。公表・公的機関への援助の申出・警察への被害届のいずれかが必要です（旧表の「公表や被害届は不要」は誤り）。取引先・カード会社など外部からの通報は対象です。"
+  },
+  {
+   "company": "AIG損保",
+   "text": "事故対応費用の上限を訂正。危機管理実行費用は「5,000万円か漏洩特約限度額の10%の低い方」（自己負担10%）。旧表の「1億円か20%」は倍額支払特約をセットした場合の値です。調査費用はサイバー攻撃対応費用特約で別に1,500万円。"
+  },
+  {
+   "company": "AIG損保",
+   "text": "版は「2024年6月版・2025年2月1日以降始期用」。訴訟費用は危機管理実行費用ではなく、賠償の限度額内の争訟費用として支払われます。"
+  },
+  {
+   "company": "三井住友海上",
+   "text": "社内発見時の調査費用には、運用管理委託先か三井住友海上の通報・確認が必要です。取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件に含まれません。ワイドではサイバー攻撃による身体障害の被害者に1名10万円の見舞金。"
+  },
+  {
+   "company": "あいおいニッセイ同和",
+   "text": "賠償の限度額は2,000万円〜10億円から選択（IT業務特約付きは最大5億円）。工業所有権（特許・意匠・商標等）の侵害は基本契約で対象外で、旧表の知財「○」は確認できませんでした。調査費用の発動要件は公開資料に記載がありません。"
+  }
+ ],
+ "products": [
+  {
+   "id": "tmn",
+   "group": "major",
+   "company": "東京海上日動",
+   "short": "東京海上日動",
+   "product": "サイバーリスク保険",
+   "target": "国内の事業者（一部引受不可業種あり）。情報漏えい限定補償プランあり",
+   "revision": "2024年9月改定（パンフ E14-87260）",
+   "overview": "自社システムの所有・使用・管理（ITユーザー行為）に起因する他人の事業休止・阻害やデータ損壊、情報漏えいまたはそのおそれ、提供データによる人格権・著作権等の侵害。海外での損害賠償請求も補償",
+   "liability_limit": "最大10億円（1請求・保険期間中。金融機関は5億円）。全保険金を合算してこの限度額が上限",
+   "incident_response_limit": "費用全体で1事故・保険期間中 最大5億円（賠償限度額の内枠）。各費用の固有限度額はその内枠。免責なし",
+   "ip_infringement": "○ 著作権・意匠権・商標権・人格権・ドメイン名（データベース等による表示・配信）。特許権・営業秘密は対象外",
+   "cyber_bodily_property": "△ オプション（国内の事故に限る）。身体障害見舞費用1名10万円",
+   "forensic_internal": "△ 攻撃なし: 緊急対応費用1,000万円・縮小90%（発見翌日から30日以内かつ発注前に連絡、客観的情報の提出が要件）。攻撃あり: サイバー攻撃対応費用・原因被害範囲調査費用（縮小なし）",
+   "forensic_public_vendor": "○ 外部通報（公的機関、またはセキュリティ運用管理の委託先）なら、攻撃なしでもサイバー攻撃対応費用で補償。金額は未確認（旧表: 1億円）",
+   "forensic_third_party": "△ 取引先・カード会社は外部通報に含まれない。攻撃なしの場合は緊急対応費用（1,000万円・縮小90%）の要件を満たせば対象",
+   "system_restoration": "○ データ等復旧・システム損傷時の修理・代替機（書面同意要）。金額は未確認（旧表: 3,000万円）",
+   "mimaikin": "個人1名1,000円、法人1社5万円（見舞品）。費用全体限度額の内枠",
+   "recurrence_prevention": "3,000万円・縮小90%（書面同意要）。外部認証取得・報告書作成を含む",
+   "litigation": "1請求・保険期間中1,000万円（縮小なし）",
+   "business_interruption": "オプション。喪失利益・収益減少防止費用・営業継続費用で賠償限度額の50%以内・最大1億円。免責時間10〜240時間",
+   "ransom_or_other": "風評被害拡大防止、クレジット情報モニタリング、公的調査対応費用。オプションでIT業務特約、規則等対応費用特約（GDPR等）。身代金の記載なし",
+   "services": "緊急時ホットライン（24時間365日）、サイバーリスク・モニタリング（5ドメイン）、ベンチマークレポート、Tokio Cyber Port（標的型メール訓練等）",
+   "strengths": [
+    "社内発見・攻撃なしでも緊急対応費用（1,000万円）で調査できる",
+    "賠償10億円・費用5億円の大きな上限",
+    "ドメイン名まで含む知財侵害を基本補償",
+    "平時のモニタリング・ベンチマークを無料提供"
+   ],
+   "product_page_url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/",
+   "pamphlet": [
     {
-      "id": "tmn", "group": "major", "company": "東京海上日動", "short": "東京海上日動", "product": "サイバーリスク保険",
-      "target": "法人・事業者（代理店扱い）。情報漏えい限定補償プランあり",
-      "revision": "未確認（旧表: 2025年1月改定）。パンフは2026年12月31日以前始期用",
-      "overview": "自社システムの所有・使用・管理（ITユーザー行為）に起因する他人の事業休止・阻害やデータ損壊、情報漏えいまたはそのおそれ、提供データによる人格権・著作権等の侵害。海外での損害賠償請求も補償",
-      "liability_limit": "1請求・保険期間中10億円（一部業種は異なる）。全保険金を合算して賠償の限度額が上限",
-      "incident_response_limit": "1事故・保険期間中5億円。費用の種類ごとに個別の限度額・縮小支払割合あり",
-      "ip_infringement": "△ 人格権・著作権等の侵害は基本補償。特許権等・営業秘密は対象外（外部者のサイバー攻撃による漏えいに起因するものは補償）",
-      "cyber_bodily_property": "△ オプション（日本国内の業務で、サイバー攻撃により国内で生じた対人・対物）",
-      "forensic_internal": "△ 攻撃なし: 緊急対応費用で調査（限定プランは対象外）。攻撃あり: サイバー攻撃対応費用・原因調査費用。金額は未確認（旧表: 1,000万円＋縮小90%／1億円）",
-      "forensic_public_vendor": "○ 外部通報で発見した場合は、攻撃がなくてもサイバー攻撃対応費用で補償。金額は未確認（旧表: 1億円）",
-      "forensic_third_party": "△ 攻撃ありなら対象。攻撃なしの場合は「外部通報」に取引先・カード会社が含まれるかが未確認（旧表: 含まれず、緊急対応費用1,000万円＋縮小90%）",
-      "system_restoration": "○ データ・ウェブサイトの復元、サーバ修理、代替機の賃借（携帯機器・ノートPCの修理は除く）。金額は未確認（旧表: 3,000万円）",
-      "mimaikin": "公表等で漏えいが客観的に明らかな場合の見舞費用。単価は未確認（旧表: 個人1,000円／法人5万円）",
-      "recurrence_prevention": "○ 外部認証の取得・報告書作成を含む。金額は未確認（旧表: 3,000万円・縮小90%）",
-      "litigation": "意見書・鑑定書の作成費用、超過勤務手当等。金額は未確認（旧表: 1,000万円）",
-      "business_interruption": "オプション。喪失利益・収益減少防止費用1億円、営業継続費用1億円",
-      "ransom_or_other": "風評被害拡大防止費用、IT業務担保特約（受託開発等）。身代金の記載なし",
-      "services": "サイバーリスク総合支援サービス、Tokio Cyber Port、サプライチェーンサイバーリスク対策強化プログラム（2026年6月〜）",
-      "strengths": ["賠償10億円・事故対応5億円の大きな上限", "攻撃の「おそれ」段階の調査費用（緊急対応費用）を補償", "海外での損害賠償請求を基本補償", "利益損失・対人対物・IT業務をオプションで追加"],
-      "product_page_url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/",
-      "pamphlet": [{"title": "サイバーリスク保険パンフレット（Tコンシェル）", "url": "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4", "version_or_date": "2026年12月31日以前始期用（公開終了 2026/12/30）"}],
-      "yakkan": []
-    },
-    {
-      "id": "sj", "group": "major", "company": "損害保険ジャパン", "short": "損保ジャパン", "product": "サイバー保険",
-      "target": "法人・事業者（業務過誤賠償責任保険＋サイバー保険特約）",
-      "revision": "2026年2月改定（公式記事の題名による）",
-      "overview": "第三者への賠償責任、事故対応の各種費用、喪失利益・営業継続費用の3補償。※公式サイトは自動取得不可のため、旧表（2024年2月版）と検索で確認できた改定情報による",
-      "liability_limit": "未確認（旧表: 20億円）",
-      "incident_response_limit": "未確認（旧表: 費用保険金10億円・基本の内枠）",
-      "ip_infringement": "△ 著作権・商標権・意匠権の侵害は補償（商工会団体版で確認）。特許等は対象外",
-      "cyber_bodily_property": "△ オプション（サイバー攻撃による対人・対物事故補償追加条項）",
-      "forensic_internal": "△ 2026年2月改定で「サイバー攻撃緊急初動費用」を新設し、自社で検知した段階の調査・遮断費用も対象に（旧表: ×）。限度額は未確認",
-      "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先からの通報で、攻撃の有無を問わずサイバー攻撃対応費用を補償（旧表: 公表不要、費用保険金の限度額まで）",
-      "forensic_third_party": "△ 通報要件は「公的機関・委託先からの通報など」。取引先・カード会社が含まれるかは未確認（旧表: ×）。攻撃が明らかになれば事故対応特別費用",
-      "system_restoration": "○ データ復旧費用・システム修復費用。金額は未確認（旧表: 費用保険金の限度額内）",
-      "mimaikin": "個人・法人とも1名／1法人あたりの単価制。単価は未確認（旧表: 個人1,000円、法人10万円〈情報漏えい〉／5万円〈その他〉）",
-      "recurrence_prevention": "○ 認証取得・報告書発行を含む。金額は未確認（旧表: 費用保険金の限度額内）",
-      "litigation": "争訟費用・協力費用、法令等対応費用。金額は未確認（旧表: 費用保険金の限度額内）",
-      "business_interruption": "喪失利益・収益減少防止費用・営業継続費用。自主的なシステム停止による利益損害も補償する追加条項あり（団体版で確認）",
-      "ransom_or_other": "漏えい情報の不正使用監視費用、使用人の犯罪行為による損害。身代金は対象外",
-      "services": "SOMPOサイバーインシデントサポートデスク（24時間365日）、緊急時サポート総合サービス、SOMPO Cyber Risk Scan（2026年12月〜）",
-      "strengths": ["旧表時点で賠償20億円と最大級の上限", "自社検知段階の初動費用を独立した費用項目で補償（2026年2月〜）", "自主的なシステム停止による利益損害まで補償可能", "外部公開資産の継続スキャン（Cyber Risk Scan）を契約者に提供"],
-      "product_page_url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/",
-      "pamphlet": [
-        {"title": "サイバー保険パンフレット 2024年2月改定（旧版）", "url": "https://www.sompo-japan.co.jp/-/media/SJNK/files/hinsurance/contents1/cyber_2402.pdf?la=ja-JP", "version_or_date": "2024年2月改定。2026年2月改定版は未取得"},
-        {"title": "2026年2月改定の解説記事", "url": "https://www.sompo-japan.co.jp/hinsurance/entrisksolution/entsolution/s7/index.html", "version_or_date": "2026年2月"}
-      ],
-      "yakkan": []
-    },
-    {
-      "id": "ms", "group": "major", "company": "三井住友海上", "short": "三井住友海上", "product": "サイバープロテクター",
-      "target": "事業者。エコノミー（賠償のみ）／ベーシック／ワイドの3プラン。IT業務特約あり",
-      "revision": "2024年4月1日以降始期契約用（パンフ）",
-      "overview": "情報の漏えいまたはそのおそれ、システムの所有・使用・管理に起因する他人の業務阻害等による賠償。ワイドはサイバー攻撃起因の対人・対物も対象で、全世界が適用地域",
-      "liability_limit": "1,000万円〜10億円から選択（1請求・保険期間中）",
-      "incident_response_limit": "100万円〜5億円から選択。原則外枠、総支払限度額設定特約で内枠も可",
-      "ip_infringement": "○ 著作権・意匠権・商標権・ドメイン名（システムで提供するデータの表示・配信による侵害に限る）",
-      "cyber_bodily_property": "○ ワイドプランのみ",
-      "forensic_internal": "△ 社内発見だけでは対象外。運用管理委託先か三井住友海上の通報・確認が必要。攻撃なし: サイバー攻撃調査費用3,000万円・縮小90%。攻撃あり: 原因・被害範囲調査費用 最大5億円",
-      "forensic_public_vendor": "○ 公的機関（IPA等を含む）またはセキュリティ運用管理の委託先の通報（監視サービスの通知を含む）。委託先以外の無償診断は除く",
-      "forensic_third_party": "△ 取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件外。委託先・三井住友海上の確認があれば対象",
-      "system_restoration": "3,000万円（縮小なし・ワイドのみ）。マルウェア駆除・初期化を含む",
-      "mimaikin": "個人1名1,000円、法人1社5万円。ワイドはサイバー攻撃による身体障害の被害者1名10万円",
-      "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）。認証取得費用を含む",
-      "litigation": "1,000万円（賠償限度額の内枠）",
-      "business_interruption": "利益損害補償特約（ベーシック・ワイド、売上高100億円以下）。1,000万〜1億円、免責12時間",
-      "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺の預貯金被害500万円、免責10万円。身代金は対象外",
-      "services": "MS&ADサイバーセキュリティ基本態勢診断、標的型メール訓練、専門事業者紹介",
-      "strengths": ["賠償のみのエコノミーから選べる3プラン", "費用損害は原則外枠で賠償枠を食わない", "不正送金・ビジネスメール詐欺の資金損害を補償（ワイド）", "知財はドメイン名まで対象"],
-      "product_page_url": "https://www.ms-ins.com/business/indemnity/pd-protector/",
-      "pamphlet": [
-        {"title": "サイバープロテクター パンフレット", "url": "https://www.ms-ins.com/pdf/business/indemnity/pd-protector.pdf", "version_or_date": "2024年4月1日以降始期契約用"},
-        {"title": "商品特設サイト（代理店ファーストプレイス運営）", "url": "https://www.cyber-protector.com/compensation/", "version_or_date": "2026年7月承認 A26-100584"}
-      ],
-      "yakkan": [{"title": "Web約款", "url": "https://web-yakkan.ms-ins.com/clause/item/detail/?id=925890000", "version_or_date": "版は未確認"}]
-    },
-    {
-      "id": "adi", "group": "major", "company": "あいおいニッセイ同和", "short": "あいおいニッセイ同和", "product": "サイバーセキュリティ保険",
-      "target": "事業者。ベーシック／ワイドの2プラン。IT業務特約・利益損害・資金損害等のオプション",
-      "revision": "未確認（旧表: 2024年4月改定）。特設サイトは2025年3月承認",
-      "overview": "包括職業賠償責任保険（E&O型）がベースで、サイバー攻撃を含むIT事故による賠償損害と費用損害を補償。ベーシックは海外での損害賠償請求を補償しない",
-      "liability_limit": "2,000万円〜10億円から選択（IT業務特約付きは最大5億円）",
-      "incident_response_limit": "1,000万円〜5億円（賠償限度額以内）。内枠/外枠は未確認",
-      "ip_infringement": "× 特許・実用新案・意匠・商標の侵害は基本契約で対象外。著作権の扱いは未確認",
-      "cyber_bodily_property": "○ ワイドプランのみ",
-      "forensic_internal": "サイバー攻撃調査費用3,000万円・縮小90%。発動要件は公開資料に記載なし（旧表: △）",
-      "forensic_public_vendor": "未確認（旧表: ○）",
-      "forensic_third_party": "未確認（旧表: △）",
-      "system_restoration": "3,000万円・縮小なし（ワイドのみ）",
-      "mimaikin": "見舞金は費用損害として支払われる。単価は未確認（旧表: 個人1,000円／法人5万円）",
-      "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）",
-      "litigation": "1,000万円（賠償限度額の範囲内）",
-      "business_interruption": "利益損害補償特約（ベーシック・ワイド）。1,000万〜1億円、免責12時間",
-      "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺、500万円、免責10万円。身代金は対象外",
-      "services": "専門業者紹介サービス。専用告知書で対策状況を確認し最大60%割引",
-      "strengths": ["E&O型でIT事故の賠償に強い", "セキュリティ対策状況に応じて最大60%割引", "国内子会社を含むグループを1契約で補償（追加記名被保険者特約）", "利益損害をベーシックからセット可能"],
-      "product_page_url": "https://www.ad-cybersecurity.com/",
-      "pamphlet": [{"title": "商品特設サイト（代理店ファーストプレイス運営）", "url": "https://www.ad-cybersecurity.com/terms/", "version_or_date": "2025年3月承認 B24-202239"}],
-      "yakkan": []
-    },
-    {
-      "id": "aig", "group": "major", "company": "AIG損害保険", "short": "AIG損保", "product": "個人情報漏洩保険",
-      "target": "法人。サイバー部分はオプション特約で追加。保険料は業務内容・売上高で算出",
-      "revision": "2024年6月版・2025年2月1日以降始期用",
-      "overview": "個人情報漏洩特約（自動セット）で国内業務の個人情報漏えいの賠償金・争訟費用。オプションで企業情報漏洩、セキュリティ賠償（踏み台）、海外担保など",
-      "liability_limit": "漏洩特約の限度額は契約時に設定。最高額は資料に記載なし（旧表: 5億円）。全特約がこの限度額の内枠",
-      "incident_response_limit": "危機管理実行費用: 5,000万円か限度額の10%の低い方（自己負担10%）、倍額特約で1億円か20%。危機管理コンサル費用500万円。いずれも内枠",
-      "ip_infringement": "△ 特許等知的財産権特約（オプション）で1,000万円か3,000万円。国外での請求は対象外",
-      "cyber_bodily_property": "× 対象外",
-      "forensic_internal": "△ 社内で認識しただけでは対象外。公表・公的機関への援助の申出・警察への被害届のいずれかが必要。サイバー攻撃対応費用特約1,500万円（自己負担なし）",
-      "forensic_public_vendor": "○ 公的機関・セキュリティ運用管理会社からの通報で、事故の発生が合理的に推察できれば対象。1,500万円（倍額特約で3,000万円）",
-      "forensic_third_party": "○ カード会社・決済代行会社・取引先からの通報や報道による発覚も対象",
-      "system_restoration": "△ データ復元費用特約（オプション）1,000万円。機器購入費・システム修復費は対象外",
-      "mimaikin": "1被害者500円（危機管理実行費用の中。公的機関への届出か報道が要件）。法人単価は未確認（旧表: 5万円）",
-      "recurrence_prevention": "△ サイバー攻撃対応費用特約のセキュリティ対策コンサル（再発防止の助言）の報酬のみ",
-      "litigation": "争訟費用は賠償限度額の内枠。裁判所出頭費用は1日あたり役員等5万円・従業員2.5万円",
-      "business_interruption": "記載なし",
-      "ransom_or_other": "クレジットカード番号等の漏えいの賠償、私物デバイスも対象。恐喝金は対象外",
-      "services": "フォレンジック調査機関・危機管理コンサルの案内、体験型ワークショップ、サイバーリスク簡易診断",
-      "strengths": ["取引先・カード会社からの通報でもフォレンジック費用が出る", "調査費用1,500万円は自己負担なし（倍額で3,000万円）", "特許等の知財侵害を特約で補償", "従業員の持ち出し・委託先での漏えいも補償"],
-      "product_page_url": "https://www.aig.co.jp/sonpo/business/product/leak",
-      "pamphlet": [{"title": "個人情報漏洩保険パンフレット 5A1-574", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/pamphlets/5A1-574.pdf", "version_or_date": "2024年6月版・2025年2月1日以降始期用"}],
-      "yakkan": [{"title": "重要事項説明書 5B1-144（旧版）", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/jusetu/leak_20180101_jyu.pdf", "version_or_date": "2022年10月版。2025年2月以降始期分はWeb約款ページ"}]
-    },
-    {
-      "id": "nisshin", "group": "other", "company": "日新火災", "short": "日新火災", "product": "サイバー・情報漏えい保険（ビジサポ＋特約）",
-      "target": "中小・中堅事業者（統合賠償責任保険ビジサポにセット）",
-      "revision": "2026年1月改定",
-      "overview": "ITユーザー行為・IT業務による他人の事業休止やデータ消失、個人・法人情報の漏えいとそのおそれ、サイバー攻撃による対人・対物の賠償",
-      "liability_limit": "5,000万円／1億円／3億円から選択。カード番号等の不正使用損害は1,000万円",
-      "incident_response_limit": "各種費用の合計で1億円（5千万円型は5千万円）、内枠。発見から180日以内の費用",
-      "ip_infringement": "△ 原則対象外。提供データによる著作権侵害と、外部者の攻撃による漏えいに起因するものは対象",
-      "cyber_bodily_property": "○ 基本補償に含む",
-      "forensic_internal": "△ 攻撃ありなら対象。攻撃なしの場合は外部通報で発見した場合に限る",
-      "forensic_public_vendor": "○ セキュリティ運用会社・公的機関からの通報なら攻撃がなくても調査・遮断費用を補償",
-      "forensic_third_party": "△ 攻撃ありなら対象。攻撃なしは×（「外部」に取引先・カード会社を含まない）",
-      "system_restoration": "1,000万円（データ・ウェブサイト復元、サーバ修理、代替機）",
-      "mimaikin": "個人1名1,000円、法人1社10万円、合計3,000万円",
-      "recurrence_prevention": "セキュリティ強化費用1,000万円・縮小90%（認証取得を含む）",
-      "litigation": "訴訟対応費用は各種費用の枠内。争訟費用は別枠",
-      "business_interruption": "記載なし",
-      "ransom_or_other": "公的調査対応費用、マスメディアでの謝罪費用。売上3億円以下は対人対物事故で示談交渉あり",
-      "services": "サイバー緊急連絡先（サイバーディフェンス研究所、ラック、日本サイバーディフェンス）。委託料は自己負担",
-      "strengths": ["サイバー攻撃による対人・対物を基本補償", "法人見舞金10万円と厚め", "小規模事業者は示談交渉サービスあり"],
-      "product_page_url": "https://www.nisshinfire.co.jp/corp/risk04.html",
-      "pamphlet": [{"title": "サイバー・情報漏えい保険", "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf", "version_or_date": "2026年1月改定"}],
-      "yakkan": []
-    },
-    {
-      "id": "chubb", "group": "other", "company": "Chubb損害保険", "short": "Chubb", "product": "Cyber Pro v2／Cyber Pro Ignite（中小企業向け）",
-      "target": "法人。Igniteは中小企業向けパッケージ。グローバル対応",
-      "revision": "未確認",
-      "overview": "情報管理・ネットワークセキュリティ賠償、コンテンツ賠償。個人情報の取得方法や第三者提供の過誤による賠償も補償",
-      "liability_limit": "未確認",
-      "incident_response_limit": "未確認（事故対応費用・緊急事故対応費用の拡張補償あり）",
-      "ip_infringement": "△ オプションでウェブサイト上のコンテンツによる著作権・商標権等の侵害",
-      "cyber_bodily_property": "未確認",
-      "forensic_internal": "未確認",
-      "forensic_public_vendor": "未確認",
-      "forensic_third_party": "未確認",
-      "system_restoration": "○ データ・システム復元費用補償",
-      "mimaikin": "未確認",
-      "recurrence_prevention": "○ 改善費用拡張補償",
-      "litigation": "未確認",
-      "business_interruption": "○ 事業中断損害補償",
-      "ransom_or_other": "○ サイバー恐喝対応費用、サイバークライム損害、通信損害の拡張補償",
-      "services": "事故事例集・セキュリティアドバイスを公開",
-      "strengths": ["サイバー恐喝（ランサムウェア）対応費用を明示的に補償", "海外子会社を含むグローバル補償", "サイバークライム（不正送金等）の拡張補償"],
-      "product_page_url": "https://www.chubb.com/jp-jp/businesses/cyber-pro.html",
-      "pamphlet": [],
-      "yakkan": []
-    },
-    {
-      "id": "kyoei", "group": "other", "company": "共栄火災", "short": "共栄火災", "product": "サイバーリスク保険（包括職業賠償＋サイバーリスク特約）",
-      "target": "事業者。ワイド／ベーシック",
-      "revision": "パンフ2025年11月版（検索抜粋による）",
-      "overview": "個人・法人情報の漏えいまたはそのおそれ、ネットワーク事故、それらを引き起こすサイバー攻撃による賠償と費用。※公式サイトは自動取得できず、検索抜粋による",
-      "liability_limit": "未確認",
-      "incident_response_limit": "コンサル費用500万円、被害拡大防止・再発防止合算1,000万円、データ復旧1,000万円",
-      "ip_infringement": "未確認",
-      "cyber_bodily_property": "未確認",
-      "forensic_internal": "△ 攻撃の有無を判断する外部調査費用1,000万円。社内発見のみで発動するかは未確認",
-      "forensic_public_vendor": "未確認（資料間で記載が食い違う）",
-      "forensic_third_party": "未確認",
-      "system_restoration": "データ復旧費用1,000万円",
-      "mimaikin": "対象。単価は未確認",
-      "recurrence_prevention": "被害拡大防止費用と合算で1,000万円",
-      "litigation": "未確認",
-      "business_interruption": "ワイドのみ: ネットワーク中断による喪失利益",
-      "ransom_or_other": "クレジットモニタリング費用（ワイド）",
-      "services": "事故発生時サポートサービス（専門事業者の紹介）",
-      "strengths": ["法人情報の漏えいも対象", "ワイドで喪失利益・クレジットモニタリングまで補償"],
-      "product_page_url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html",
-      "pamphlet": [{"title": "事業者向け サイバーリスク保険", "url": "https://www.kyoeikasai.co.jp/pdf/corp/liability/roei.pdf", "version_or_date": "2025年11月（検索抜粋）"}],
-      "yakkan": []
-    },
-    {
-      "id": "sj-shokokai", "group": "other", "company": "損保ジャパン（商工会団体制度）", "short": "商工会 情報セキュリティサポート保険", "product": "商工会の情報セキュリティサポート保険",
-      "target": "商工会会員事業者（契約者: 全国商工会連合会）",
-      "revision": "2026年3月1日以降始期（2027年2月1日始期まで）",
-      "overview": "サイバー攻撃、情報漏えいとそのおそれ（紙の紛失を含む）、ITユーザー業務の事故による賠償。全世界の事故・請求が対象",
-      "liability_limit": "未確認（申込書で確認）",
-      "incident_response_limit": "未確認",
-      "ip_infringement": "△ 著作権・商標権・意匠権は補償。特許等は対象外",
-      "cyber_bodily_property": "△ オプション",
-      "forensic_internal": "△ 自社でおそれを発見した場合は「サイバー攻撃緊急初動費用」（調査・遮断の外部委託費）。限度額は未確認",
-      "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先からの通報で、調査・遮断の外部委託費を補償",
-      "forensic_third_party": "△ 要件は「公的機関・委託先からの通報など」。取引先・カード会社は未確認",
-      "system_restoration": "○ データ復旧費用・システム修復費用",
-      "mimaikin": "個人・法人とも単価制（単価は未確認）",
-      "recurrence_prevention": "○ 認証取得・報告書発行を含む",
-      "litigation": "争訟費用・協力費用・法令等対応費用",
-      "business_interruption": "オプション。自主的なシステム停止による利益損害も追加可能",
-      "ransom_or_other": "漏えい情報の不正使用監視費用。身代金は対象外",
-      "services": "SOMPOサイバーインシデントサポートデスク、緊急時サポート総合サービス自動セット。対策確認シートで最大60%以上割引",
-      "strengths": ["自社検知段階の初動費用を補償", "緊急時サポートの費用を保険金で支払い", "対策状況で最大60%以上割引"],
-      "product_page_url": "https://www.shokokai.or.jp/support/security-support.html",
-      "pamphlet": [{"title": "商工会の情報セキュリティサポート保険", "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf", "version_or_date": "2026年3月1日始期"}],
-      "yakkan": []
+     "title": "サイバーリスク保険パンフレット（Tコンシェル）",
+     "url": "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4",
+     "version_or_date": "2024年9月改定（E14-87260）。掲載は2026年12月31日以前始期用"
     }
-  ]
+   ],
+   "yakkan": []
+  },
+  {
+   "id": "sj",
+   "group": "major",
+   "company": "損害保険ジャパン",
+   "short": "損保ジャパン",
+   "product": "サイバー保険",
+   "target": "国内の企業。簡易版「シンプルサイバー」（売上高100億円以下、金融・IT等を除く）もあり",
+   "revision": "2026年2月改定（パンフ SJ25-59014）",
+   "overview": "サイバー攻撃、情報漏えいとそのおそれ、デジタルコンテンツ不当事由、ITユーザー業務の事故による賠償。全世界が対象。使用人の犯罪行為に起因する損害も対象",
+   "liability_limit": "未確認（パンフは保険料例として1億円・5億円を掲載。旧表: 20億円）",
+   "incident_response_limit": "未確認（保険料例は3,000万円・1億円。旧表: 10億円・内枠）",
+   "ip_infringement": "○ 著作権・商標権・意匠権の侵害は補償。特許等は対象外",
+   "cyber_bodily_property": "△ オプション（サイバー攻撃による対人・対物事故補償追加条項）",
+   "forensic_internal": "△ 2026年2月新設「サイバー攻撃緊急初動費用」: おそれを発見すれば通報なしで調査・遮断費用を補償（旧表: ×）。限度額・縮小割合はパンフに記載なし",
+   "forensic_public_vendor": "○ 公的機関・運用委託会社からの通報などで発見した場合、サイバー攻撃対応費用（調査・遮断・事故対応関連費用）",
+   "forensic_third_party": "△ 通報要件のある攻撃対応費用は対象外と読めるが、緊急初動費用で対象になり得る（旧表: ×）",
+   "system_restoration": "○ データ復旧費用・システム修復費用（ソフトの再取得を含む）。限度額は未確認",
+   "mimaikin": "個人・法人とも1名／1法人あたりの個別限度額（単価はパンフに記載なし。旧表: 個人1,000円、法人10万円／5万円）",
+   "recurrence_prevention": "○ 原因箇所の一時的な対策費用、認証取得・報告書費用。限度額は未確認",
+   "litigation": "独立した訴訟対応費用の費目なし。争訟費用は賠償、規制手続は法令等対応費用",
+   "business_interruption": "オプション。喪失利益・収益減少防止費用・営業継続費用。自主的なシステム停止による利益補償の追加条項あり",
+   "ransom_or_other": "身代金は対象外。法令等対応費用、不正使用監視費用、ネット上の書込み対応費用",
+   "services": "緊急時サポート総合サービス（自動セット、費用は保険金で支払い）、SOMPOサイバーインシデントサポートデスク（24時間365日）、SOMPO Cyber Risk Scan（2026年12月〜）",
+   "strengths": [
+    "通報なしで、社内でおそれを発見した段階の調査・遮断費用を補償（2026年2月〜）",
+    "自主的なシステム停止による利益損失までオプションで補償",
+    "緊急時サポートの費用を保険金で支払い",
+    "業種と売上だけで入れる簡易版あり"
+   ],
+   "product_page_url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/",
+   "pamphlet": [
+    {
+     "title": "サイバー保険パンフレット 2026年2月改定（信用金庫サイト掲載の公式パンフ）",
+     "url": "https://www.seishin-shinkin.co.jp/business/prepare/pdf/cyber_insulance.pdf",
+     "version_or_date": "2026年2月改定 SJ25-59014"
+    },
+    {
+     "title": "2026年2月改定の解説記事（公式）",
+     "url": "https://www.sompo-japan.co.jp/hinsurance/entrisksolution/entsolution/s7/index.html",
+     "version_or_date": "2026年2月"
+    }
+   ],
+   "yakkan": []
+  },
+  {
+   "id": "ms",
+   "group": "major",
+   "company": "三井住友海上",
+   "short": "三井住友海上",
+   "product": "サイバープロテクター",
+   "target": "事業者。エコノミー（賠償のみ）／ベーシック／ワイドの3プラン。IT業務特約あり",
+   "revision": "2024年4月1日以降始期契約用（パンフ）",
+   "overview": "情報の漏えいまたはそのおそれ、システムの所有・使用・管理に起因する他人の業務阻害等による賠償。ワイドはサイバー攻撃起因の対人・対物も対象で、全世界が適用地域",
+   "liability_limit": "1,000万円〜10億円から選択（1請求・保険期間中）",
+   "incident_response_limit": "100万円〜5億円から選択。原則外枠、総支払限度額設定特約で内枠も可",
+   "ip_infringement": "○ 著作権・意匠権・商標権・ドメイン名（システムで提供するデータの表示・配信による侵害に限る）",
+   "cyber_bodily_property": "○ ワイドプランのみ",
+   "forensic_internal": "△ 社内発見だけでは対象外。運用管理委託先か三井住友海上の通報・確認が必要。攻撃なし: サイバー攻撃調査費用3,000万円・縮小90%。攻撃あり: 原因・被害範囲調査費用 最大5億円",
+   "forensic_public_vendor": "○ 公的機関（IPA等を含む）またはセキュリティ運用管理の委託先の通報（監視サービスの通知を含む）。委託先以外の無償診断は除く",
+   "forensic_third_party": "△ 取引先・カード会社の通報は「サイバー攻撃のおそれ」の要件外。委託先・三井住友海上の確認があれば対象",
+   "system_restoration": "3,000万円（縮小なし・ワイドのみ）。マルウェア駆除・初期化を含む",
+   "mimaikin": "個人1名1,000円、法人1社5万円。ワイドはサイバー攻撃による身体障害の被害者1名10万円",
+   "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）。認証取得費用を含む",
+   "litigation": "1,000万円（賠償限度額の内枠）",
+   "business_interruption": "利益損害補償特約（ベーシック・ワイド、売上高100億円以下）。1,000万〜1億円、免責12時間",
+   "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺の預貯金被害500万円、免責10万円。身代金は対象外",
+   "services": "MS&ADサイバーセキュリティ基本態勢診断、標的型メール訓練、専門事業者紹介",
+   "strengths": [
+    "賠償のみのエコノミーから選べる3プラン",
+    "費用損害は原則外枠で賠償枠を食わない",
+    "不正送金・ビジネスメール詐欺の資金損害を補償（ワイド）",
+    "知財はドメイン名まで対象"
+   ],
+   "product_page_url": "https://www.ms-ins.com/business/indemnity/pd-protector/",
+   "pamphlet": [
+    {
+     "title": "サイバープロテクター パンフレット",
+     "url": "https://www.ms-ins.com/pdf/business/indemnity/pd-protector.pdf",
+     "version_or_date": "2024年4月1日以降始期契約用"
+    },
+    {
+     "title": "商品特設サイト（代理店ファーストプレイス運営）",
+     "url": "https://www.cyber-protector.com/compensation/",
+     "version_or_date": "2026年7月承認 A26-100584"
+    }
+   ],
+   "yakkan": [
+    {
+     "title": "Web約款",
+     "url": "https://web-yakkan.ms-ins.com/clause/item/detail/?id=925890000",
+     "version_or_date": "版は未確認"
+    }
+   ]
+  },
+  {
+   "id": "adi",
+   "group": "major",
+   "company": "あいおいニッセイ同和",
+   "short": "あいおいニッセイ同和",
+   "product": "サイバーセキュリティ保険",
+   "target": "事業者。ベーシック／ワイドの2プラン。IT業務特約・利益損害・資金損害等のオプション",
+   "revision": "未確認（旧表: 2024年4月改定）。特設サイトは2025年3月承認",
+   "overview": "包括職業賠償責任保険（E&O型）がベースで、サイバー攻撃を含むIT事故による賠償損害と費用損害を補償。ベーシックは海外での損害賠償請求を補償しない",
+   "liability_limit": "2,000万円〜10億円から選択（IT業務特約付きは最大5億円）",
+   "incident_response_limit": "1,000万円〜5億円（賠償限度額以内）。内枠/外枠は未確認",
+   "ip_infringement": "× 特許・実用新案・意匠・商標の侵害は基本契約で対象外。著作権の扱いは未確認",
+   "cyber_bodily_property": "○ ワイドプランのみ",
+   "forensic_internal": "サイバー攻撃調査費用3,000万円・縮小90%。発動要件は公開資料に記載なし（旧表: △）",
+   "forensic_public_vendor": "未確認（旧表: ○）",
+   "forensic_third_party": "未確認（旧表: △）",
+   "system_restoration": "3,000万円・縮小なし（ワイドのみ）",
+   "mimaikin": "見舞金は費用損害として支払われる。単価は未確認（旧表: 個人1,000円／法人5万円）",
+   "recurrence_prevention": "風評被害拡大防止費用と合算で3,000万円・縮小90%（ワイドのみ）",
+   "litigation": "1,000万円（賠償限度額の範囲内）",
+   "business_interruption": "利益損害補償特約（ベーシック・ワイド）。1,000万〜1億円、免責12時間",
+   "ransom_or_other": "資金損害補償特約（ワイド）: 不正送金・ビジネスメール詐欺、500万円、免責10万円。身代金は対象外",
+   "services": "専門業者紹介サービス。専用告知書で対策状況を確認し最大60%割引",
+   "strengths": [
+    "E&O型でIT事故の賠償に強い",
+    "セキュリティ対策状況に応じて最大60%割引",
+    "国内子会社を含むグループを1契約で補償（追加記名被保険者特約）",
+    "利益損害をベーシックからセット可能"
+   ],
+   "product_page_url": "https://www.ad-cybersecurity.com/",
+   "pamphlet": [
+    {
+     "title": "商品特設サイト（代理店ファーストプレイス運営）",
+     "url": "https://www.ad-cybersecurity.com/terms/",
+     "version_or_date": "2025年3月承認 B24-202239"
+    }
+   ],
+   "yakkan": []
+  },
+  {
+   "id": "aig",
+   "group": "major",
+   "company": "AIG損害保険",
+   "short": "AIG損保",
+   "product": "個人情報漏洩保険",
+   "target": "法人。サイバー部分はオプション特約で追加。保険料は業務内容・売上高で算出",
+   "revision": "2024年6月版・2025年2月1日以降始期用",
+   "overview": "個人情報漏洩特約（自動セット）で国内業務の個人情報漏えいの賠償金・争訟費用。オプションで企業情報漏洩、セキュリティ賠償（踏み台）、海外担保など",
+   "liability_limit": "漏洩特約の限度額は契約時に設定。最高額は資料に記載なし（旧表: 5億円）。全特約がこの限度額の内枠",
+   "incident_response_limit": "危機管理実行費用: 5,000万円か限度額の10%の低い方（自己負担10%）、倍額特約で1億円か20%。危機管理コンサル費用500万円。いずれも内枠",
+   "ip_infringement": "△ 特許等知的財産権特約（オプション）で1,000万円か3,000万円。国外での請求は対象外",
+   "cyber_bodily_property": "× 対象外",
+   "forensic_internal": "△ 社内で認識しただけでは対象外。公表・公的機関への援助の申出・警察への被害届のいずれかが必要。サイバー攻撃対応費用特約1,500万円（自己負担なし）",
+   "forensic_public_vendor": "○ 公的機関・セキュリティ運用管理会社からの通報で、事故の発生が合理的に推察できれば対象。1,500万円（倍額特約で3,000万円）",
+   "forensic_third_party": "○ カード会社・決済代行会社・取引先からの通報や報道による発覚も対象",
+   "system_restoration": "△ データ復元費用特約（オプション）1,000万円。機器購入費・システム修復費は対象外",
+   "mimaikin": "1被害者500円（危機管理実行費用の中。公的機関への届出か報道が要件）。法人単価は未確認（旧表: 5万円）",
+   "recurrence_prevention": "△ サイバー攻撃対応費用特約のセキュリティ対策コンサル（再発防止の助言）の報酬のみ",
+   "litigation": "争訟費用は賠償限度額の内枠。裁判所出頭費用は1日あたり役員等5万円・従業員2.5万円",
+   "business_interruption": "記載なし",
+   "ransom_or_other": "クレジットカード番号等の漏えいの賠償、私物デバイスも対象。恐喝金は対象外",
+   "services": "フォレンジック調査機関・危機管理コンサルの案内、体験型ワークショップ、サイバーリスク簡易診断",
+   "strengths": [
+    "取引先・カード会社からの通報でもフォレンジック費用が出る",
+    "調査費用1,500万円は自己負担なし（倍額で3,000万円）",
+    "特許等の知財侵害を特約で補償",
+    "従業員の持ち出し・委託先での漏えいも補償"
+   ],
+   "product_page_url": "https://www.aig.co.jp/sonpo/business/product/leak",
+   "pamphlet": [
+    {
+     "title": "個人情報漏洩保険パンフレット 5A1-574",
+     "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/pamphlets/5A1-574.pdf",
+     "version_or_date": "2024年6月版・2025年2月1日以降始期用"
+    }
+   ],
+   "yakkan": [
+    {
+     "title": "重要事項説明書 5B1-144（旧版）",
+     "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/jusetu/leak_20180101_jyu.pdf",
+     "version_or_date": "2022年10月版。2025年2月以降始期分はWeb約款ページ"
+    }
+   ]
+  },
+  {
+   "id": "nisshin",
+   "group": "other",
+   "company": "日新火災",
+   "short": "日新火災",
+   "product": "サイバー・情報漏えい保険（ビジサポ＋特約）",
+   "target": "中小・中堅事業者（統合賠償責任保険ビジサポにセット）",
+   "revision": "2026年1月改定",
+   "overview": "ITユーザー行為・IT業務による他人の事業休止やデータ消失、個人・法人情報の漏えいとそのおそれ、サイバー攻撃による対人・対物の賠償",
+   "liability_limit": "5,000万円／1億円／3億円から選択。カード番号等の不正使用損害は1,000万円",
+   "incident_response_limit": "各種費用の合計で1億円（5千万円型は5千万円）、内枠。発見から180日以内の費用",
+   "ip_infringement": "△ 原則対象外。提供データによる著作権侵害と、外部者の攻撃による漏えいに起因するものは対象",
+   "cyber_bodily_property": "○ 基本補償に含む",
+   "forensic_internal": "△ 攻撃ありなら対象。攻撃なしの場合は外部通報で発見した場合に限る",
+   "forensic_public_vendor": "○ セキュリティ運用会社・公的機関からの通報なら攻撃がなくても調査・遮断費用を補償",
+   "forensic_third_party": "△ 攻撃ありなら対象。攻撃なしは×（「外部」に取引先・カード会社を含まない）",
+   "system_restoration": "1,000万円（データ・ウェブサイト復元、サーバ修理、代替機）",
+   "mimaikin": "個人1名1,000円、法人1社10万円、合計3,000万円",
+   "recurrence_prevention": "セキュリティ強化費用1,000万円・縮小90%（認証取得を含む）",
+   "litigation": "訴訟対応費用は各種費用の枠内。争訟費用は別枠",
+   "business_interruption": "記載なし",
+   "ransom_or_other": "公的調査対応費用、マスメディアでの謝罪費用。売上3億円以下は対人対物事故で示談交渉あり",
+   "services": "サイバー緊急連絡先（サイバーディフェンス研究所、ラック、日本サイバーディフェンス）。委託料は自己負担",
+   "strengths": [
+    "サイバー攻撃による対人・対物を基本補償",
+    "法人見舞金10万円と厚め",
+    "小規模事業者は示談交渉サービスあり"
+   ],
+   "product_page_url": "https://www.nisshinfire.co.jp/corp/risk04.html",
+   "pamphlet": [
+    {
+     "title": "サイバー・情報漏えい保険",
+     "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf",
+     "version_or_date": "2026年1月改定"
+    }
+   ],
+   "yakkan": []
+  },
+  {
+   "id": "aig-cyberedge",
+   "group": "other",
+   "company": "AIG損害保険",
+   "short": "AIG CyberEdge",
+   "product": "CyberEdge (2022)",
+   "target": "法人（大企業・海外拠点のある企業向け）。標準補償＋オプション",
+   "revision": "2022年版（商品ページ）",
+   "overview": "機密情報漏洩・セキュリティ侵害（主張だけの場合を含む）による賠償。サービス停止による顧客の請求、PCI基準によるカード会社の請求、通知義務違反の請求も対象。海外の請求にも対応",
+   "liability_limit": "未確認",
+   "incident_response_limit": "未確認",
+   "ip_infringement": "△ オプション（デジタルメディアコンテンツ賠償）",
+   "cyber_bodily_property": "未確認",
+   "forensic_internal": "○ 自社で検知した不正アクセスも保険事故として初期対応（ITサービス費用・法務費用。疑いの段階を含む）。限度額は未確認",
+   "forensic_public_vendor": "未確認（通報経路別の要件の記載なし）",
+   "forensic_third_party": "未確認（通報経路別の要件の記載なし）",
+   "system_restoration": "データ復元費用（オペレーション上の事故を含む）",
+   "mimaikin": "未確認",
+   "recurrence_prevention": "未確認",
+   "litigation": "争訟費用、法務サービス費用、規制当局の調査対応の弁護士費用",
+   "business_interruption": "オプション。ネットワーク中断（自発的な事業中断を含む、最長120日＋解決後90日）",
+   "ransom_or_other": "オプションでサイバークライム（ビジネスメール詐欺、電話不正使用、クリプトジャッキング等）。規制当局の制裁金（国外で付保可能な場合）",
+   "services": "未確認",
+   "strengths": [
+    "自社検知の不正アクセスを保険事故として初期対応",
+    "規制当局の調査対応・海外の制裁金まで補償",
+    "自発的な事業中断やサイバークライムまで対応"
+   ],
+   "product_page_url": "https://www.aig.co.jp/sonpo/business/product/cyberedge",
+   "pamphlet": [],
+   "yakkan": []
+  },
+  {
+   "id": "chubb",
+   "group": "other",
+   "company": "Chubb損害保険",
+   "short": "Chubb",
+   "product": "Cyber Pro v2／Cyber Pro Ignite（中小企業向け）",
+   "target": "法人。Igniteは中小企業向けパッケージ。グローバル対応",
+   "revision": "未確認",
+   "overview": "情報管理・ネットワークセキュリティ賠償、コンテンツ賠償。個人情報の取得方法や第三者提供の過誤による賠償も補償",
+   "liability_limit": "未確認",
+   "incident_response_limit": "未確認（事故対応費用・緊急事故対応費用の拡張補償あり）",
+   "ip_infringement": "△ オプションでウェブサイト上のコンテンツによる著作権・商標権等の侵害",
+   "cyber_bodily_property": "未確認",
+   "forensic_internal": "未確認",
+   "forensic_public_vendor": "未確認",
+   "forensic_third_party": "未確認",
+   "system_restoration": "○ データ・システム復元費用補償",
+   "mimaikin": "未確認",
+   "recurrence_prevention": "○ 改善費用拡張補償",
+   "litigation": "未確認",
+   "business_interruption": "○ 事業中断損害補償",
+   "ransom_or_other": "○ サイバー恐喝対応費用、サイバークライム損害、通信損害の拡張補償",
+   "services": "事故事例集・セキュリティアドバイスを公開",
+   "strengths": [
+    "サイバー恐喝（ランサムウェア）対応費用を明示的に補償",
+    "海外子会社を含むグローバル補償",
+    "サイバークライム（不正送金等）の拡張補償"
+   ],
+   "product_page_url": "https://www.chubb.com/jp-jp/businesses/cyber-pro.html",
+   "pamphlet": [],
+   "yakkan": []
+  },
+  {
+   "id": "kyoei",
+   "group": "other",
+   "company": "共栄火災",
+   "short": "共栄火災",
+   "product": "サイバーリスク保険（包括職業賠償＋サイバーリスク特約）",
+   "target": "事業者。ベーシック／ワイドの2プラン（包括職業賠償＋サイバーリスク特約）",
+   "revision": "2025年11月版パンフ（PB213600）",
+   "overview": "個人・法人情報の漏えいとそのおそれ、サイバー攻撃による賠償。ワイドは他人の業務阻害・知財侵害・対人対物のネットワーク事故も対象。慰謝料は1被害者30万円限度。国外の請求は対象外",
+   "liability_limit": "5,000万円〜3億円の9パターンから選択（縮小なし）",
+   "incident_response_limit": "費用損害は500万円〜3,000万円（賠償限度額の内枠）",
+   "ip_infringement": "△ ワイドのみ（システムやIT業務に起因する人格権・知財侵害）",
+   "cyber_bodily_property": "△ ワイドのみ",
+   "forensic_internal": "△ 社内発見だけでは不可。漏えい型は届出・会見・謝罪文書等で事実が明らかになれば原因調査費用。攻撃のみは通報が必要",
+   "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先の通報で、漏えいがなくても攻撃有無の調査費用（1,000万円）",
+   "forensic_third_party": "△ 取引先・カード会社の通報は要件にない。漏えい型は自社の届出等で対象、攻撃のみは×",
+   "system_restoration": "データ復旧費用1,000万円（身代金は含まない）",
+   "mimaikin": "個人1名1万円（見舞金・見舞品）、法人1社3万円（見舞品）",
+   "recurrence_prevention": "被害拡大防止費用と合算で1,000万円（認証取得を含む）。コンサル費用は別に500万円",
+   "litigation": "1請求・保険期間中1,000万円（国内の訴訟）",
+   "business_interruption": "ワイドのみ。喪失利益・収益減少防止費用・営業継続費用（2時間超の停止、最長12か月）",
+   "ransom_or_other": "クレジットモニタリング（両プラン、個人被害者）、広告宣伝、コールセンター。身代金は対象外",
+   "services": "事故時サポート（調査・広報・コールセンター等、費用は保険金で充当）、24時間365日受付、専門事業者紹介",
+   "strengths": [
+    "個人見舞金1万円と各社より厚い",
+    "公的機関・委託先の通報なら攻撃がなくても調査費用1,000万円",
+    "縮小支払なしで限度額を9パターンから選べる"
+   ],
+   "product_page_url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html",
+   "pamphlet": [
+    {
+     "title": "事業者向け サイバーリスク保険",
+     "url": "https://www.kyoeikasai.co.jp/pdf/corp/liability/roei.pdf",
+     "version_or_date": "2025年11月（PB213600）"
+    }
+   ],
+   "yakkan": []
+  },
+  {
+   "id": "sj-shokokai",
+   "group": "other",
+   "company": "損保ジャパン（商工会団体制度）",
+   "short": "商工会 情報セキュリティサポート保険",
+   "product": "商工会の情報セキュリティサポート保険",
+   "target": "商工会会員事業者（契約者: 全国商工会連合会）",
+   "revision": "2026年3月1日以降始期（2027年2月1日始期まで）",
+   "overview": "サイバー攻撃、情報漏えいとそのおそれ（紙の紛失を含む）、ITユーザー業務の事故による賠償。全世界の事故・請求が対象",
+   "liability_limit": "未確認（申込書で確認）",
+   "incident_response_limit": "未確認",
+   "ip_infringement": "△ 著作権・商標権・意匠権は補償。特許等は対象外",
+   "cyber_bodily_property": "△ オプション",
+   "forensic_internal": "△ 自社でおそれを発見した場合は「サイバー攻撃緊急初動費用」（調査・遮断の外部委託費）。限度額は未確認",
+   "forensic_public_vendor": "○ 公的機関・セキュリティ運用委託先からの通報で、調査・遮断の外部委託費を補償",
+   "forensic_third_party": "△ 要件は「公的機関・委託先からの通報など」。取引先・カード会社は未確認",
+   "system_restoration": "○ データ復旧費用・システム修復費用",
+   "mimaikin": "個人・法人とも単価制（単価は未確認）",
+   "recurrence_prevention": "○ 認証取得・報告書発行を含む",
+   "litigation": "争訟費用・協力費用・法令等対応費用",
+   "business_interruption": "オプション。自主的なシステム停止による利益損害も追加可能",
+   "ransom_or_other": "漏えい情報の不正使用監視費用。身代金は対象外",
+   "services": "SOMPOサイバーインシデントサポートデスク、緊急時サポート総合サービス自動セット。対策確認シートで最大60%以上割引",
+   "strengths": [
+    "自社検知段階の初動費用を補償",
+    "緊急時サポートの費用を保険金で支払い",
+    "対策状況で最大60%以上割引"
+   ],
+   "product_page_url": "https://www.shokokai.or.jp/support/security-support.html",
+   "pamphlet": [
+    {
+     "title": "商工会の情報セキュリティサポート保険",
+     "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf",
+     "version_or_date": "2026年3月1日始期"
+    }
+   ],
+   "yakkan": []
+  }
+ ]
 }

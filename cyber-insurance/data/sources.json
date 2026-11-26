@@ -1,29 +1,47 @@
 {
-  "note": "定期チェック対象の公式資料。check_sources.py がハッシュを比較し、変わったものだけを報告する。kind: page=商品ページ, pamphlet=パンフレット, yakkan=約款/重要事項, site=商品特設サイト",
+  "note": "定期チェック対象の公式資料。check_sources.py がハッシュを比較し、変わったものだけを報告する。kind: page=商品ページ, pamphlet=パンフレット, yakkan=約款/重要事項, site=商品特設サイト, list=取扱会社一覧, news=ニュースリリース一覧（keywordsを含む行だけ監視）",
   "sources": [
+    {"id": "industry", "kind": "list", "url": "https://www.sonpo.or.jp/sme_insurance/list/", "memo": "損保協会のサイバー保険取扱会社一覧。変化したら新規参入・撤退を確認"},
+
     {"id": "tmn", "kind": "page", "url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/"},
     {"id": "tmn", "kind": "page", "url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/hosho01.html"},
     {"id": "tmn", "kind": "page", "url": "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/hosho02.html"},
-    {"id": "tmn", "kind": "pamphlet", "url": "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4", "memo": "Tコンシェルのカタログ頁。版表記（〇年〇月〇日以前始期用）と公開終了日を確認。PDF本体はJS必須で自動取得不可"},
-    {"id": "sj", "kind": "page", "url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/", "memo": "Akamaiのボット対策で自動取得不可。WebSearchで改定情報を確認する"},
+    {"id": "tmn", "kind": "pamphlet", "flow": "tcon", "url": "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4", "memo": "Tコンシェル。2026年12月31日以前始期用。2027年始期版はカタログIDが変わる可能性があるので、失敗したらTコンシェルで「サイバーリスク保険」を検索"},
+    {"id": "tmn", "kind": "news", "url": "https://www.tokiomarine-nichido.co.jp/company/release/", "keywords": ["サイバー", "情報漏"]},
+
+    {"id": "sj", "kind": "page", "url": "https://www.sompo-japan.co.jp/hinsurance/cyberrisk/", "memo": "公式サイトはボット対策で自動取得不可（回避しない）。下の公開コピーとWebSearchで補う"},
+    {"id": "sj", "kind": "pamphlet", "url": "https://www.seishin-shinkin.co.jp/business/prepare/pdf/cyber_insulance.pdf", "memo": "損保ジャパン公式パンフ（2026年2月改定）の、信用金庫サイト掲載コピー"},
+
     {"id": "ms", "kind": "pamphlet", "url": "https://www.ms-ins.com/pdf/business/indemnity/pd-protector.pdf"},
     {"id": "ms", "kind": "page", "url": "https://www.ms-ins.com/business/indemnity/pd-protector/"},
     {"id": "ms", "kind": "site", "url": "https://www.cyber-protector.com/compensation/"},
     {"id": "ms", "kind": "site", "url": "https://www.cyber-protector.com/feature/"},
     {"id": "ms", "kind": "yakkan", "url": "https://web-yakkan.ms-ins.com/clause/item/detail/?id=925890000"},
+    {"id": "ms", "kind": "news", "url": "https://www.ms-ins.com/news/", "keywords": ["サイバー", "情報漏"]},
+
     {"id": "adi", "kind": "site", "url": "https://www.ad-cybersecurity.com/"},
     {"id": "adi", "kind": "site", "url": "https://www.ad-cybersecurity.com/compensation/"},
     {"id": "adi", "kind": "site", "url": "https://www.ad-cybersecurity.com/terms/"},
+    {"id": "adi", "kind": "news", "url": "https://www.aioinissaydowa.co.jp/corporate/about/news/", "keywords": ["サイバー", "情報漏"]},
+
     {"id": "aig", "kind": "page", "url": "https://www.aig.co.jp/sonpo/business/product/leak"},
-    {"id": "aig", "kind": "pamphlet", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/pamphlets/5A1-771.pdf"},
-    {"id": "aig", "kind": "pamphlet", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/pamphlets/5A1-573.pdf"},
     {"id": "aig", "kind": "pamphlet", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/pamphlets/5A1-574.pdf"},
     {"id": "aig", "kind": "yakkan", "url": "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/jusetu/leak_20180101_jyu.pdf"},
+    {"id": "aig-cyberedge", "kind": "page", "url": "https://www.aig.co.jp/sonpo/business/product/cyberedge"},
+    {"id": "aig", "kind": "news", "url": "https://www.aig.co.jp/sonpo/company/news", "keywords": ["サイバー", "情報漏"]},
+
     {"id": "chubb", "kind": "page", "url": "https://www.chubb.com/jp-jp/businesses/cyber-pro.html"},
+    {"id": "chubb", "kind": "news", "url": "https://www.chubb.com/jp-jp/news.html", "keywords": ["サイバー", "情報漏"]},
+
     {"id": "nisshin", "kind": "page", "url": "https://www.nisshinfire.co.jp/corp/risk04.html"},
     {"id": "nisshin", "kind": "pamphlet", "url": "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf"},
-    {"id": "kyoei", "kind": "page", "url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html", "memo": "2026-11時点でTLS接続が途中で切れ自動取得不可"},
+    {"id": "nisshin", "kind": "news", "url": "https://www.nisshinfire.co.jp/news_release/", "keywords": ["サイバー", "情報漏"]},
+
+    {"id": "kyoei", "kind": "page", "url": "https://www.kyoeikasai.co.jp/corp/liability/roei.html", "extra_ca": "certs/cybertrust-sureserver-ev-ca-g3.pem"},
+    {"id": "kyoei", "kind": "pamphlet", "url": "https://www.kyoeikasai.co.jp/pdf/corp/liability/roei.pdf", "extra_ca": "certs/cybertrust-sureserver-ev-ca-g3.pem"},
+    {"id": "kyoei", "kind": "news", "url": "https://www.kyoeikasai.co.jp/about/news/", "extra_ca": "certs/cybertrust-sureserver-ev-ca-g3.pem", "keywords": ["サイバー", "情報漏"]},
+
     {"id": "sj-shokokai", "kind": "pamphlet", "url": "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf"},
-    {"id": "industry", "kind": "page", "url": "https://www.sonpo.or.jp/sme_insurance/list/"}
+    {"id": "industry", "kind": "news", "url": "https://www.sonpo.or.jp/news/release/", "keywords": ["サイバー", "情報漏", "中小企業"]}
   ]
 }

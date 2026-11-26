@@ -2,12 +2,12 @@
  "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/hosho01.html": {
   "id": "tmn",
   "kind": "page",
-  "hash": "3590a792671f97bef0e69d4048896ec0bce5f7646a2ed293b97aaa46d61601e5",
+  "hash": "10f7a645ed3b81de29fe220f2a52596519124e61332db0064d305638dce9d0ba",
   "type": "html",
   "size": 19062,
   "cache": ".cache/78403003e763",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/hosho02.html": {
   "id": "tmn",
@@ -22,12 +22,12 @@
  "https://tcon.tokiomarine-nichido.co.jp/iportal/CatalogDetail.tcon?method=initial_screen&type=c&volumeID=TKN12001&categoryID=890000&catalogID=1645140000&sortKey=CatalogMain70000&sortOrder=ASC&position=4": {
   "id": "tmn",
   "kind": "pamphlet",
-  "hash": "63ea74a2a6a091c18ee9314bf683ca483714b7a9f5c2c3286a614b54d7b640c4",
-  "type": "html",
-  "size": 15706,
+  "hash": "365a2e287167600b6ebfdc589d05e7b2af913874c0c011c30aac693b46ba0c4b",
+  "type": "pdf",
+  "size": 3624044,
   "cache": ".cache/a29eef60fd69",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.ms-ins.com/pdf/business/indemnity/pd-protector.pdf": {
   "id": "ms",
@@ -36,88 +36,88 @@
   "type": "pdf",
   "size": 3101746,
   "cache": ".cache/91695a9088af",
-  "checked": "2026-11-25",
+  "checked": "2026-11-26",
   "changed": "2026-11-25"
  },
  "https://www.ms-ins.com/business/indemnity/pd-protector/": {
   "id": "ms",
   "kind": "page",
-  "hash": "016a2d22ef6ea44d75011fb074c4bf50b364fe4f3ecac72bb29255f4b09df2e5",
+  "hash": "7d392f9148d8cf52e0cfa208e2aaa1a3f002ade22f65a4623fc6c995cd0dc2a5",
   "type": "html",
   "size": 45399,
   "cache": ".cache/a9b748be2b81",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.cyber-protector.com/compensation/": {
   "id": "ms",
   "kind": "site",
-  "hash": "ca3200b494b598a59000401dc0f9978f246b4ba577d40aa36ead73acc9221503",
+  "hash": "87b0e82c62b04004ad701b29c20408c762f5cb02e227da98d1f1beb113205590",
   "type": "html",
   "size": 57206,
   "cache": ".cache/8e64d63ba8a2",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.cyber-protector.com/feature/": {
   "id": "ms",
   "kind": "site",
-  "hash": "89c693cc8c04244f886bee6eb5247a943308793b29df1098b7d16d2621a089ab",
+  "hash": "76692133ae719227e7111ba525b1e8bcb0761a97cb8a862a7b857794ecfe51d7",
   "type": "html",
   "size": 18164,
   "cache": ".cache/bf4faffea3a6",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://web-yakkan.ms-ins.com/clause/item/detail/?id=925890000": {
   "id": "ms",
   "kind": "yakkan",
-  "hash": "d3ac7964e05f21681338b2db81058bd2b539e8aa0d9d12da813c7e4fa44b9526",
+  "hash": "5003d54a6c766c8c9e5554fb65f8812f2f74ae1d7954a89214a1c66b1fb5829c",
   "type": "html",
   "size": 6515,
   "cache": ".cache/b9e7085f4ef6",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.ad-cybersecurity.com/": {
   "id": "adi",
   "kind": "site",
-  "hash": "c5bacca0b8cf1e376cb2138df1d5a63a63c3a36bad7d6915694eb2f45d5595bc",
+  "hash": "13996277498508a21657aef32589258c3a3702b917d00470323e7c79be10e706",
   "type": "html",
   "size": 10473,
   "cache": ".cache/acb8d5a26257",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.ad-cybersecurity.com/compensation/": {
   "id": "adi",
   "kind": "site",
-  "hash": "6371c5737cc056a06f2474069db14fbd8317ad9b601e24c6843d0337c68267df",
+  "hash": "98594103a8cac718d48940e76340a9e1717f3cc52eacbb7142f0acf722f979ce",
   "type": "html",
   "size": 43884,
   "cache": ".cache/1ce058ca629d",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.ad-cybersecurity.com/terms/": {
   "id": "adi",
   "kind": "site",
-  "hash": "eaf001cdbc7ad9f16ba286a740360ab01d387645bc654881f3159c395c7c3674",
+  "hash": "f5304684adb42cdb8539884b2995a0a21bc7b6c9576bec34788e779221c11c4b",
   "type": "html",
   "size": 13764,
   "cache": ".cache/5106fee9ad54",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.aig.co.jp/sonpo/business/product/leak": {
   "id": "aig",
   "kind": "page",
-  "hash": "40c2c64d15ff31a989da94512dcc7867d6681f969f931e24bc9c1e3f83077327",
+  "hash": "b7cc80648c27ed481d85dd44e0d1fe99858c418a0ca75fc6d95fab35c48707a0",
   "type": "html",
   "size": 127804,
   "cache": ".cache/9cead16f8f47",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/pamphlets/5A1-771.pdf": {
   "id": "aig",
@@ -146,7 +146,7 @@
   "type": "pdf",
   "size": 2641030,
   "cache": ".cache/feb14d6597d1",
-  "checked": "2026-11-25",
+  "checked": "2026-11-26",
   "changed": "2026-11-25"
  },
  "https://www.aig.co.jp/content/dam/aig/sonpo/jp/ja/documents/products/jusetu/leak_20180101_jyu.pdf": {
@@ -156,28 +156,28 @@
   "type": "pdf",
   "size": 409476,
   "cache": ".cache/7666ec6863dd",
-  "checked": "2026-11-25",
+  "checked": "2026-11-26",
   "changed": "2026-11-25"
  },
  "https://www.chubb.com/jp-jp/businesses/cyber-pro.html": {
   "id": "chubb",
   "kind": "page",
-  "hash": "318d366cb48d7f68fd6b8380c334a2a13743a8c22665ce495991192e05feacf6",
+  "hash": "25d4ecfa11b4bc0c2ae198a765aef14880f5603fd071b19a571f6068864cf8d9",
   "type": "html",
   "size": 107466,
   "cache": ".cache/483d235240c3",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.nisshinfire.co.jp/corp/risk04.html": {
   "id": "nisshin",
   "kind": "page",
-  "hash": "539dcc606289b6fb9d89d9a79c1ebeaae45ef229efa44b05e4164116c4d31710",
+  "hash": "9aad73ec6cf6059d8898ad6e988117186156d490a6c89829d3399d9bbcf8340b",
   "type": "html",
   "size": 61332,
   "cache": ".cache/823fde1e99fe",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.nisshinfire.co.jp/service/pdf/cyber2601.pdf": {
   "id": "nisshin",
@@ -186,7 +186,7 @@
   "type": "pdf",
   "size": 3325207,
   "cache": ".cache/bc58d96cc9f1",
-  "checked": "2026-11-25",
+  "checked": "2026-11-26",
   "changed": "2026-11-25"
  },
  "https://www.shokokai.or.jp/assets/pdf/support/ss_pamph_20260301.pdf": {
@@ -196,27 +196,173 @@
   "type": "pdf",
   "size": 2300042,
   "cache": ".cache/6e97f03089a9",
-  "checked": "2026-11-25",
+  "checked": "2026-11-26",
   "changed": "2026-11-25"
  },
  "https://www.sonpo.or.jp/sme_insurance/list/": {
   "id": "industry",
-  "kind": "page",
-  "hash": "5b83bac21515455cf2b64689a6002e6fd8bc62d71d11b272f1d41a837686b2e8",
+  "kind": "list",
+  "hash": "4ac898951100a52ed09b4f9450522c27cc09d333729980d1f354ca4049040386",
   "type": "html",
   "size": 18905,
   "cache": ".cache/79f968051aff",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  },
  "https://www.tokiomarine-nichido.co.jp/hojin/baiseki/cyber/": {
   "id": "tmn",
   "kind": "page",
-  "hash": "7a9a636b7f1b6e995abdc335d5bc7e8862396642d57edabd060ecec9ff0ad58d",
+  "hash": "c83428c29e8f085b0faeee39a7a32b77cc9a8efacbaebff2569cc918e9b267ba",
   "type": "html",
   "size": 44847,
   "cache": ".cache/936f4e8df957",
-  "checked": "2026-11-25",
-  "changed": "2026-11-25"
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.tokiomarine-nichido.co.jp/company/release/": {
+  "id": "tmn",
+  "kind": "news",
+  "hash": "3b000d03a4a3807e35fbbc277776802a5df431fe580449cd1916f65cd8490169",
+  "type": "html",
+  "size": 36117,
+  "cache": ".cache/6cf3978ee774",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26",
+  "lines": [
+   "「サプライチェーンサイバーリスク対策強化プログラム」の提供開始 ～経済産業省「サプライチェーン強化に向けたセキュリティ対策評価制度」対応を支援～",
+   "出向者による情報漏えいに関するお詫び",
+   "当社業務委託先におけるランサムウェア被害に伴う情報漏えいのおそれについて"
+  ]
+ },
+ "https://www.seishin-shinkin.co.jp/business/prepare/pdf/cyber_insulance.pdf": {
+  "id": "sj",
+  "kind": "pamphlet",
+  "hash": "3efa5960656366a5170ac92c7138d46ce36155d3c90d5782b03b498d0375449a",
+  "type": "pdf",
+  "size": 8650698,
+  "cache": ".cache/3e4063d17a0f",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.ms-ins.com/news/": {
+  "id": "ms",
+  "kind": "news",
+  "hash": "ce32f49c4795d00b54a1ebc8497e62dc22f48d099e853300485e661f6dd32bfa",
+  "type": "html",
+  "size": 33489,
+  "cache": ".cache/3ded4c6144c4",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26",
+  "lines": [
+   "アララ社の不正アクセスに伴う情報漏えいについて",
+   "当社システムへの不正アクセスに伴う情報漏えいについて",
+   "当社出向者による情報漏えい事案について",
+   "業務委託先におけるサイバー攻撃被害に伴う情報漏えいについて",
+   "業務委託先への不正アクセスに伴う情報漏えいについて",
+   "ＭＳコンパスへの不正アクセスに伴う情報漏えいについて"
+  ]
+ },
+ "https://www.aioinissaydowa.co.jp/corporate/about/news/": {
+  "id": "adi",
+  "kind": "news",
+  "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "type": "html",
+  "size": 77272,
+  "cache": ".cache/a16a8d8c90fc",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.aig.co.jp/sonpo/business/product/cyberedge": {
+  "id": "aig-cyberedge",
+  "kind": "page",
+  "hash": "b48042fac9b69a4d7f5afc6ac2e266dbe7d84a1ca94d3e966f25cd02327f9f0b",
+  "type": "html",
+  "size": 103450,
+  "cache": ".cache/3da0065f4fcf",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.aig.co.jp/sonpo/company/news": {
+  "id": "aig",
+  "kind": "news",
+  "hash": "7669196de6c52bbbbc9e23f4b2cd133ee0079ee0549ce36f4c16d3e8f79aa194",
+  "type": "html",
+  "size": 88003,
+  "cache": ".cache/a062f1e3082b",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26",
+  "lines": [
+   "サイバーリスク"
+  ]
+ },
+ "https://www.chubb.com/jp-jp/news.html": {
+  "id": "chubb",
+  "kind": "news",
+  "hash": "f17cd92ad10f631008f46be8a11b844ffb2c45329b0af639ed1954ba35f5c29c",
+  "type": "html",
+  "size": 103087,
+  "cache": ".cache/5d56b1324db6",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26",
+  "lines": [
+   "サイバーリスク保険（Cyber Pro v2）"
+  ]
+ },
+ "https://www.nisshinfire.co.jp/news_release/": {
+  "id": "nisshin",
+  "kind": "news",
+  "hash": "c9fa6c0e22299a9d21945880e4c39cbe207a1beb5e90767d0980832bcbc0581c",
+  "type": "html",
+  "size": 120492,
+  "cache": ".cache/0c23f59874f6",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26",
+  "lines": [
+   "弊社代理店へのデータ誤送信によるお客さま情報漏えいに関するお詫び",
+   "当社代理店向けシステムにおけるお客さま情報開示範囲設定誤りによる情報漏えいに関するお詫び",
+   "当社業務委託先におけるランサムウェア被害に伴う情報漏えいについて",
+   "当社業務委託先におけるランサムウェア被害に伴う情報漏えい等の可能性について",
+   "東京海上日動社による保険代理店向けシステムの設定誤りを原因とする情報漏洩の可能性について"
+  ]
+ },
+ "https://www.kyoeikasai.co.jp/corp/liability/roei.html": {
+  "id": "kyoei",
+  "kind": "page",
+  "hash": "8ebdc39d8f2b16d6b3382d3064f6f0b0ed0339931c84ec87f2987b66394280b0",
+  "type": "html",
+  "size": 36805,
+  "cache": ".cache/298dba457121",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.kyoeikasai.co.jp/pdf/corp/liability/roei.pdf": {
+  "id": "kyoei",
+  "kind": "pamphlet",
+  "hash": "1f82ad239e9809f7e3a2f07324ac6219304406f42be2830bf0982835d53ac498",
+  "type": "pdf",
+  "size": 6288497,
+  "cache": ".cache/3eefbd009ed5",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.kyoeikasai.co.jp/about/news/": {
+  "id": "kyoei",
+  "kind": "news",
+  "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "type": "html",
+  "size": 53892,
+  "cache": ".cache/9cfd8184da7b",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
+ },
+ "https://www.sonpo.or.jp/news/release/": {
+  "id": "industry",
+  "kind": "news",
+  "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "type": "html",
+  "size": 30004,
+  "cache": ".cache/ed96c7d3d76f",
+  "checked": "2026-11-26",
+  "changed": "2026-11-26"
  }
 }
