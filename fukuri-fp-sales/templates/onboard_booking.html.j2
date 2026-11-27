@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>無料FP相談のご予約｜{{ a['企業名'] }} 従業員・ご家族専用</title>
+<style>
+body{font-family:system-ui,"Hiragino Sans","Noto Sans JP",sans-serif;margin:0;background:#f5f7fa;color:#1a2433;line-height:1.8}
+header{background:#12335f;color:#fff;padding:28px 16px}main{max-width:680px;margin:0 auto;padding:16px}
+section{background:#fff;border-radius:10px;padding:18px 20px;margin:16px 0}h1{font-size:1.4rem;margin:.2em 0}h2{font-size:1.05rem;color:#12335f}
+label{display:block;margin:.5em 0}button{width:100%;padding:14px;font-size:1.05rem;border:0;border-radius:8px;background:#b8892b;color:#fff}
+button:disabled{background:#b9c0cb}small{color:#5a6577}
+</style></head><body>
+<header><main><small>{{ a['企業名'] }} 従業員・ご家族専用</small><h1>無料FP相談のご予約</h1></main></header>
+<main>
+{% if not approved %}<section style="border:2px solid #c22"><b>【案】所属代理店の承認前ドラフト。公開不可。</b></section>{% endif %}
+<section><h2>相談できること</h2>住宅購入・教育資金・老後資金・資産形成・家計管理・生命保険の確認など。相談費用は無料、1回約60分（オンライン／対面）。</section>
+<section><h2>ご予約の前にご確認ください</h2>
+<label><input type="checkbox" class="ck"> <a href="./個人情報保護方針（ひな形）.md">個人情報保護方針</a>および<a href="./利用規約・同意事項（ひな形）.md">利用規約</a>に同意します。</label>
+<label><input type="checkbox" class="ck"> 相談の結果、希望した場合に限り保険等の金融商品の提案を受ける可能性があること、商品の購入は利用の条件ではないことを確認しました。</label>
+<label><input type="checkbox" class="ck"> 相談内容は勤務先に開示されず、勤務先には個人が特定されない利用件数等の集計のみが報告されることを確認しました。</label>
+<button id="go" disabled>予約日時を選ぶ</button>
+<p><small>予約確定後、確認メールと前日のリマインドが届きます。変更・キャンセルは確認メール内のリンクから行えます。</small></p></section>
+<section><small>運営：{{ s.company }}（{{ s.address }}）　TEL {{ s.phone }}　MAIL {{ s.email }}<br>保険募集は{{ s.agency }}所属の登録募集人として行います。企業コード：{{ a['企業コード'] }}／規約版：{{ a['規約・同意書の版'] }}</small></section>
+</main>
+<script>
+// 予約システム（Googleカレンダー予約スケジュール等）のURL。企業コードを付与して流入元を識別する。
+const BOOKING_URL = "{{ s.booking_base_url }}/schedule?company={{ a['企業コード'] }}";
+const cks=[...document.querySelectorAll('.ck')],go=document.getElementById('go');
+cks.forEach(c=>c.onchange=()=>go.disabled=!cks.every(x=>x.checked));
+go.onclick=()=>location.href=BOOKING_URL+"&consent={{ a['規約・同意書の版'] | urlencode }}";
+</script></body></html>

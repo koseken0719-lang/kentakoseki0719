@@ -1,0 +1,10 @@
+# 公開リポジトリのため、企業データ・営業文面・ログ・認証情報はコミットしない
+data/
+output/
+logs/
+.env
+*.credentials.json
+service_account*.json
+token*.json
+__pycache__/
+.pytest_cache/
