@@ -365,3 +365,32 @@ def test_form_browser_dry_run_and_send(tmp_path):
     assert not forms.run_browser(job("form_prohibited.html", True))["ok"]
     assert not forms.run_browser(job("form_captcha.html", True))["ok"]
     assert not forms.run_browser(job("form_unknown.html", True))["ok"]
+
+
+# ---------- 候補収集（公開リスト → gBizINFO） ----------
+GBIZ_HTML = """<html><body><main>基本情報 法人番号 1 本店所在地 東京都立川市曙町２丁目 （ 法人番号公表サイト ）
+従業員数 {emp} 企業規模詳細 事業概要 ソフトウェア開発 （ 職場情報総合サイト ） {hp}
+業種 G.情報通信業 ( 職場情報総合サイト ) 事業所名 事業所所在地 被保険者数 全喪年月日 テスト 東京都 立川市 58人 テスト第二 東京都 12人
+財務 ※財務情報は 届出・認定 ユースエール認定</main></body></html>"""
+
+
+def test_sourcing_parse_and_seed(settings, tmp_path):
+    from openpyxl import Workbook
+    from sfs import sourcing
+    g = sourcing.parse_gbiz(GBIZ_HTML.format(emp="57人 （ 職場情報総合サイト ）", hp="企業ホームページ https://example.com （ 職場 ）"))
+    assert g["employees"] == 57 and g["insured"] == 70 and g["homepage"] == "https://example.com" and "ユースエール" in g["certs"]
+    g2 = sourcing.parse_gbiz(GBIZ_HTML.format(emp="", hp=""))
+    assert g2["employees"] is None and g2["homepage"] is None
+    assert sourcing._size(g2) == (70, "厚生年金の被保険者数（gBizINFO掲載。従業員数そのものではない）")
+    wb = Workbook()
+    ws = wb.active
+    ws.append(["No.", "小規模特例認定", "認定法人名", "法人番号", "加入保険者", "都道府県", "市区町村", "業種"])
+    rows = [("", "近い会社", N(11), "東京都", "小金井市", "製造業"), ("", "遠い会社", N(12), "北海道", "札幌市", "製造業"),
+            ("○", "小規模の会社", N(13), "東京都", "府中市", "建設業"), ("", "保険の会社", N(14), "東京都", "府中市", "保険業"),
+            ("", "横浜の会社", N(15), "神奈川県", "横浜市", "情報通信業"), ("", "番号不正", "123", "東京都", "三鷹市", "製造業")]
+    for i, (sm, name, num, pref, city, ind) in enumerate(rows, 1):
+        ws.append([i, sm, name, num, "協会けんぽ", pref, city, ind])
+    p = tmp_path / "seed.xlsx"
+    wb.save(p)
+    c = sourcing.load_seed(p, settings)
+    assert [x["name"] for x in c] == ["近い会社", "横浜の会社"] and c[0]["drive"] == 5 and c[1]["drive"] == 80
