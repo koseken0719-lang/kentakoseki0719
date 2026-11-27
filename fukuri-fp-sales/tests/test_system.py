@@ -271,3 +271,85 @@ def test_messages_per_play_and_templates_sheet(loaded, settings):
     t = store.read(S.TEMPLATES)
     assert len(t) == len(plays.PLAYS) * 3 + len(plays.messages()["common"])
     assert any(x["チャネル"].startswith("SNS") for x in t)
+
+
+# ---------- フォーム営業 ----------
+FIX = __import__("pathlib").Path(__file__).parent / "fixtures"
+
+
+def _approved(settings):
+    settings["compliance"]["agency_approved"] = True
+    settings["sender"] = {k: ("" if k in ("company_kana", "name_kana", "zip") else "記入済") for k in settings["sender"]}
+    return settings
+
+
+def test_form_parse_judgement():
+    from sfs import forms
+    j = lambda f: forms.parse_form((FIX / f).read_text(encoding="utf-8"))
+    ok = j("form_ok.html")
+    assert ok["status"] == forms.OK and {"company", "name", "email", "body"} <= set(ok["fields"])
+    assert j("form_prohibited.html")["status"] == forms.NG
+    assert j("form_captcha.html")["status"] == forms.MANUAL and "CAPTCHA" in j("form_captcha.html")["basis"]
+    assert j("form_unknown.html")["status"] == forms.MANUAL
+    assert forms.parse_form("<html><body>電話のみ</body></html>")["status"] == forms.MANUAL
+
+
+def test_form_queue_message_and_gates(loaded, settings, tmp_path):
+    from sfs import forms
+    store, _ = loaded
+    q = forms.build_queue(store, settings)
+    by = {r["企業名"]: r for r in q}
+    assert by["テスト株式会社4"]["フォーム判定"] == forms.NG            # 調査時に営業お断りを確認済み
+    r1 = by["テスト株式会社1"]
+    assert r1["文面パターン"] in "AB" and r1["文字数"] <= settings["form_sales"]["max_chars"]
+    for must in ("確定拠出年金", "保険等", "以後ご連絡いたしません", "登録募集人"):
+        assert must in r1["本文"]
+    calls = []
+    runner = lambda job: calls.append(job) or {"ok": True, "submitted": job["send"], "detail": "fake"}
+    b = Budget(settings, tmp_path)
+    # 代理店未承認 → 何も送らない
+    assert forms.send(store, settings, b, dry_run=False, runner=runner)["sent"] == [] and not calls
+    _approved(settings)
+    rows = store.read(S.FORMQ)
+    for r in rows:
+        r["フォーム判定"] = forms.OK if r["企業名"] != "テスト株式会社4" else r["フォーム判定"]
+        r["承認"] = "済"
+    store.write(S.FORMQ, rows)
+    res = forms.send(store, settings, b, dry_run=False, runner=runner)   # 承認者なし → 送らない
+    assert res["sent"] == [] and not calls and all("承認者が未記入" in s for s in res["skipped"])
+    for r in rows:
+        r["承認者"] = "承認 太郎"
+    store.write(S.FORMQ, rows)
+    res = forms.send(store, settings, b, dry_run=True, runner=runner)    # 試行は送信扱いにしない
+    assert res["sent"] == [] and calls[-1]["send"] is False and not store.read(S.ACTIVITY)
+    res = forms.send(store, settings, b, dry_run=False, runner=runner)
+    assert res["sent"] == ["テスト株式会社1"] and calls[-1]["send"] is True
+    assert any("営業お断り" in s for s in res["skipped"])                 # お断り表記の会社は承認されても送らない
+    act = [a for a in store.read(S.ACTIVITY) if a["チャネル"] == "フォーム"]
+    assert len(act) == 1 and act[0]["承認者"] == "承認 太郎" and act[0]["次回アクション日"]
+    assert forms.send(store, settings, b, dry_run=False, runner=runner)["sent"] == []   # 1社1回
+    sent_body = next(r for r in store.read(S.FORMQ) if r["送信状態"] == "送信済")["本文"]
+    forms.build_queue(store, settings)                                    # 再生成しても送信済みは不変
+    again = next(r for r in store.read(S.FORMQ) if r["送信状態"] == "送信済")
+    assert again["本文"] == sent_body and again["承認者"] == "承認 太郎"
+    f = forms.funnel(store)
+    assert f and f[0]["送信"] == 1 and f[0]["判定"].startswith("判定不能")
+
+
+def test_form_browser_dry_run_and_send(tmp_path):
+    """架空のローカルフォームで、入力のみ／送信／中止（お断り・CAPTCHA）を確認。"""
+    import shutil
+    from sfs import forms
+    if not shutil.which("node"):
+        pytest.skip("node なし")
+    vals = {"company": "テスト社", "name": "試験 太郎", "email": "t@example.com", "email_confirm": "t@example.com",
+            "tel": "000", "subject": "件名", "body": "本文です"}
+    job = lambda f, send: {"url": (FIX / f).as_uri(), "send": send, "screenshot": str(tmp_path / "s.png"), "values": vals}
+    r = forms.run_browser(job("form_ok.html", False))
+    if "エラー" in r.get("detail", "") and "playwright" in r.get("detail", "").lower():
+        pytest.skip("playwright なし")
+    assert r["ok"] and r["submitted"] is False and "body" in r["detail"] and (tmp_path / "s.png").exists()
+    assert forms.run_browser(job("form_ok.html", True)) == {"ok": True, "submitted": True, "detail": "送信完了を確認"}
+    assert not forms.run_browser(job("form_prohibited.html", True))["ok"]
+    assert not forms.run_browser(job("form_captcha.html", True))["ok"]
+    assert not forms.run_browser(job("form_unknown.html", True))["ok"]

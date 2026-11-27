@@ -7,7 +7,7 @@ import os
 import sys
 from pathlib import Path
 
-from . import google_api, onboarding, outreach, pipeline, research, workbook
+from . import forms, google_api, onboarding, outreach, pipeline, research, workbook
 from . import schema as S
 from .core import ROOT, Budget, BudgetExceeded, Store, get_logger, load_dotenv, load_settings, today
 
@@ -109,6 +109,11 @@ def main(argv=None) -> int:
     p.add_argument("--out"), p.add_argument("--file")
     p = sub.add_parser("sync", help="Google Sheets APIで同期（要認証）")
     p.add_argument("direction", choices=["pull", "push"])
+    p = sub.add_parser("form-queue", help="13_フォーム営業キューを更新（--check でフォームを取得して判定）")
+    p.add_argument("--check", action="store_true")
+    p = sub.add_parser("form-send", help="承認済みの行をフォームに入力（既定は試行のみ。--send で送信）")
+    p.add_argument("--send", action="store_true")
+    sub.add_parser("form-report", help="フォーム営業の効果測定（文面パターン別・入口提案別）")
     sub.add_parser("calendar-followups", help="次回アクションをカレンダー登録（要認証）")
 
     a = ap.parse_args(argv)
@@ -165,6 +170,14 @@ def main(argv=None) -> int:
             cmd_values(a, store, st)
         elif c == "sync":
             print(json.dumps((google_api.pull if a.direction == "pull" else google_api.push)(store), ensure_ascii=False))
+        elif c == "form-queue":
+            q = forms.build_queue(store, st, check=a.check, budget=Budget(st, store.dir))
+            from collections import Counter
+            print(json.dumps(Counter(r["フォーム判定"] for r in q), ensure_ascii=False))
+        elif c == "form-send":
+            print(json.dumps(forms.send(store, st, Budget(st, store.dir), dry_run=not a.send), ensure_ascii=False, indent=1))
+        elif c == "form-report":
+            print(json.dumps(forms.funnel(store), ensure_ascii=False, indent=1))
         elif c == "calendar-followups":
             print(f"{google_api.add_followup_events(store)}件のフォロー予定を登録")
     except (BudgetExceeded, PermissionError, RuntimeError, KeyError, ValueError) as e:

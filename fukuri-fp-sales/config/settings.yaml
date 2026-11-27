@@ -19,6 +19,10 @@ sender:            # 営業文面の差出人。実運用前に必ず記入す�
   website: "（WebサイトURL）"
   agency: ファイナンシャルアライアンス株式会社
   booking_base_url: "（予約ページのベースURL）"
+  # フォーム入力用（空欄可。空欄の項目が必須のフォームは手動対応になる）
+  company_kana: ""
+  name_kana: ""
+  zip: ""
 
 compliance:
   # 所属代理店（ファイナンシャルアライアンス株式会社）の承認が取れたら true にする。
@@ -30,6 +34,13 @@ compliance:
 
 # 営業管理スプレッドシート（正本・1ファイルのみ）。環境変数 SFS_SPREADSHEET_ID があれば優先
 spreadsheet_id: 1rLW4qsGlxP5BDTJSSMU-SihAqW5jAQy5ycTfd1RwpDo
+
+form_sales:
+  # 誰の、どんな課題を、どう解決するか（一文）。営業文・リスト・商談で同じことを言う
+  concept: 武蔵小金井から伺える従業員50〜100名の会社に、新入社員研修・DC継続教育・定年前セミナーを無料で提供し、従業員のお金の不安を減らして定着を支える
+  daily_max: 10          # 1日の送信上限
+  min_interval_sec: 90   # 送信間隔
+  max_chars: 700         # 本文の上限（署名・注記込み）
 
 origin_station: 武蔵小金井
 max_travel_minutes: 60
@@ -59,6 +70,7 @@ budget:             # 月間上限。超過すると該当APIの呼び出しを�
   gbizinfo: {max_calls: 3000, yen_per_call: 0}
   websearch: {max_calls: 2000, yen_per_call: 1.5}
   gmail_drafts: {max_calls: 400, yen_per_call: 0}
+  form_send: {max_calls: 200, yen_per_call: 0}
   monthly_yen_cap: 5000
 
 gbizinfo:
