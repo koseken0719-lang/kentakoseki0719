@@ -194,7 +194,8 @@ def qualified(store: Store, settings: dict) -> list[dict]:
             continue
         site = sites.get(num, {})
         out.append({**v["c"], "g": v["g"], "size": n, "homepage": v["g"].get("homepage") or site.get("website"),
-                    "contact": site.get("contact_url"), "site_checked": num in sites})
+                    "contact": site.get("contact_url"), "site_checked": num in sites,
+                    "prohibited": site.get("sales_prohibited"), "prohibited_note": site.get("sales_prohibited_note", "")})
     out.sort(key=lambda x: (x["drive"], abs(x["size"] - 75)))
     return out
 
@@ -217,7 +218,9 @@ def stage3(store: Store, settings: dict, limit: int = 200, session=None, sleep: 
         if not q["homepage"]:
             continue
         try:
-            recs.append(enrich(q, s, g=q["g"], homepage=q["homepage"], contact=q["contact"]))
+            r = enrich(q, s, g=q["g"], homepage=q["homepage"], contact=q["contact"])
+            r["sales_prohibited"], r["sales_prohibited_note"] = q["prohibited"], q["prohibited_note"] or ""
+            recs.append(r)
         except Exception as e:
             log.info("レコード化失敗 %s: %s", q["name"], type(e).__name__)
         if session is None:
@@ -263,3 +266,18 @@ def enrich(c: dict, session, g: dict, homepage: str, contact: str | None = None)
         "sales_prohibited": None, "sns": [], "sources": srcs, "verified_date": today(),
         "notes": f"種リスト経由の機械収集。業種（認定一覧）：{c['seed_industry']}",
     }
+
+
+def merge_sites(files: list[Path]) -> dict:
+    """公式サイト特定の結果（sites_*.json）を data/seed/sites.json に統合する。URLでないものは未特定として扱う。"""
+    sites, found = _load("sites.json"), 0
+    for f in files:
+        for x in json.loads(Path(f).read_text(encoding="utf-8")):
+            num = str(x.get("corporate_number", ""))
+            ok = lambda u: u if str(u).startswith("http") else None
+            sites[num] = {"website": ok(x.get("website")), "contact_url": ok(x.get("contact_url")),
+                          "sales_prohibited": x.get("sales_prohibited"),
+                          "sales_prohibited_note": str(x.get("sales_prohibited_note") or "")[:120]}
+            found += bool(sites[num]["website"])
+    _cache("sites.json").write_text(json.dumps(sites, ensure_ascii=False, indent=1), encoding="utf-8")
+    return {"統合": len(sites), "今回サイト特定": found}

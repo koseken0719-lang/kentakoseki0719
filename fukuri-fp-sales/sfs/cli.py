@@ -77,7 +77,7 @@ def main(argv=None) -> int:
     p = sub.add_parser("verify-sources", help="従業員数を出典ページと再照合（抜き取り検証）")
     p.add_argument("files", nargs="*")
     p = sub.add_parser("source", help="公開リストから候補を収集（stage1: 規模判定／needs-site: サイト未特定の一覧／stage3: レコード化）")
-    p.add_argument("step", choices=["stage1", "needs-site", "stage3"]), p.add_argument("--target", type=int, default=200)
+    p.add_argument("step", choices=["stage1", "needs-site", "merge-sites", "stage3"]), p.add_argument("--target", type=int, default=200)
     sub.add_parser("score", help="全社を再スコアリングし優先営業リストを再生成")
     p = sub.add_parser("outreach-build", help="企業別の営業キット（下書き）を生成")
     p.add_argument("--top", type=int)
@@ -137,6 +137,8 @@ def main(argv=None) -> int:
         elif c == "source":
             if a.step == "stage1":
                 print(json.dumps(sourcing.stage1(store, st, Budget(st, store.dir), a.target), ensure_ascii=False))
+            elif a.step == "merge-sites":
+                print(json.dumps(sourcing.merge_sites(sorted((ROOT / "data" / "seed").glob("sites_*.json"))), ensure_ascii=False))
             elif a.step == "needs-site":
                 print(json.dumps(sourcing.needs_site(store, st), ensure_ascii=False, indent=1))
             else:
