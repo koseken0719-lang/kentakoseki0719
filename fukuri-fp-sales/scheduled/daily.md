@@ -2,7 +2,7 @@
 
 平日の営業支援とフォローアップ管理を実施します。
 1. `cd fukuri-fp-sales && pip install -q -r requirements.txt && python -m sfs doctor`
-2. スプレッドシート（ID: 環境変数 SFS_SPREADSHEET_ID。未設定ならDriveで「スフェノス_福利厚生FP相談_法人営業管理」を検索）の 01〜07, 09, 10 シートを取得し、ローカル状態へ取り込む（`sync pull`、不可ならコネクタ＋`values import`）。
+2. スプレッドシート（IDは CLAUDE.md 記載の1ファイルのみ。新しいスプレッドシートは作らない）の 01〜07, 09〜11 シートを取得し、ローカル状態へ取り込む（`sync pull`、不可ならコネクタ＋`values import`）。
 3. Gmailで直近1営業日の受信を確認し、営業先企業からの返信・辞退・配信停止依頼を特定する。該当があれば `python -m sfs activity <法人番号> メール <返信あり|辞退|受信拒否>` で記録する（受信拒否は自動で営業停止リストに入る）。返信はしない。本文の個人情報はシートに書かない。
 4. `python -m sfs score` → `python -m sfs daily` を実行し、本日の営業タスクを作成する。
 5. `compliance.agency_approved` が true かつ差出人情報が記入済みの場合のみ、優先営業リスト上位の未着手企業（1日最大15社）について、営業キットを生成（`outreach-build`）し、公開メールがある企業はGmail下書きを作成する（宛先は公開アドレスのみ、送信しない）。作成分は `activity <法人番号> メール 下書き` で記録。false の場合は下書きを作らず、その旨を報告する。

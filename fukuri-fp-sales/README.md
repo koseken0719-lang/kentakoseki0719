@@ -10,10 +10,11 @@
 
 ```
 config/settings.yaml   目標値・対象地域/業種・スコア閾値・駅別所要時間表・API上限・差出人・承認フラグ
-sfs/schema.py          10シートの列定義・キー
+sfs/schema.py          11シートの列定義・キー
 sfs/core.py            設定、ログ（秘匿情報マスク）、状態ストア（冪等upsert）、API月間上限
 sfs/research.py        調査データ検証（出典必須・法人番号チェックデジット）、移動時間、スコアリング、gBizINFO
-sfs/outreach.py        企業別営業キット（9項目）生成
+sfs/plays.py           入口提案の選定（11_入口提案リスト。01・02の「入口提案」列と連動）
+sfs/outreach.py        企業別営業キット（入口提案＋9項目）生成
 sfs/pipeline.py        活動履歴、営業停止、フォロー、日次タスク、週次/月次KPI・改善提案
 sfs/onboarding.py      導入企業向け 案内PDF・QR・告知文・予約ページ・規約ひな形・利用実績レポート
 sfs/google_api.py      Sheets同期、Gmail下書き（送信機能なし）、Calendar

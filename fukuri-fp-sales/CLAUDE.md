@@ -11,6 +11,11 @@
 - このリポジトリは**公開**。`data/` `output/` `logs/` と認証情報をコミットしない（.gitignore 済み）。
 - 利用規約・robots・API制限を守る。アクセス制限を回避しない。乗換案内・地図サイトを自動取得しない。
 
+## スプレッドシートは1つだけ
+- 正本は「スフェノス_福利厚生FP相談_法人営業管理」（ID: `1rLW4qsGlxP5BDTJSSMU-SihAqW5jAQy5ycTfd1RwpDo`、環境変数 `SFS_SPREADSHEET_ID` があればそちらを優先）。
+- リストの追加・更新はすべてこのファイルの 01〜11 シートに対して行う。**新しいスプレッドシートを作らない。** 新しい切り口の一覧が必要なら、このファイルにシートを追加する。
+- 11_入口提案リスト は毎回再生成するシート。01 と 02 の「入口提案」列は法人番号で 11 と対応する。
+
 ## 作業の流れ（定期実行）
 1. スプレッドシート → ローカル：`python -m sfs sync pull`（認証未設定時はSheetsコネクタで各シートを読み `python -m sfs values import <シート> --file x.json`）
 2. 処理（`research-import` / `daily` / `weekly-report` / `monthly-report` など）

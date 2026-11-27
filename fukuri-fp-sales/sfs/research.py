@@ -298,6 +298,7 @@ def to_master_row(rec: dict, settings: dict) -> tuple[dict, bool]:
 
 def rescore(store: Store, settings: dict) -> dict:
     """全企業を再評価し、02_優先営業リストを再生成する。"""
+    from . import plays
     suppressed = {r["法人番号"] for r in store.read(S.SUPPRESS)}
     referral = set()
     for p in store.read(S.PARTNERS):
@@ -316,6 +317,7 @@ def rescore(store: Store, settings: dict) -> dict:
         if key in suppressed:
             r["営業ステータス"] = "営業停止"
         r["営業仮説"], r["推奨アプローチ"] = hypothesis(r), approach(r)
+        r["入口提案"] = plays.PLAYS[plays.select(r)[0]["key"]][0]
     store.write(S.MASTER, rows)
 
     b_min = settings["ranks"]["B"]
@@ -327,9 +329,9 @@ def rescore(store: Store, settings: dict) -> dict:
         contact = " / ".join(str(r[c]) for c in ("公開担当部署", "代表電話", "公開メール")
                              if not is_unknown(r.get(c)))
         pri.append({**{c: r.get(c, "") for c in S.SHEETS[S.PRIORITY]}, "順位": i,
-                    "接触先": contact or S.UNKNOWN})
+                    "接触先": contact or S.UNKNOWN,
+                    "最初の一言": plays.PLAYS[plays.select(r)[0]["key"]][4]})
     store.write(S.PRIORITY, pri)
-    from . import plays
     plays.build_list(store)
     stat = {k: sum(1 for r in rows if r["対象区分"] == k) for k in S.TARGET_CLASSES}
     stat.update({f"ランク{k}": sum(1 for r in cand if r["ランク"] == k) for k in "SAB"})

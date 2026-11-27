@@ -28,6 +28,9 @@ compliance:
   agency_approval_ref: ""
   min_cell_size: 3        # 企業向けレポートでこの件数未満の内訳は秘匿
 
+# 営業管理スプレッドシート（正本・1ファイルのみ）。環境変数 SFS_SPREADSHEET_ID があれば優先
+spreadsheet_id: 1rLW4qsGlxP5BDTJSSMU-SihAqW5jAQy5ycTfd1RwpDo
+
 origin_station: 武蔵小金井
 max_travel_minutes: 60
 employee_range: {ideal_min: 50, ideal_max: 100, hard_min: 30, hard_max: 300}

@@ -41,9 +41,10 @@ def _build(api: str, version: str, scopes: list[str], token_env: str | None = No
 
 
 def spreadsheet_id() -> str:
-    sid = os.environ.get("SFS_SPREADSHEET_ID", "")
+    from .core import load_settings
+    sid = os.environ.get("SFS_SPREADSHEET_ID", "") or load_settings().get("spreadsheet_id", "")
     if not sid:
-        raise RuntimeError("SFS_SPREADSHEET_ID が未設定です")
+        raise RuntimeError("スプレッドシートIDが未設定です（SFS_SPREADSHEET_ID または settings.yaml の spreadsheet_id）")
     return sid
 
 
