@@ -40,7 +40,9 @@ spreadsheet_id: 1rLW4qsGlxP5BDTJSSMU-SihAqW5jAQy5ycTfd1RwpDo
 offer:
   name: 法人顧問FPサービス
   monthly_yen: 50000
-  price_text: 月額5万円（初年度・税別表記は要確認）
+  price_text: 月額5万円（税別・初年度）
+  year2_text: 2年目以降は年額100万円（税別）
+  year2_yen: 1000000
   includes:
     - 従業員とご家族の個別相談（回数無制限・オンライン／対面）
     - 年間の社内研修（新入社員研修・企業型DCの継続投資教育・定年前セミナーなどから選択）

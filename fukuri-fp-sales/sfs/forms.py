@@ -185,7 +185,7 @@ def render_form_message(row: dict, settings: dict, variant: str) -> tuple[str, s
         per = f"従業員{emp}名の貴社の場合、1人あたり月約{int(of['monthly_yen'] / emp / 10 + 0.5) * 10:,}円です。" if emp else ""
         subject, why = k["subject"], plays._r(k["why"][hook], **v)
         lead = k["lead_" + variant.lower()]
-        offer = plays._r(k["offer"], offer_name=of["name"], price_text=of["price_text"].split("（")[0] + "（初年度）",
+        offer = plays._r(k["offer"], offer_name=of["name"], price_text=of["price_text"],
                          custom=k["custom"].get(hook, k["custom"]["default"]), per_head=per)
         learn, disclosure = k["learn"], k["disclosure"]
     else:
