@@ -11,22 +11,22 @@ targets:
 
 sender:            # 営業文面の差出人。実運用前に必ず記入する
   company: 株式会社スフェノス
-  name: "（代表者氏名）"
+  name: 小関 健太
   title: 代表取締役
-  address: "（会社所在地）"
+  address: 〒180-0002 東京都武蔵野市吉祥寺東町3-1-8-201
   phone: "（電話番号）"
-  email: "（送信元メールアドレス）"
-  website: "（WebサイトURL）"
-  agency: ファイナンシャルアライアンス株式会社
+  email: info@sphenos.com
+  website: https://sphenos.com/
+  agency: 所属する保険代理店      # 対外文面では代理店名を出さない（社内の承認手続きは従来どおり必要）
   booking_base_url: "（予約ページのベースURL）"
   lp_url: ""             # 企業向け案内ページ（lp/index.html）の公開URL。設定するとフォーム文面に該当メニューへのリンクが入る
   # フォーム入力用（空欄可。空欄の項目が必須のフォームは手動対応になる）
   company_kana: ""
   name_kana: ""
-  zip: ""
+  zip: 180-0002
 
 compliance:
-  # 所属代理店（ファイナンシャルアライアンス株式会社）の承認が取れたら true にする。
+  # 所属代理店の承認が取れたら true にする。
   # false の間は Gmail 下書き作成・導入企業向け資料の正式版出力をブロックする。
   agency_approved: false
   agency_approval_date: ""

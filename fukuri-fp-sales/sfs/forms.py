@@ -194,7 +194,7 @@ def render_form_message(row: dict, settings: dict, variant: str) -> tuple[str, s
         "",
         f"{s['company']} {s['title']} {s['name']}／{s['address']}",
         f"TEL {s['phone']}／MAIL {s['email']}／{s['website']}",
-        f"保険募集は{s['agency']}所属の登録募集人として行います。",
+        f"保険募集は{s['agency']}の登録募集人として行います。",
     ])
     return msg["plays"][key]["subject"], body
 

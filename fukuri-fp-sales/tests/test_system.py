@@ -86,7 +86,7 @@ def test_kit_contains_all_sections_and_disclosures(loaded, settings):
     for sec in ("1. なぜこの企業", "2. 福利厚生FP相談の導入メリット", "3. 最も適切な接触方法", "4. 初回メール案",
                 "5. 電話スクリプト", "6. SNS・紹介で接点をつくる", "7. 手紙案", "8. 想定される反論", "9. 次回フォローアップ"):
         assert sec in kit
-    for must in ("ファイナンシャルアライアンス株式会社", "購入は利用の条件ではありません", "承認が未登録", "以後のご連絡は控えます"):
+    for must in ("登録募集人", "購入は利用の条件ではありません", "承認が未登録", "以後のご連絡は控えます"):
         assert must in kit
 
 
