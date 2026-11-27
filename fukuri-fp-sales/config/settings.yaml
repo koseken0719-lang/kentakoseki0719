@@ -19,6 +19,7 @@ sender:            # 営業文面の差出人。実運用前に必ず記入す�
   website: "（WebサイトURL）"
   agency: ファイナンシャルアライアンス株式会社
   booking_base_url: "（予約ページのベースURL）"
+  lp_url: ""             # 企業向け案内ページ（lp/index.html）の公開URL。設定するとフォーム文面に該当メニューへのリンクが入る
   # フォーム入力用（空欄可。空欄の項目が必須のフォームは手動対応になる）
   company_kana: ""
   name_kana: ""

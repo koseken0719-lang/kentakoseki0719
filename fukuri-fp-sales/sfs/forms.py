@@ -188,6 +188,7 @@ def render_form_message(row: dict, settings: dict, variant: str) -> tuple[str, s
         "",
         plays._r(f["learn"], **v),
         "ご関心がございましたら、このメッセージへのご返信、または下記までご連絡ください。",
+        *([f"概要：{s['lp_url'].rstrip('/')}/#{key}"] if str(s.get("lp_url", "")).startswith("http") else []),
         "",
         msg["form_disclosure"],
         "",
