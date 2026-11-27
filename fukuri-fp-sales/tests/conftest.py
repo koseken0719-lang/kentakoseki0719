@@ -48,9 +48,9 @@ def loaded(store, settings, tmp_path):
     import json
     p = tmp_path / "in.json"
     recs = [rec(1), rec(2, employees=None, employees_url="未確認"),
-            rec(3, nearest_station="未確認", walk_minutes=None),
+            rec(3, city="未確認"),
             rec(4, sales_prohibited=True, sales_prohibited_note="営業お断り", contact_email="未確認"),
-            rec(5, city="横浜市"), rec(6, health_mgmt="未確認", welfare_info="未確認", recruit_active=False,
+            rec(5, city="札幌市"), rec(6, health_mgmt="未確認", welfare_info="未確認", recruit_active=False,
                                        recruit_info="未確認", retention_info="未確認", owner_managed=None,
                                        contact_department="未確認", industry="その他", employees=250)]
     p.write_text(json.dumps(recs, ensure_ascii=False), encoding="utf-8")

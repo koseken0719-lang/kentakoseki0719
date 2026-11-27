@@ -84,8 +84,37 @@ def travel_minutes(station: str, walk, settings: dict) -> tuple[int | None, str]
     return table[st] + w, "概算（駅間所要時間表＋公式記載の徒歩分）"
 
 
+def drive_table(settings: dict) -> dict:
+    """市区町村 → 車での概算所要時間（分）。政令市の区（横浜市西区 等）は市名で引く。"""
+    return {city: m for pref in (settings.get("drive_minutes") or {}).values() for city, m in pref.items()}
+
+
+def drive_minutes(city: str, settings: dict) -> int | None:
+    t = drive_table(settings)
+    city = str(city or "")
+    if city in t:
+        return t[city]
+    m = re.match(r"(.+?市)", city)
+    return t.get(m.group(1)) if m else None
+
+
+def company_travel(rec: dict, settings: dict) -> tuple[int | None, str]:
+    """移動時間。car = 市区町村単位の概算（駅・徒歩の記載が不要）／transit = 駅別所要時間表＋徒歩。"""
+    if settings.get("travel_mode") == "car":
+        m = drive_minutes(rec.get("city"), settings)
+        return (m, "概算（車・市区町村単位の目安）") if m is not None \
+            else (None, "未確認（車での所要時間表にない市区町村）")
+    return travel_minutes(rec.get("nearest_station"), rec.get("walk_minutes"), settings)
+
+
 def area_tier(city: str, settings: dict) -> str:
-    for tier, cities in settings["areas"].items():
+    """地域区分。車での概算所要時間で 第一(〜30分)／第二(〜60分)／第三(〜上限) に分ける。"""
+    if settings.get("travel_mode") == "car":
+        m = drive_minutes(city, settings)
+        if m is None or m > settings["max_travel_minutes"]:
+            return "対象外地域"
+        return "第一優先" if m <= 30 else "第二優先" if m <= 60 else "第三優先"
+    for tier, cities in (settings.get("areas") or {}).items():
         if city in cities:
             return tier
     return "対象外地域"
@@ -138,8 +167,9 @@ def score(row: dict, settings: dict, has_referral: bool = False) -> tuple[int, d
     b["福利厚生への関心"] = min(p, 20)
 
     t = to_int(row.get("移動時間(分)"))
-    b["アクセス"] = 0 if t is None else 15 if t <= 20 else 12 if t <= 30 else 9 if t <= 45 \
-        else 5 if t <= settings["max_travel_minutes"] else 0
+    mx = settings["max_travel_minutes"]   # 上限に対する割合で配点（〜1/3:15点、〜1/2:12点、〜2/3:9点、〜上限:5点）
+    b["アクセス"] = 0 if t is None else 15 if t <= mx / 3 else 12 if t <= mx / 2 else 9 if t <= mx * 2 / 3 \
+        else 5 if t <= mx else 0
 
     if has_referral:
         p = 15
@@ -182,6 +212,8 @@ def classify(row: dict, settings: dict, suppressed: bool, key_verified: bool = T
         reasons.append("従業員数未確認")
     if t is None:
         reasons.append("移動時間未確認")
+    if row.get("地域区分") == "対象外地域" and not is_unknown(row.get("市区")):
+        return "対象外", f"対象地域外（{row.get('市区')}）"
     if reasons:
         return "追加調査", "・".join(reasons)
     er = settings["employee_range"]
@@ -257,7 +289,7 @@ def _dept(x) -> str:
 def to_master_row(rec: dict, settings: dict) -> tuple[dict, bool]:
     key, verified = company_key(rec)
     city = _v(rec.get("city"))
-    t, t_kind = travel_minutes(rec.get("nearest_station"), rec.get("walk_minutes"), settings)
+    t, t_kind = company_travel(rec, settings)
     emp = to_int(rec.get("employees"))
     rep = _v(rec.get("representative"))
     if rep != S.UNKNOWN and rec.get("owner_managed") is True:
@@ -309,6 +341,13 @@ def rescore(store: Store, settings: dict) -> dict:
         if key in referral:
             r["紹介可能性"] = "あり（07_士業・紹介パートナー参照）"
         has_ref = str(r.get("紹介可能性", "")).startswith("あり")
+        if settings.get("travel_mode") == "car" and not is_unknown(r.get("市区")):
+            r["地域区分"] = area_tier(r["市区"], settings)
+            kind = str(r.get("移動時間区分", ""))
+            human = "確認" in kind and not kind.startswith(("概算", "未確認"))   # 人が地図等で確認した値は保持
+            if not human:
+                m, k = company_travel({"city": r["市区"]}, settings)
+                r["移動時間(分)"], r["移動時間区分"] = (S.UNKNOWN if m is None else m), k
         total, b = score(r, settings, has_ref)
         r["スコア"], r["ランク"] = total, rank(total, settings)
         r["スコア内訳"] = " / ".join(f"{k}{v}" for k, v in b.items())

@@ -23,7 +23,7 @@ from urllib.parse import urljoin, urlparse
 
 from . import plays
 from . import schema as S
-from .core import ROOT, Budget, Store, get_logger, is_unknown, today
+from .core import ROOT, Budget, Store, get_logger, is_unknown, to_int, today
 from .outreach import eligible
 from .pipeline import REPLIED, is_suppressed, log_activity
 
@@ -175,28 +175,43 @@ def render_form_message(row: dict, settings: dict, variant: str) -> tuple[str, s
     """(件名, 本文)。課題 → 改善の提案 → 根拠 → 話を聞くと分かること、の順。variant は A / B。"""
     msg, s = plays.messages(), settings["sender"]
     key = plays.select(row)[0]["key"]
-    f = msg["form"][key]
     v = {"company": row["企業名"], "city": row.get("市区", ""), "me": s["name"], "my_company": s["company"],
          "concept": settings["form_sales"]["concept"]}
+    if settings["form_sales"].get("offer") == "komon":
+        k, of = msg["komon"], settings["offer"]
+        hook = key if key in ("dc", "newhire", "preretire") else \
+            "kenko" if "健康経営" in str(row.get("認定・健康経営", "")) else "default"
+        emp = to_int(row.get("従業員数"))
+        per = f"従業員{emp}名の貴社の場合、1人あたり月約{int(of['monthly_yen'] / emp / 10 + 0.5) * 10:,}円です。" if emp else ""
+        subject, why = k["subject"], plays._r(k["why"][hook], **v)
+        lead = k["lead_" + variant.lower()]
+        offer = plays._r(k["offer"], offer_name=of["name"], price_text=of["price_text"].split("（")[0] + "（初年度）",
+                         custom=k["custom"].get(hook, k["custom"]["default"]), per_head=per)
+        learn, disclosure = k["learn"], k["disclosure"]
+    else:
+        f = msg["form"][key]
+        subject, why = msg["plays"][key]["subject"], plays._r(f["why_you"], **v)
+        lead, offer = plays._r(f["lead_" + variant.lower()], **v), plays._r(f["offer"], **v)
+        learn, disclosure = plays._r(f["learn"], **v), msg["form_disclosure"]
     body = "\n".join([
         f"{row['企業名']} ご担当者さま",
         "",
-        f"{s['company']}の{s['name']}と申します。{plays._r(f['why_you'], **v)}",
+        f"{s['company']}の{s['name']}と申します。{why}",
         "",
-        plays._r(f["lead_" + variant.lower()], **v),
-        plays._r(f["offer"], **v),
+        lead,
+        offer,
         "",
-        plays._r(f["learn"], **v),
+        learn,
         "ご関心がございましたら、このメッセージへのご返信、または下記までご連絡ください。",
-        *([f"概要：{s['lp_url'].rstrip('/')}/#{key}"] if str(s.get("lp_url", "")).startswith("http") else []),
+        *([f"概要：{s['lp_url'].rstrip('/')}/"] if str(s.get("lp_url", "")).startswith("http") else []),
         "",
-        msg["form_disclosure"],
+        disclosure,
         "",
         f"{s['company']} {s['title']} {s['name']}／{s['address']}",
         f"TEL {s['phone']}／MAIL {s['email']}／{s['website']}",
         f"保険募集は{s['agency']}の登録募集人として行います。",
     ])
-    return msg["plays"][key]["subject"], body
+    return subject, body
 
 
 def variant_for(corp: str) -> str:

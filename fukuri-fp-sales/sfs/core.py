@@ -68,7 +68,7 @@ def short_hash(*parts: str, n: int = 10) -> str:
 
 
 def is_unknown(v: Any) -> bool:
-    return v is None or (isinstance(v, str) and v.strip() in ("", S.UNKNOWN))
+    return v is None or (isinstance(v, str) and (v.strip() == "" or v.strip().startswith(S.UNKNOWN)))
 
 
 def to_int(v: Any) -> int | None:

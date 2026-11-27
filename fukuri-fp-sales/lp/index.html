@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- 所属代理店の承認が取れるまで検索に載せない。承認後にこの行と .draft の帯を削除する -->
 <meta name="robots" content="noindex,nofollow">
-<title>従業員向け お金のセミナー（無料）｜株式会社スフェノス</title>
-<meta name="description" content="多摩地域の企業さまへ。新入社員研修、企業型DCの継続投資教育、定年前セミナー、安全大会の講話を無料でお引き受けします。">
+<title>法人顧問FPサービス｜株式会社スフェノス</title>
+<meta name="description" content="従業員の「お金の相談窓口」を社外に。個別相談は何度でも、社内研修やライフプラン作成まで含めて月額5万円（初年度）。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -83,6 +83,25 @@ h2{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,2.05rem);color:var(--na
 .card .for{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--gold);font-weight:700}
 .note{font-size:.78rem;color:var(--ink-soft);text-align:right;margin:12px 0 0}
 
+/* プラン */
+.alt{background:var(--white)}
+.plan{display:grid;grid-template-columns:.9fr 1.4fr;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 4px 22px rgba(22,50,79,.1)}
+.price{background:var(--navy-deep);color:#fff;padding:40px 34px;text-align:center}
+.price .lbl{display:inline-block;border:1px solid var(--gold-bright);color:var(--gold-pale);border-radius:999px;padding:3px 16px;font-size:.8rem;letter-spacing:.1em}
+.price .yen{font-family:var(--serif);font-size:clamp(2.6rem,6vw,3.6rem);font-weight:800;color:var(--gold-bright);line-height:1.2;margin-top:14px}
+.price .yen small{font-size:1rem;color:#fff;margin:0 6px;font-family:var(--sans);font-weight:500}
+.price .yr{color:#c9d3df;font-size:.9rem;margin-top:4px}
+.per{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid rgba(231,217,184,.3)}
+.per li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid rgba(231,217,184,.3);font-size:.88rem;text-align:left}
+.per b{color:var(--gold-pale);white-space:nowrap}
+.inc{padding:38px 40px}
+.inc h3{font-family:var(--serif);color:var(--navy);margin:0 0 .6em;font-size:1.2rem}
+.inc ul{list-style:none;padding:0;margin:0}
+.inc li{position:relative;padding:0 0 14px 30px;font-size:.93rem;color:var(--ink-soft)}
+.inc li::before{content:"";position:absolute;left:2px;top:.55em;width:14px;height:8px;border-left:2.5px solid var(--gold);border-bottom:2.5px solid var(--gold);transform:rotate(-45deg)}
+.inc li b{display:block;color:var(--ink)}
+.cus{margin:8px 0 0;background:var(--paper);border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;font-size:.9rem;color:var(--ink)}
+
 /* 約束 */
 .promise{background:var(--navy-deep);color:#fff}
 .promise h2{color:#fff}.promise .sec-head p{color:#c9d3df}
@@ -152,6 +171,7 @@ footer p{margin:.3em 0}
   .pain-grid,.menu{grid-template-columns:1fr 1fr}
   .pr-grid{grid-template-columns:1fr 1fr}
   .why .box{grid-template-columns:1fr}.why .img{min-height:220px}
+  .plan{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   section{padding:60px 0}
@@ -160,6 +180,7 @@ footer p{margin:.3em 0}
   .hero .wrap{padding-top:60px;padding-bottom:70px}
   .pain-grid,.menu,.pr-grid{grid-template-columns:1fr}
   .why .tx{padding:26px 22px}
+  .inc{padding:26px 22px}.price{padding:30px 22px}
   .prof{grid-template-columns:1fr;gap:20px}.prof img{max-width:180px}
   .steps3{flex-direction:column}
   .nav .btn{display:none}
@@ -175,23 +196,23 @@ footer p{margin:.3em 0}
 <div class="nav"><div class="wrap">
   <a class="brand" href="#top"><i>S</i>株式会社スフェノス</a>
   <nav>
-    <a href="#menu">セミナー内容</a><a href="#promise">お約束</a><a href="#why">無料の理由</a><a href="#flow">流れ</a><a href="#faq">ご質問</a>
-    <a class="btn sm" href="#contact">15分の打ち合わせ</a>
+    <a href="#plan">料金と内容</a><a href="#menu">研修</a><a href="#promise">お約束</a><a href="#flow">流れ</a><a href="#faq">ご質問</a>
+    <a class="btn sm" href="#contact">30分のオンライン説明</a>
   </nav>
 </div></div>
 
 <header class="hero" id="top"><div class="wrap">
-  <span class="eyebrow">多摩地域の企業さまへ</span>
-  <h1>従業員向けの<em>「お金のセミナー」</em>、<br>無料でお引き受けします。</h1>
-  <p class="sub">新入社員研修、企業型DCの継続投資教育、定年前の説明会、安全大会の講話。貴社の制度に合わせて内容を作り、武蔵小金井から伺います。ご準備は、日程の調整だけです。</p>
+  <span class="eyebrow">従業員50〜100名の会社へ</span>
+  <h1>従業員の<em>「お金の相談窓口」</em>を、<br>社外に。</h1>
+  <p class="sub">住宅ローン、教育費、老後資金。会社には相談しにくいお金の不安を、社外のFPが受け止めます。個別相談は何度でも。社内研修やライフプラン表の作成まで含めて、月額5万円（初年度）です。</p>
   <div class="cta-row">
-    <a class="btn" href="#contact">15分の打ち合わせを申し込む</a>
-    <a class="btn ghost" href="#why">なぜ無料なのか</a>
+    <a class="btn" href="#contact">30分のオンライン説明を申し込む</a>
+    <a class="btn ghost" href="#plan">料金と内容を見る</a>
   </div>
   <ul class="chips">
-    <li><b>¥0</b>講師料・交通費</li>
-    <li><b>1回</b>からお試し</li>
-    <li><b>30〜90分</b>対面・オンライン</li>
+    <li><b>月額5万円</b>初年度</li>
+    <li><b>何度でも</b>従業員・ご家族の個別相談</li>
+    <li><b>貴社仕様</b>研修・内容を組み立て</li>
   </ul>
 </div></header>
 
@@ -199,26 +220,51 @@ footer p{margin:.3em 0}
   <div class="sec-head"><div class="en">ISSUE</div><h2>こんなお悩みはありませんか</h2></div>
   <div class="pain-grid">
     <div class="pain-item">
-      <svg viewBox="0 0 40 40"><rect x="7" y="5" width="26" height="30" rx="3"/><path d="M13 13h14M13 20h14M13 27h8"/></svg>
-      <h3>制度は整えているのに、<br>社員に価値が伝わらない</h3>
-      <p>退職金、社会保険料の会社負担、各種手当。会社が負担している金額は、毎月の「手取り」には表れません。</p>
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.5-7 6-10 12-10s10.5 3 12 10"/><path d="M29 8l4-4M33 9h-4V5"/></svg>
+      <h3>お金の不安は、<br>会社には相談しにくい</h3>
+      <p>住宅ローン、教育費、親の介護、老後資金。上司にも総務にも話しにくい悩みが、仕事への集中や定着に影響します。</p>
     </div>
     <div class="pain-item">
-      <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.5-7 6-10 12-10s10.5 3 12 10"/><path d="M29 8l4-4M33 9h-4V5"/></svg>
-      <h3>退職金・年金・DCの質問が、<br>総務に集中する</h3>
-      <p>制度の説明はできても、「自分の場合どうすればよいか」までは答えにくいものです。</p>
+      <svg viewBox="0 0 40 40"><rect x="7" y="5" width="26" height="30" rx="3"/><path d="M13 13h14M13 20h14M13 27h8"/></svg>
+      <h3>制度は整えているのに、<br>社員に価値が伝わらない</h3>
+      <p>退職金、確定拠出年金、社会保険料の会社負担。会社が負担している金額は、毎月の「手取り」には表れません。</p>
     </div>
     <div class="pain-item">
       <svg viewBox="0 0 40 40"><path d="M6 31h28"/><path d="M10 31V19M18 31V12M26 31v-9M34 31V8"/></svg>
-      <h3>研修や安全大会の<br>テーマ・講師探しが毎年大変</h3>
-      <p>予算も準備の時間も限られる中で、社員の役に立つ内容を毎年用意するのは負担です。</p>
+      <h3>健康経営の次の一手を<br>探している</h3>
+      <p>体と心の施策は進めてきた。次に、従業員の生活の土台である「お金」の支援を検討している。</p>
     </div>
   </div>
-  <p class="answer"><span>その1コマを、費用なしでお引き受けします。</span></p>
+  <p class="answer"><span>体は産業医、心はストレスチェック。お金は、顧問FPに。</span></p>
 </div></section>
 
-<section id="menu"><div class="wrap">
-  <div class="sec-head"><div class="en">MENU</div><h2>お引き受けできる内容</h2><p>まずは1つだけ、1回からお試しください。内容は貴社の制度に合わせて作ります。</p></div>
+<section id="plan"><div class="wrap">
+  <div class="sec-head"><div class="en">PLAN</div><h2>法人顧問FPサービス</h2><p>従業員とご家族の相談窓口と、年間の研修をひとつにまとめた顧問契約です。</p></div>
+  <div class="plan">
+    <div class="price">
+      <div class="lbl">初年度</div>
+      <div class="yen"><small>月額</small>50,000<small>円</small></div>
+      <div class="yr">年額60万円・1年契約</div>
+      <ul class="per">
+        <li><span>従業員50名の場合</span><b>1人あたり 月1,000円</b></li>
+        <li><span>従業員100名の場合</span><b>1人あたり 月500円</b></li>
+      </ul>
+    </div>
+    <div class="inc">
+      <h3>含まれるもの</h3>
+      <ul>
+        <li><b>個別相談（回数無制限）</b>従業員とご家族が対象。オンラインまたは対面。住宅・教育・老後・家計・保険の確認など。</li>
+        <li><b>年間の社内研修</b>新入社員研修、企業型DCの継続投資教育、定年前セミナーなどから、貴社に必要なものを選べます。</li>
+        <li><b>ライフプラン表の作成</b>ご希望の方に、収入と支出の見通しを一緒に整理します。</li>
+        <li><b>利用状況のご報告</b>相談件数と傾向を、個人が特定されない形でお返しします。</li>
+      </ul>
+      <p class="cus">内容はカスタマイズできます。研修の種類や回数、相談の方法は、貴社の状況に合わせて組み立てます。</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="menu" class="alt"><div class="wrap">
+  <div class="sec-head"><div class="en">TRAINING</div><h2>年間プランに組み込める研修</h2><p>顧問契約の中で、貴社に必要なものを選んで実施します。</p></div>
   <div class="menu">
     <article class="card" id="newhire">
       <div class="ph" style="background-image:url(assets/newhire.jpg)"><span>60分</span></div>
@@ -242,7 +288,7 @@ footer p{margin:.3em 0}
     </article>
     <article class="card" id="survey">
       <div class="ph" style="background-image:url(assets/survey.jpg)"><span>匿名5問・回答2分</span></div>
-      <div class="tx"><h3>従業員の<br>「お金の不安」無料診断</h3><p>従業員の方が何に不安を感じているかをアンケートで把握し、集計レポート（A4・1枚）でお返しします。</p><div class="for">まず現状を知りたい会社に</div></div>
+      <div class="tx"><h3>従業員の<br>「お金の不安」アンケート</h3><p>従業員の方が何に不安を感じているかを把握し、集計レポートでお返しします。年間プランを決める材料になります。</p><div class="for">導入時の現状把握に</div></div>
     </article>
   </div>
   <p class="note">※写真はイメージです。</p>
@@ -251,40 +297,39 @@ footer p{margin:.3em 0}
 <section class="promise" id="promise"><div class="wrap">
   <div class="sec-head"><div class="en">PROMISE</div><h2>4つのお約束</h2><p>ご担当者さまが社内で安心してご紹介いただけるように。</p></div>
   <div class="pr-grid">
-    <div class="pr"><div class="no">01</div><h3>セミナー内で<br>商品の案内をしません</h3><p>内容は事前にご担当者さまに確認いただきます。</p></div>
-    <div class="pr"><div class="no">02</div><h3>相談内容を<br>会社に伝えません</h3><p>ご報告は参加人数やアンケート集計など、個人が特定されない情報のみです。</p></div>
-    <div class="pr"><div class="no">03</div><h3>ご準備は<br>日程の調整だけ</h3><p>資料も社内向けの案内文も、当方で用意します。</p></div>
-    <div class="pr"><div class="no">04</div><h3>1回きりで<br>構いません</h3><p>継続のお約束は不要です。ご案内が不要になれば、以後ご連絡しません。</p></div>
+    <div class="pr"><div class="no">01</div><h3>研修の中で<br>商品の案内をしません</h3><p>内容は事前にご担当者さまに確認いただきます。</p></div>
+    <div class="pr"><div class="no">02</div><h3>相談内容を<br>会社に伝えません</h3><p>ご報告は件数と傾向のみ。個人が特定される情報はお伝えしません。</p></div>
+    <div class="pr"><div class="no">03</div><h3>ご担当者さまの<br>手間を増やしません</h3><p>社内向けの案内文、予約ページ、資料は当方で用意します。</p></div>
+    <div class="pr"><div class="no">04</div><h3>内容は<br>貴社に合わせます</h3><p>研修の種類や回数、相談の方法は、貴社の状況に合わせて決めます。</p></div>
   </div>
 </div></section>
 
 <section class="why" id="why"><div class="wrap">
-  <div class="sec-head"><div class="en">WHY FREE</div><h2>なぜ無料なのか</h2><p>気になる点だと思いますので、先にお伝えします。</p></div>
+  <div class="sec-head"><div class="en">POLICY</div><h2>金融商品のご提案について</h2><p>気になる点だと思いますので、先にお伝えします。</p></div>
   <div class="box">
     <div class="img" role="img" aria-label="個別相談のイメージ"></div>
     <div class="tx">
-      <h3>ご希望の方への個別相談が、当社の事業です</h3>
-      <p>セミナーの終了後、ご希望の方には無料の個別相談（住宅・教育資金・老後資金・家計・保険の確認など）をご案内します。その中で、<b>ご本人が希望された場合に限り</b>、保険等の金融商品をご提案することがあります。成約した場合に保険会社等から受け取る手数料で運営しています。</p>
-      <p><b>商品の購入は任意で、相談のみで終えていただけます。</b>この点は、従業員の皆さまにも事前にお伝えします。</p>
+      <h3>顧問料をいただく相談窓口です</h3>
+      <p>相談の中心は、住宅・教育・老後・家計といったライフプランの整理です。商品を売ることを前提にした相談ではありません。</p>
+      <p>個別相談の中で、<b>ご本人が希望された場合に限り</b>、保険等の金融商品をご提案することがあります。<b>購入は任意で、相談のみで終えていただけます。</b>この点は、従業員の皆さまにも事前にお伝えします。</p>
       <ul class="steps3">
-        <li><b>セミナー</b>商品の案内なし</li>
-        <li><b>個別相談</b>希望者のみ・無料</li>
+        <li><b>個別相談</b>何度でも</li>
         <li><b>ご提案</b>本人が希望した場合のみ</li>
+        <li><b>会社へのご報告</b>件数と傾向のみ</li>
       </ul>
     </div>
   </div>
 </div></section>
 
 <section class="flow" id="flow"><div class="wrap">
-  <div class="sec-head"><div class="en">FLOW</div><h2>実施までの流れ</h2></div>
+  <div class="sec-head"><div class="en">FLOW</div><h2>導入までの流れ</h2></div>
   <ol class="tl">
-    <li><div class="n">1</div><h3>15分の打ち合わせ<small>オンライン／ご訪問</small></h3><p>内容の見本をお見せし、貴社の制度とご希望の日程を伺います。</p></li>
-    <li><div class="n">2</div><h3>内容のご確認</h3><p>貴社に合わせた資料を作り、事前にご確認いただきます。</p></li>
-    <li><div class="n">3</div><h3>実施<small>対面／オンライン</small></h3><p>会議室や研修会場に伺います。機材は当方で用意します。</p></li>
-    <li><div class="n">4</div><h3>アンケート集計のご報告</h3><p>参加人数や満足度を、個人が特定されない形でお返しします。</p></li>
-    <li><div class="n">5</div><h3>ご希望の方への個別相談</h3><p>予約ページからお申し込みいただきます。会社を通す必要はありません。</p></li>
+    <li><div class="n">1</div><h3>30分のオンライン説明</h3><p>サービスの内容をご説明し、貴社の制度と従業員の状況を伺います。</p></li>
+    <li><div class="n">2</div><h3>年間プランのご提案</h3><p>研修の種類と時期、相談の方法をまとめた案をお出しします。</p></li>
+    <li><div class="n">3</div><h3>ご契約・社内へのご案内</h3><p>社内向けの案内文と予約ページ（QRコード）を当方で用意します。</p></li>
+    <li><div class="n">4</div><h3>相談窓口スタート・研修の実施</h3><p>従業員とご家族は、予約ページから直接お申し込みいただけます。会社を通す必要はありません。</p></li>
+    <li><div class="n">5</div><h3>利用状況のご報告</h3><p>相談件数と傾向を、個人が特定されない形でお返しします。</p></li>
   </ol>
-  <p class="after">実施後、ご要望があれば、従業員とご家族がいつでも相談できる窓口を福利厚生として常設する形（導入費用・月額費用なし）もご案内できます。</p>
 </div></section>
 
 <section id="profile"><div class="wrap">
@@ -303,16 +348,17 @@ footer p{margin:.3em 0}
 
 <section class="faq" id="faq"><div class="wrap narrow">
   <div class="sec-head"><div class="en">FAQ</div><h2>よくあるご質問</h2></div>
-  <details open><summary>結局、保険の営業ではないですか。</summary><p>セミナーでは商品の話をしません。個別相談も、ライフプランや家計の整理が中心です。金融商品のご提案は、ご本人が希望された場合に限ります。</p></details>
+  <details open><summary>結局、保険の営業ではないですか。</summary><p>顧問料をいただいて運営する相談窓口です。研修では商品の話をしません。個別相談も、ライフプランや家計の整理が中心で、金融商品のご提案はご本人が希望された場合に限ります。</p></details>
+  <details><summary>契約期間と料金を教えてください。</summary><p>1年単位のご契約で、初年度は月額5万円（年額60万円）です。含まれる内容は「料金と内容」をご覧ください。</p></details>
   <details><summary>従業員から苦情が出ないか心配です。</summary><p>ご利用は任意で、こちらから従業員の方へ個別に連絡することはありません。万一のお申し出は、貴社のご担当者さまと当社の両方で受け付けます。</p></details>
-  <details><summary>対応できる地域と会社の規模は。</summary><p>武蔵小金井駅から公共交通機関で約60分以内（多摩地域と、杉並・中野・練馬・新宿方面）の、従業員50〜100名ほどの会社を中心に伺っています。オンラインでの実施も可能です。</p></details>
+  <details><summary>対応できる地域と会社の規模は。</summary><p>東京都内と、埼玉県・神奈川県の一部（武蔵小金井から車でおおむね90分以内）の、従業員50〜100名ほどの会社を中心に伺っています。個別相談と研修は、オンラインでも実施できます。</p></details>
   <details><summary>すでに福利厚生サービスに加入しています。</summary><p>併用いただけます。割引型のサービスでは手薄になりがちな「個別のお金の相談」を補う位置づけです。</p></details>
   <details><summary>内容を自社向けに変えてもらえますか。</summary><p>はい。打ち合わせで貴社の制度（退職金、手当、確定拠出年金など）を伺い、それに合わせて資料を作ります。</p></details>
 </div></section>
 
 <section class="contact" id="contact"><div class="wrap">
-  <div class="sec-head" style="margin-bottom:22px"><div class="en" style="color:var(--gold-bright)">CONTACT</div><h2>まずは15分、内容の見本をご覧ください</h2></div>
-  <p>メールで「セミナーの件」とお送りください。代表の小関よりご連絡します。<br>オンラインでも、貴社へのご訪問でも承ります。</p>
+  <div class="sec-head" style="margin-bottom:22px"><div class="en" style="color:var(--gold-bright)">CONTACT</div><h2>まずは30分、オンラインでご説明します</h2></div>
+  <p>メールで「顧問FPサービスの件」とお送りください。代表の小関よりご連絡します。<br>オンラインでも、貴社へのご訪問でも承ります。</p>
   <a class="btn" href="mailto:info@sphenos.com?subject=%E3%82%BB%E3%83%9F%E3%83%8A%E3%83%BC%E3%81%AE%E4%BB%B6">メールで問い合わせる</a>
   <div class="info">MAIL　info@sphenos.com</div>
 </div></section>
@@ -323,6 +369,6 @@ footer p{margin:.3em 0}
   <p>© Sphenos Inc.</p>
 </div></footer>
 
-<div class="sticky"><a class="btn" href="#contact">15分の打ち合わせを申し込む</a></div>
+<div class="sticky"><a class="btn" href="#contact">30分のオンライン説明を申し込む</a></div>
 </body>
 </html>

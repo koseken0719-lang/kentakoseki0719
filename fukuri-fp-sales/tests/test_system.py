@@ -28,6 +28,15 @@ def test_validation_rejects_unsourced_or_fabricated():
     assert research.validate_record(rec(1, verified_date=""))
 
 
+def test_drive_time_and_tiers(settings):
+    assert research.drive_minutes("小金井市", settings) == 5
+    assert research.drive_minutes("横浜市西区", settings) == research.drive_minutes("横浜市", settings) == 80
+    assert research.drive_minutes("札幌市", settings) is None
+    assert research.area_tier("国分寺市", settings) == "第一優先" and research.area_tier("千代田区", settings) == "第二優先"
+    assert research.area_tier("横浜市", settings) == "第三優先" and research.area_tier("甲府市", settings) == "対象外地域"
+    assert research.company_travel({"city": "所沢市"}, settings) == (35, "概算（車・市区町村単位の目安）")
+
+
 def test_travel_time(settings):
     assert research.travel_minutes("武蔵小金井駅", 5, settings)[0] == 5
     assert research.travel_minutes("JR中央線 国分寺駅", 8, settings)[0] == 11
@@ -54,7 +63,7 @@ def test_reimport_is_idempotent_and_keeps_human_fields(loaded, settings):
     store, p = loaded
     rows = store.read(S.MASTER)
     rows[0]["営業ステータス"] = "アプローチ中"
-    rows[2]["移動時間(分)"], rows[2]["移動時間区分"] = 20, "乗換案内で確認"
+    rows[2]["移動時間(分)"], rows[2]["移動時間区分"], rows[2]["市区"], rows[2]["地域区分"] = 20, "地図で確認", "小金井市", "第一優先"
     store.write(S.MASTER, rows)
     res = research.import_files([p], store, settings)
     assert res["insert"] == 0 and len(store.read(S.MASTER)) == 6
@@ -302,8 +311,11 @@ def test_form_queue_message_and_gates(loaded, settings, tmp_path):
     assert by["テスト株式会社4"]["フォーム判定"] == forms.NG            # 調査時に営業お断りを確認済み
     r1 = by["テスト株式会社1"]
     assert r1["文面パターン"] in "AB" and r1["文字数"] <= settings["form_sales"]["max_chars"]
-    for must in ("確定拠出年金", "保険等", "以後ご連絡いたしません", "登録募集人"):
+    for must in ("法人顧問FPサービス", "月額5万円", "確定拠出年金", "1人あたり月約630円", "保険等", "以後ご連絡いたしません", "登録募集人"):
         assert must in r1["本文"]
+    settings["form_sales"]["offer"] = "entry"                       # 無料セミナー案内に切り替えられる
+    assert "継続投資教育セミナー" in forms.render_form_message(store.read(S.MASTER)[0], settings, "A")[1]
+    settings["form_sales"]["offer"] = "komon"
     calls = []
     runner = lambda job: calls.append(job) or {"ok": True, "submitted": job["send"], "detail": "fake"}
     b = Budget(settings, tmp_path)
