@@ -130,8 +130,30 @@ def caution(row: dict) -> str:
     return "／".join(c)
 
 
+SNS_COLS = ["SNS接点", "SNSでの入り方", "所属団体・メディア"]
+
+
+def load_sns(sns_dir=None) -> dict:
+    """data/sns/sns_*.json（SNS接点調査の結果）を 企業名→列の値 に変換。"""
+    import json
+    out = {}
+    for f in sorted((sns_dir or ROOT / "data" / "sns").glob("sns_*.json")):
+        for x in json.loads(f.read_text(encoding="utf-8")):
+            x = {**x, **(x.get("sns") or {})}          # 逆引きリスト形式（snsキー入り）にも対応
+            acc = [f"{o.get('platform')}: {o.get('url')}" for o in x.get("official") or [] if o.get("url")]
+            acc += [f"{p.get('role')}（{p.get('platform')}）: {p.get('url')}" for p in x.get("people") or [] if p.get("url")]
+            level = x.get("sns_reachability", S.UNKNOWN)
+            ext = [str(x.get(k)) for k in ("communities", "media") if not is_unknown(x.get(k))]
+            out[x["name"]] = {"SNS接点": f"【{level}】" + (" / ".join(acc) if acc else "公開アカウント確認できず"),
+                              "SNSでの入り方": x.get("best_entry") or S.UNKNOWN,
+                              "所属団体・メディア": "\n".join(ext)[:600] or S.UNKNOWN}
+    return out
+
+
 def build_list(store: Store) -> list[dict]:
-    """11_入口提案リスト を再生成（営業停止・対象外は除外）。"""
+    """11_入口提案リスト を再生成（営業停止・対象外は除外）。SNS列は前回値を引き継ぎ、新しい調査結果で上書き。"""
+    prev = {str(r["法人番号"]): {c: r.get(c, "") for c in SNS_COLS} for r in store.read(S.PLAYS)}
+    sns = load_sns()
     rows = []
     for r in store.read(S.MASTER):
         if r.get("対象区分") in ("営業停止", "対象外"):
@@ -145,7 +167,9 @@ def build_list(store: Store) -> list[dict]:
             "入口提案（第1候補）": name, "根拠区分": p1["basis"], "根拠（公開情報の該当記載）": p1["evidence"],
             "相手にとっての用事": need, "経営者への切り口": angle, "最初の一言": opener, "提案時期": timing,
             "入口提案（第2候補）": PLAYS[p2["key"]][0] + f"［{p2['basis']}］" if p2 else "",
-            "接触経路": route(r), "注意点": caution(r)})
+            "接触経路": route(r), "注意点": caution(r),
+            **{c: S.UNKNOWN for c in SNS_COLS}, **{k: v for k, v in prev.get(str(r["法人番号"]), {}).items() if v},
+            **sns.get(r["企業名"], {})})
     rows.sort(key=lambda x: (x["対象区分"] != "確定対象", x["根拠区分"] != CONFIRMED, -int(x["スコア"])))
     for i, x in enumerate(rows, 1):
         x["優先順"] = i
