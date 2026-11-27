@@ -223,15 +223,24 @@ def variant_for(corp: str) -> str:
 HUMAN_COLS = ["承認", "承認者", "送信状態", "送信日時", "証跡", "備考", "フォーム判定", "判定根拠", "入力欄"]
 
 
+def candidates(store: Store, settings: dict) -> list[dict]:
+    """フォーム営業の対象：確定対象で営業停止でない企業をスコア順に（form_sales.min_score 以上）。"""
+    suppressed = {str(r["法人番号"]) for r in store.read(S.SUPPRESS)}
+    lo = settings["form_sales"].get("min_score", 0)
+    rows = [r for r in store.read(S.MASTER) if r.get("対象区分") == "確定対象"
+            and str(r["法人番号"]) not in suppressed and (to_int(r.get("スコア")) or 0) >= lo]
+    return sorted(rows, key=lambda r: (not str(r.get("紹介可能性", "")).startswith("あり"), -(to_int(r["スコア"]) or 0)))
+
+
 def build_queue(store: Store, settings: dict, check: bool = False, budget: Budget | None = None,
                 session=None) -> list[dict]:
-    """13_フォーム営業キュー を更新。優先営業リストの企業が対象。承認・送信状態は引き継ぐ。
+    """13_フォーム営業キュー を更新。確定対象の企業が対象（スコア順）。承認・送信状態は引き継ぐ。
 
     check=True のとき、未判定の企業のフォームを取得して判定する（1社1回・間隔を空ける）。
     """
     prev = {str(r["法人番号"]): r for r in store.read(S.FORMQ)}
     rows = []
-    for row in eligible(store):
+    for row in candidates(store, settings):
         corp = str(row["法人番号"])
         old = prev.get(corp, {})
         q = {c: "" for c in S.SHEETS[S.FORMQ]}
