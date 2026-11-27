@@ -48,7 +48,7 @@ def spreadsheet_id() -> str:
 
 
 # ---------- Sheets ----------
-SYNC_SHEETS = [s for s in S.SHEETS if s != S.DASHBOARD]  # ダッシュボードは数式のため同期対象外
+SYNC_SHEETS = [s for s in S.SHEETS if s != S.DASHBOARD]  # 11は毎回再生成（pullしても上書きされる）  # ダッシュボードは数式のため同期対象外
 
 
 def pull(store: Store, service=None, sheets: list[str] | None = None) -> dict:

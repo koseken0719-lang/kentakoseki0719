@@ -16,7 +16,8 @@ HEAD_FONT = Font(bold=True, color="FFFFFF")
 WIDE = {"所在地": 34, "事業概要": 40, "採用情報": 40, "福利厚生情報": 40, "認定・健康経営": 30,
         "人材定着の取組": 34, "地域活動": 30, "情報源": 50, "スコア内訳": 44, "営業仮説": 60,
         "推奨アプローチ": 44, "内容": 44, "所見": 60, "改善案": 60, "翌週アクション": 44,
-        "企業名": 28, "公式サイト": 30, "接触先": 34, "代表者(公開情報)": 30, "備考": 30}
+        "企業名": 28, "入口提案（第1候補）": 40, "根拠（公開情報の該当記載）": 50, "相手にとっての用事": 40,
+        "経営者への切り口": 44, "最初の一言": 50, "提案時期": 30, "入口提案（第2候補）": 40, "接触経路": 50, "注意点": 34, "根拠区分": 20, "公式サイト": 30, "接触先": 34, "代表者(公開情報)": 30, "備考": 30}
 VALIDATIONS = {
     (S.MASTER, "営業ステータス"): S.STATUS_VALUES, (S.MASTER, "対象区分"): S.TARGET_CLASSES,
     (S.ACTIVITY, "チャネル"): S.CHANNELS, (S.ACTIVITY, "結果"): S.RESULTS,
@@ -77,10 +78,12 @@ def dashboard_rows(settings: dict) -> list[list]:
     ]
 
 
-def build(store: Store, settings: dict, path: Path | None = None) -> Path:
+def build(store: Store, settings: dict, path: Path | None = None, only: list[str] | None = None) -> Path:
     wb = Workbook()
     wb.remove(wb.active)
     for sheet, cols in S.SHEETS.items():
+        if only and sheet not in only:
+            continue
         ws = wb.create_sheet(sheet)
         ws.append(cols)
         if sheet == S.DASHBOARD:
@@ -107,8 +110,10 @@ def build(store: Store, settings: dict, path: Path | None = None) -> Path:
         for cell in ws[1]:
             cell.fill, cell.font = HEAD_FILL, HEAD_FONT
             cell.alignment = Alignment(vertical="center", wrap_text=True)
-        ws.freeze_panes = "C2" if sheet in (S.MASTER, S.PRIORITY) else "A2"
+        ws.freeze_panes = "C2" if sheet in (S.MASTER, S.PRIORITY, S.PLAYS) else "A2"
     for (sheet, name), values in VALIDATIONS.items():
+        if sheet not in wb.sheetnames:
+            continue
         dv = DataValidation(type="list", formula1='"' + ",".join(values) + '"', allow_blank=True)
         c = col(sheet, name)
         dv.add(f"{c}2:{c}2000")

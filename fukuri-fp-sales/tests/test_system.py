@@ -237,3 +237,21 @@ def test_sheets_roundtrip_and_workbook(loaded, settings, tmp_path, monkeypatch):
     wb = load_workbook(workbook.build(store, settings, tmp_path / "w.xlsx"))
     assert wb.sheetnames == list(S.SHEETS) and wb[S.MASTER].max_row == 7
     assert str(wb[S.DASHBOARD]["B4"].value).startswith("=COUNTIF")
+
+
+# ---------- 入口提案 ----------
+def test_plays_selection_and_list(loaded, settings):
+    from sfs import plays
+    store, _ = loaded
+    m = {r["企業名"]: r for r in store.read(S.MASTER)}
+    ps = plays.select(m["テスト株式会社1"])
+    assert ps[0]["key"] == "dc" and ps[0]["basis"] == plays.CONFIRMED and "確定拠出" in ps[0]["evidence"]
+    assert [p["key"] for p in ps][1] == "newhire"
+    con = plays.select(dict(m["テスト株式会社6"], 業種="建設業"))[0]
+    assert con["key"] == "safety" and con["basis"] == plays.HYPO
+    assert plays.select(dict(m["テスト株式会社6"], 業種="税理士法人"))[0]["key"] == "partner"
+    assert "接触しない" in plays.route(m["テスト株式会社4"])            # 営業お断り → 紹介のみ
+    lst = store.read(S.PLAYS)
+    assert lst[0]["企業名"] == "テスト株式会社1" and lst[0]["優先順"] == 1
+    assert all(x["対象区分"] != "対象外" for x in lst)
+    assert "0. 入口提案" in outreach.render_kit(m["テスト株式会社1"], settings)

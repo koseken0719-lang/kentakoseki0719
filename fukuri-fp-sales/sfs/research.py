@@ -329,6 +329,8 @@ def rescore(store: Store, settings: dict) -> dict:
         pri.append({**{c: r.get(c, "") for c in S.SHEETS[S.PRIORITY]}, "順位": i,
                     "接触先": contact or S.UNKNOWN})
     store.write(S.PRIORITY, pri)
+    from . import plays
+    plays.build_list(store)
     stat = {k: sum(1 for r in rows if r["対象区分"] == k) for k in S.TARGET_CLASSES}
     stat.update({f"ランク{k}": sum(1 for r in cand if r["ランク"] == k) for k in "SAB"})
     return stat

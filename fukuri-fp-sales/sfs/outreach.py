@@ -9,6 +9,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from . import schema as S
+from . import plays
 from .core import ROOT, Store, get_logger, is_unknown, to_int
 
 log = get_logger()
@@ -57,7 +58,9 @@ def context(row: dict, settings: dict) -> dict:
         "has_recruit": not is_unknown(row.get("採用情報")) and not str(row["採用情報"]).startswith("募集なし"),
         "has_cert": not is_unknown(row.get("認定・健康経営")),
         "form_prohibited": str(row.get("営業お断り表記", "")).startswith("あり"),
-        "unknown": is_unknown,
+        "unknown": is_unknown, "route": plays.route(row),
+        "plays": [{**p, **dict(zip(("name", "need", "angle", "timing", "opener"), plays.PLAYS[p["key"]]))}
+                  for p in plays.select(row)[:3]],
     }
 
 
