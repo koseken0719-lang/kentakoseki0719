@@ -3,128 +3,324 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- 所属代理店の承認が取れるまで検索に載せない。承認後にこの行を削除する -->
+<!-- 所属代理店の承認が取れるまで検索に載せない。承認後にこの行と .draft の帯を削除する -->
 <meta name="robots" content="noindex,nofollow">
 <title>従業員向け お金のセミナー（無料）｜株式会社スフェノス</title>
 <meta name="description" content="多摩地域の企業さまへ。新入社員研修、企業型DCの継続投資教育、定年前セミナー、安全大会の講話を無料でお引き受けします。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#16324F;--navy-deep:#0E2240;--gold:#B08D3C;--gold-pale:#E7D9B8;--ink:#1F2B3A;--ink-soft:#4A5768;--line:#DFD8C8;--paper:#F7F4EE;--white:#fff}
+:root{
+  --navy:#16324F;--navy-deep:#0E2240;--navy-soft:#24405F;--gold:#B08D3C;--gold-bright:#C9A45C;--gold-pale:#E7D9B8;
+  --ink:#1F2B3A;--ink-soft:#4A5768;--line:#DFD8C8;--paper:#F7F4EE;--white:#fff;
+  --serif:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",system-ui,sans-serif;line-height:1.9;font-size:16px}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-.draft{background:#8a1c1c;color:#fff;text-align:center;font-size:.85rem;padding:6px 12px}
-header{background:var(--navy-deep);color:#fff;padding:56px 0 48px}
-header .tag{color:var(--gold-pale);font-size:.9rem;letter-spacing:.08em}
-h1{font-size:clamp(1.6rem,4.6vw,2.4rem);line-height:1.5;margin:.4em 0 .5em;font-weight:700}
-header p{color:#dfe6ee;margin:0 0 1.6em;max-width:40em}
-.btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:6px}
-.btn.ghost{background:transparent;border:1px solid var(--gold-pale);color:var(--gold-pale);margin-left:8px}
-section{padding:48px 0;border-bottom:1px solid var(--line)}
-h2{font-size:1.35rem;color:var(--navy);margin:0 0 1em;padding-left:12px;border-left:4px solid var(--gold);line-height:1.5}
-.lead{color:var(--ink-soft);margin-top:-.4em}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:20px 22px;scroll-margin-top:16px}
-.card h3{margin:0 0 .3em;font-size:1.05rem;color:var(--navy);line-height:1.6}
-.card .meta{font-size:.82rem;color:var(--gold);font-weight:700;margin-bottom:.5em}
-.card p{margin:0;font-size:.93rem;color:var(--ink-soft)}
-.card:target{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-pale)}
-ol.flow{list-style:none;padding:0;margin:0;counter-reset:s}
-ol.flow li{counter-increment:s;position:relative;padding:0 0 18px 52px}
-ol.flow li::before{content:counter(s);position:absolute;left:0;top:2px;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:34px;font-weight:700}
-ol.flow b{color:var(--navy)}
-.promise{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:8px 24px}
-.promise li{margin:.7em 0}
-.why{background:var(--white);border-left:4px solid var(--navy);padding:18px 22px;border-radius:0 8px 8px 0}
-dl.faq dt{font-weight:700;color:var(--navy);margin-top:1.2em}
-dl.faq dt::before{content:"Q. ";color:var(--gold)}
-dl.faq dd{margin:.3em 0 0;color:var(--ink-soft)}
-.contact{background:var(--navy-deep);color:#fff;border-bottom:0;text-align:center}
-.contact h2{color:#fff;border:0;padding:0}
-.contact p{color:#dfe6ee}
-.contact .info{margin-top:1.4em;font-size:.95rem}
-footer{background:var(--navy-deep);color:#aebccc;font-size:.8rem;padding:0 0 32px;text-align:center}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:820px}
+.draft{background:#8a1c1c;color:#fff;text-align:center;font-size:.8rem;padding:6px 12px}
+
+/* ナビ */
+.nav{position:sticky;top:0;z-index:20;background:rgba(14,34,64,.96);backdrop-filter:blur(6px);color:#fff}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--serif);font-weight:700;letter-spacing:.06em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{width:26px;height:26px;border:1.5px solid var(--gold-bright);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.8rem;color:var(--gold-bright)}
+.nav nav{display:flex;gap:22px;align-items:center;font-size:.86rem}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#fff;text-decoration:none;font-weight:700;padding:15px 30px;border-radius:999px;box-shadow:0 6px 18px rgba(176,141,60,.35);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.sm{padding:9px 18px;font-size:.84rem;box-shadow:none;opacity:1!important}
+.btn.ghost{background:transparent;border:1px solid rgba(231,217,184,.7);color:var(--gold-pale);box-shadow:none}
+
+/* ヒーロー */
+.hero{position:relative;background:var(--navy-deep);color:#fff;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url(assets/hero.jpg) center right/cover no-repeat;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 0%,rgba(14,34,64,.94) 38%,rgba(14,34,64,.45) 70%,rgba(14,34,64,.15) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-top:96px;padding-bottom:104px}
+.eyebrow{display:inline-block;border:1px solid var(--gold-bright);color:var(--gold-pale);font-size:.8rem;letter-spacing:.14em;padding:5px 14px;border-radius:999px}
+h1{font-family:var(--serif);font-size:clamp(1.9rem,4.8vw,3.1rem);line-height:1.45;margin:.55em 0 .5em;font-weight:800;letter-spacing:.02em;max-width:18em}
+h1 em{font-style:normal;color:var(--gold-bright);white-space:nowrap}
+.hero p.sub{max-width:33em;color:#dfe6ee;margin:0 0 2em;font-size:1.02rem}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;padding:0;list-style:none}
+.chips li{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:6px;font-size:.84rem}
+.chips b{color:var(--gold-bright);margin-right:4px}
+
+/* 共通見出し */
+section{padding:84px 0}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .en{color:var(--gold);font-size:.78rem;letter-spacing:.24em;font-weight:700}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,2.05rem);color:var(--navy);margin:.2em 0 .4em;line-height:1.5;font-weight:700}
+.sec-head p{color:var(--ink-soft);margin:0 auto;max-width:36em}
+
+/* 課題 */
+.pain{background:var(--white)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain-item{border:1px solid var(--line);border-radius:12px;padding:26px 24px;background:var(--paper)}
+.pain-item svg{width:38px;height:38px;stroke:var(--gold);fill:none;stroke-width:1.6;margin-bottom:10px}
+.pain-item h3{margin:0 0 .4em;font-size:1.05rem;color:var(--navy);line-height:1.6}
+.pain-item p{margin:0;font-size:.92rem;color:var(--ink-soft)}
+.answer{margin-top:34px;text-align:center;font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.4rem);color:var(--navy);font-weight:700;line-height:1.8}
+.answer span{background:linear-gradient(transparent 62%,var(--gold-pale) 62%)}
+
+/* メニュー */
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(22,50,79,.07);display:flex;flex-direction:column;scroll-margin-top:84px;border:2px solid transparent;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(22,50,79,.13)}
+.card:target{border-color:var(--gold)}
+.card .ph{aspect-ratio:16/10;background:var(--navy-soft) center/cover no-repeat;position:relative}
+.card .ph span{position:absolute;left:14px;bottom:12px;background:rgba(14,34,64,.88);color:var(--gold-pale);font-size:.76rem;padding:4px 12px;border-radius:999px;letter-spacing:.04em}
+.card .tx{padding:20px 22px 24px}
+.card h3{margin:0 0 .45em;font-family:var(--serif);font-size:1.12rem;color:var(--navy);line-height:1.55}
+.card p{margin:0;font-size:.91rem;color:var(--ink-soft)}
+.card .for{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--gold);font-weight:700}
+.note{font-size:.78rem;color:var(--ink-soft);text-align:right;margin:12px 0 0}
+
+/* 約束 */
+.promise{background:var(--navy-deep);color:#fff}
+.promise h2{color:#fff}.promise .sec-head p{color:#c9d3df}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pr{border:1px solid rgba(231,217,184,.28);border-radius:12px;padding:26px 20px;background:rgba(255,255,255,.04)}
+.pr .no{font-family:var(--serif);color:var(--gold-bright);font-size:1.7rem;line-height:1}
+.pr h3{margin:.6em 0 .4em;font-size:1rem;line-height:1.6}
+.pr p{margin:0;font-size:.88rem;color:#c9d3df}
+
+/* なぜ無料 */
+.why .box{display:grid;grid-template-columns:1.05fr 1fr;gap:0;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 14px rgba(22,50,79,.07)}
+.why .img{background:var(--navy-soft) url(assets/consult.jpg) center/cover no-repeat;min-height:320px}
+.why .tx{padding:38px 40px}
+.why h3{font-family:var(--serif);color:var(--navy);font-size:1.2rem;margin:0 0 .6em}
+.why p{margin:0 0 1em;font-size:.95rem;color:var(--ink-soft)}
+.why p b{color:var(--ink)}
+.steps3{display:flex;gap:8px;margin:18px 0 0;padding:0;list-style:none;font-size:.82rem;text-align:center}
+.steps3 li{flex:1;background:var(--paper);border-radius:8px;padding:10px 6px;border:1px solid var(--line);line-height:1.5}
+.steps3 li b{display:block;color:var(--navy)}
+
+/* 流れ */
+.flow{background:var(--white)}
+.tl{list-style:none;margin:0 auto;padding:0;max-width:760px;position:relative}
+.tl::before{content:"";position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--gold-pale)}
+.tl li{position:relative;padding:0 0 28px 72px}
+.tl li:last-child{padding-bottom:0}
+.tl .n{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold-pale);font-family:var(--serif);font-size:1.1rem;display:grid;place-items:center;border:3px solid var(--white);box-shadow:0 0 0 2px var(--gold-pale)}
+.tl h3{margin:0;font-size:1.05rem;color:var(--navy);line-height:1.6;padding-top:8px}
+.tl h3 small{font-weight:500;color:var(--gold);margin-left:8px;font-size:.8rem}
+.tl p{margin:.2em 0 0;font-size:.92rem;color:var(--ink-soft)}
+.after{max-width:760px;margin:36px auto 0;border-left:4px solid var(--gold);background:var(--paper);padding:16px 22px;border-radius:0 10px 10px 0;font-size:.93rem;color:var(--ink-soft)}
+
+/* プロフィール */
+.prof{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start;max-width:880px;margin:0 auto}
+.prof img{border-radius:14px;aspect-ratio:1;object-fit:cover;box-shadow:0 8px 24px rgba(22,50,79,.18)}
+.prof .role{color:var(--gold);font-size:.82rem;font-weight:700;letter-spacing:.08em}
+.prof h3{font-family:var(--serif);font-size:1.6rem;color:var(--navy);margin:.1em 0 .1em}
+.prof h3 small{font-size:.8rem;color:var(--ink-soft);margin-left:10px;font-family:var(--sans);font-weight:400}
+.prof .q{font-family:var(--serif);color:var(--navy);border-left:3px solid var(--gold);padding-left:14px;margin:14px 0;font-size:1.02rem}
+.prof p{font-size:.93rem;color:var(--ink-soft);margin:0 0 .8em}
+
+/* FAQ */
+.faq{background:var(--white)}
+details{border-bottom:1px solid var(--line);padding:18px 4px}
+summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none;display:flex;gap:12px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q";font-family:var(--serif);color:var(--gold);font-size:1.15rem}
+summary::after{content:"＋";margin-left:auto;color:var(--gold);font-weight:400}
+details[open] summary::after{content:"－"}
+details p{margin:.7em 0 0 28px;color:var(--ink-soft);font-size:.94rem}
+
+/* お問い合わせ */
+.contact{position:relative;background:var(--navy-deep);color:#fff;text-align:center;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background:url(assets/contact.jpg) center/cover no-repeat;opacity:.22}
+.contact .wrap{position:relative}
+.contact h2{color:#fff}
+.contact p{color:#dfe6ee;margin:0 0 1.8em}
+.contact .info{margin-top:22px;font-size:.95rem;color:var(--gold-pale)}
+footer{background:#091a33;color:#93a3b6;font-size:.78rem;padding:26px 0;text-align:center}
 footer p{margin:.3em 0}
-@media(max-width:520px){.btn.ghost{margin:10px 0 0}section{padding:36px 0}}
+.sticky{display:none}
+
+@media(max-width:900px){
+  .nav nav a:not(.btn){display:none}
+  .pain-grid,.menu{grid-template-columns:1fr 1fr}
+  .pr-grid{grid-template-columns:1fr 1fr}
+  .why .box{grid-template-columns:1fr}.why .img{min-height:220px}
+}
+@media(max-width:600px){
+  section{padding:60px 0}
+  .wrap{padding:0 18px}
+  .hero::after{background:linear-gradient(180deg,rgba(14,34,64,.93) 0%,rgba(14,34,64,.86) 60%,rgba(14,34,64,.7) 100%)}
+  .hero .wrap{padding-top:60px;padding-bottom:70px}
+  .pain-grid,.menu,.pr-grid{grid-template-columns:1fr}
+  .why .tx{padding:26px 22px}
+  .prof{grid-template-columns:1fr;gap:20px}.prof img{max-width:180px}
+  .steps3{flex-direction:column}
+  .nav .btn{display:none}
+  .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 14px;background:rgba(14,34,64,.96)}
+  .sticky .btn{display:block;text-align:center;padding:13px}
+  footer{padding-bottom:86px}
+}
 </style>
 </head>
 <body>
 <div class="draft">【案】所属代理店の承認前の下書きです。公開・配布はできません。（ ）の項目は未記入です。</div>
 
-<header><div class="wrap">
-  <div class="tag">多摩地域の企業さまへ</div>
-  <h1>従業員向けの「お金のセミナー」、<br>無料でお引き受けします。</h1>
-  <p>新入社員研修、企業型確定拠出年金の継続投資教育、定年前の説明会、安全大会の講話。<br>貴社の制度に合わせて内容を作り、武蔵小金井から伺います。ご準備は日程の調整だけです。</p>
-  <a class="btn" href="#contact">15分の打ち合わせを申し込む</a>
-  <a class="btn ghost" href="#why">なぜ無料なのか</a>
+<div class="nav"><div class="wrap">
+  <a class="brand" href="#top"><i>S</i>株式会社スフェノス</a>
+  <nav>
+    <a href="#menu">セミナー内容</a><a href="#promise">お約束</a><a href="#why">無料の理由</a><a href="#flow">流れ</a><a href="#faq">ご質問</a>
+    <a class="btn sm" href="#contact">15分の打ち合わせ</a>
+  </nav>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <span class="eyebrow">多摩地域の企業さまへ</span>
+  <h1>従業員向けの<em>「お金のセミナー」</em>、<br>無料でお引き受けします。</h1>
+  <p class="sub">新入社員研修、企業型DCの継続投資教育、定年前の説明会、安全大会の講話。貴社の制度に合わせて内容を作り、武蔵小金井から伺います。ご準備は、日程の調整だけです。</p>
+  <div class="cta-row">
+    <a class="btn" href="#contact">15分の打ち合わせを申し込む</a>
+    <a class="btn ghost" href="#why">なぜ無料なのか</a>
+  </div>
+  <ul class="chips">
+    <li><b>¥0</b>講師料・交通費</li>
+    <li><b>1回</b>からお試し</li>
+    <li><b>30〜90分</b>対面・オンライン</li>
+  </ul>
 </div></header>
 
-<section><div class="wrap">
-  <h2>お引き受けできる内容</h2>
-  <p class="lead">まずは下記のうち1つだけ、1回からお試しください。すべて講師料・交通費は不要です。</p>
-  <div class="cards">
-    <div class="card" id="newhire"><div class="meta">60分／4月の研修に</div><h3>新入社員研修「給与明細とお金の基礎」</h3><p>給与明細の読み方、社会保険と税金のしくみに加え、貴社の退職金や手当を「年間いくら分の価値か」で説明します。手取りだけで他社と比べられないために。</p></div>
-    <div class="card" id="dc"><div class="meta">60分／実施記録をお渡し</div><h3>企業型DCの継続投資教育</h3><p>企業型確定拠出年金を導入している会社に求められる、加入者への継続的な投資教育を代行します。貴社の掛金・商品ラインナップに合わせた内容です。</p></div>
-    <div class="card" id="preretire"><div class="meta">60〜90分／50代の方向け</div><h3>定年前ライフプランセミナー</h3><p>退職金の受け取り方と税金、再雇用時の収入と社会保険、年金の受給開始時期。総務に集中しがちな質問を、まとめて整理します。</p></div>
-    <div class="card" id="safety"><div class="meta">30分／建設・設備工事業向け</div><h3>安全大会での講話</h3><p>「お金の不安と現場の安全」をテーマに、協力会社の職人さんにも分かる内容でお話しします。</p></div>
-    <div class="card" id="totalreward"><div class="meta">45分／1枚資料つき</div><h3>自社制度の価値を伝える説明会</h3><p>退職金、社会保険料の会社負担、各種手当。会社がすでに負担している金額を社員に伝えます。求人票や面接でも使える資料をお渡しします。</p></div>
-    <div class="card" id="survey"><div class="meta">匿名5問・回答2分</div><h3>従業員のお金の不安 無料診断</h3><p>従業員の方が何に不安を感じているかをアンケートで把握し、集計レポート（A4・1枚）でお返しします。診断だけのご利用で構いません。</p></div>
+<section class="pain"><div class="wrap">
+  <div class="sec-head"><div class="en">ISSUE</div><h2>こんなお悩みはありませんか</h2></div>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <svg viewBox="0 0 40 40"><rect x="7" y="5" width="26" height="30" rx="3"/><path d="M13 13h14M13 20h14M13 27h8"/></svg>
+      <h3>制度は整えているのに、<br>社員に価値が伝わらない</h3>
+      <p>退職金、社会保険料の会社負担、各種手当。会社が負担している金額は、毎月の「手取り」には表れません。</p>
+    </div>
+    <div class="pain-item">
+      <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.5-7 6-10 12-10s10.5 3 12 10"/><path d="M29 8l4-4M33 9h-4V5"/></svg>
+      <h3>退職金・年金・DCの質問が、<br>総務に集中する</h3>
+      <p>制度の説明はできても、「自分の場合どうすればよいか」までは答えにくいものです。</p>
+    </div>
+    <div class="pain-item">
+      <svg viewBox="0 0 40 40"><path d="M6 31h28"/><path d="M10 31V19M18 31V12M26 31v-9M34 31V8"/></svg>
+      <h3>研修や安全大会の<br>テーマ・講師探しが毎年大変</h3>
+      <p>予算も準備の時間も限られる中で、社員の役に立つ内容を毎年用意するのは負担です。</p>
+    </div>
+  </div>
+  <p class="answer"><span>その1コマを、費用なしでお引き受けします。</span></p>
+</div></section>
+
+<section id="menu"><div class="wrap">
+  <div class="sec-head"><div class="en">MENU</div><h2>お引き受けできる内容</h2><p>まずは1つだけ、1回からお試しください。内容は貴社の制度に合わせて作ります。</p></div>
+  <div class="menu">
+    <article class="card" id="newhire">
+      <div class="ph" style="background-image:url(assets/newhire.jpg)"><span>60分</span></div>
+      <div class="tx"><h3>新入社員研修<br>「給与明細とお金の基礎」</h3><p>給与明細の読み方、社会保険と税金のしくみに加え、貴社の退職金や手当を「年間いくら分の価値か」で説明します。</p><div class="for">4月の研修の1コマに</div></div>
+    </article>
+    <article class="card" id="dc">
+      <div class="ph" style="background-image:url(assets/dc.jpg)"><span>60分・実施記録つき</span></div>
+      <div class="tx"><h3>企業型DCの<br>継続投資教育</h3><p>企業型確定拠出年金を導入している会社に求められる、加入者への継続的な投資教育を代行します。掛金・商品ラインナップに合わせた内容です。</p><div class="for">企業型DCを導入している会社に</div></div>
+    </article>
+    <article class="card" id="preretire">
+      <div class="ph" style="background-image:url(assets/preretire.jpg)"><span>60〜90分</span></div>
+      <div class="tx"><h3>定年前<br>ライフプランセミナー</h3><p>退職金の受け取り方と税金、再雇用時の収入と社会保険、年金の受給開始時期。総務に集中しがちな質問をまとめて整理します。</p><div class="for">50代の社員が多い会社に</div></div>
+    </article>
+    <article class="card" id="safety">
+      <div class="ph" style="background-image:url(assets/safety.jpg)"><span>30分</span></div>
+      <div class="tx"><h3>安全大会での講話<br>「お金の不安と現場の安全」</h3><p>家計の悩みを抱えたままの作業は、注意力の低下につながります。協力会社の職人さんにも分かる内容でお話しします。</p><div class="for">建設・設備工事業の会社に</div></div>
+    </article>
+    <article class="card" id="totalreward">
+      <div class="ph" style="background-image:url(assets/totalreward.jpg)"><span>45分・1枚資料つき</span></div>
+      <div class="tx"><h3>自社制度の価値を<br>伝える説明会</h3><p>会社がすでに負担している金額を、社員に分かる形で伝えます。求人票や面接でも使える資料をお渡しします。</p><div class="for">退職金・手当の制度がある会社に</div></div>
+    </article>
+    <article class="card" id="survey">
+      <div class="ph" style="background-image:url(assets/survey.jpg)"><span>匿名5問・回答2分</span></div>
+      <div class="tx"><h3>従業員の<br>「お金の不安」無料診断</h3><p>従業員の方が何に不安を感じているかをアンケートで把握し、集計レポート（A4・1枚）でお返しします。</p><div class="for">まず現状を知りたい会社に</div></div>
+    </article>
+  </div>
+  <p class="note">※写真はイメージです。</p>
+</div></section>
+
+<section class="promise" id="promise"><div class="wrap">
+  <div class="sec-head"><div class="en">PROMISE</div><h2>4つのお約束</h2><p>ご担当者さまが社内で安心してご紹介いただけるように。</p></div>
+  <div class="pr-grid">
+    <div class="pr"><div class="no">01</div><h3>セミナー内で<br>商品の案内をしません</h3><p>内容は事前にご担当者さまに確認いただきます。</p></div>
+    <div class="pr"><div class="no">02</div><h3>相談内容を<br>会社に伝えません</h3><p>ご報告は参加人数やアンケート集計など、個人が特定されない情報のみです。</p></div>
+    <div class="pr"><div class="no">03</div><h3>ご準備は<br>日程の調整だけ</h3><p>資料も社内向けの案内文も、当方で用意します。</p></div>
+    <div class="pr"><div class="no">04</div><h3>1回きりで<br>構いません</h3><p>継続のお約束は不要です。ご案内が不要になれば、以後ご連絡しません。</p></div>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <h2>お約束すること</h2>
-  <ul class="promise">
-    <li><b>セミナーの中で金融商品の案内はしません。</b>内容は事前にご担当者さまに確認いただきます。</li>
-    <li><b>従業員の方の相談内容を、会社にお伝えすることはありません。</b>ご報告は参加人数やアンケート集計など、個人が特定されない情報のみです。</li>
-    <li><b>ご担当者さまの準備は、日程の調整と社内へのご案内だけです。</b>資料・案内文は当方で用意します。</li>
-    <li><b>1回きりで終えていただいて構いません。</b>継続のお約束は不要です。</li>
-  </ul>
-</div></section>
-
-<section id="why"><div class="wrap">
-  <h2>なぜ無料なのか</h2>
-  <div class="why">
-    <p style="margin-top:0">セミナーの終了後、ご希望の方には無料の個別相談（住宅・教育資金・老後資金・家計・保険の確認など）をご案内します。その個別相談の中で、<b>ご本人が希望された場合に限り</b>、保険等の金融商品をご提案することがあります。成約した場合に保険会社等から受け取る手数料で運営しています。</p>
-    <p style="margin-bottom:0">商品の購入は任意で、相談のみで終えていただけます。この点は、従業員の皆さまにも事前にお伝えします。保険募集は、ファイナンシャルアライアンス株式会社所属の登録募集人として行います。</p>
+<section class="why" id="why"><div class="wrap">
+  <div class="sec-head"><div class="en">WHY FREE</div><h2>なぜ無料なのか</h2><p>気になる点だと思いますので、先にお伝えします。</p></div>
+  <div class="box">
+    <div class="img" role="img" aria-label="個別相談のイメージ"></div>
+    <div class="tx">
+      <h3>ご希望の方への個別相談が、当社の事業です</h3>
+      <p>セミナーの終了後、ご希望の方には無料の個別相談（住宅・教育資金・老後資金・家計・保険の確認など）をご案内します。その中で、<b>ご本人が希望された場合に限り</b>、保険等の金融商品をご提案することがあります。成約した場合に保険会社等から受け取る手数料で運営しています。</p>
+      <p><b>商品の購入は任意で、相談のみで終えていただけます。</b>この点は、従業員の皆さまにも事前にお伝えします。</p>
+      <ul class="steps3">
+        <li><b>セミナー</b>商品の案内なし</li>
+        <li><b>個別相談</b>希望者のみ・無料</li>
+        <li><b>ご提案</b>本人が希望した場合のみ</li>
+      </ul>
+    </div>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <h2>実施までの流れ</h2>
-  <ol class="flow">
-    <li><b>15分の打ち合わせ</b>（オンラインまたはご訪問）<br>内容の見本をお見せし、貴社の制度と日程を伺います。</li>
-    <li><b>内容のご確認</b><br>貴社に合わせた資料を作り、事前にご確認いただきます。</li>
-    <li><b>実施</b>（対面またはオンライン）</li>
-    <li><b>アンケート集計のご報告</b><br>参加人数と満足度などを、個人が特定されない形でお返しします。</li>
-    <li><b>ご希望の方への個別相談</b><br>予約ページからお申し込みいただきます。会社を通す必要はありません。</li>
+<section class="flow" id="flow"><div class="wrap">
+  <div class="sec-head"><div class="en">FLOW</div><h2>実施までの流れ</h2></div>
+  <ol class="tl">
+    <li><div class="n">1</div><h3>15分の打ち合わせ<small>オンライン／ご訪問</small></h3><p>内容の見本をお見せし、貴社の制度とご希望の日程を伺います。</p></li>
+    <li><div class="n">2</div><h3>内容のご確認</h3><p>貴社に合わせた資料を作り、事前にご確認いただきます。</p></li>
+    <li><div class="n">3</div><h3>実施<small>対面／オンライン</small></h3><p>会議室や研修会場に伺います。機材は当方で用意します。</p></li>
+    <li><div class="n">4</div><h3>アンケート集計のご報告</h3><p>参加人数や満足度を、個人が特定されない形でお返しします。</p></li>
+    <li><div class="n">5</div><h3>ご希望の方への個別相談</h3><p>予約ページからお申し込みいただきます。会社を通す必要はありません。</p></li>
   </ol>
-  <p class="lead" style="margin:1em 0 0">実施後、ご要望があれば、従業員とご家族がいつでも相談できる窓口を福利厚生として常設する形（導入費用・月額費用なし）もご案内できます。</p>
+  <p class="after">実施後、ご要望があれば、従業員とご家族がいつでも相談できる窓口を福利厚生として常設する形（導入費用・月額費用なし）もご案内できます。</p>
 </div></section>
 
-<section><div class="wrap">
-  <h2>よくあるご質問</h2>
-  <dl class="faq">
-    <dt>結局、保険の営業ではないですか。</dt>
-    <dd>セミナーでは商品の話をしません。個別相談も、ライフプランや家計の整理が中心です。金融商品のご提案は、ご本人が希望された場合に限ります。</dd>
-    <dt>従業員から苦情が出ないか心配です。</dt>
-    <dd>ご利用は任意で、こちらから個別に連絡することはありません。万一のお申し出は、貴社のご担当者さまと当社の両方で受け付けます。</dd>
-    <dt>対応できる地域と規模は。</dt>
-    <dd>武蔵小金井駅から公共交通機関で約60分以内（多摩地域と、杉並・中野・練馬・新宿方面）の、従業員50〜100名ほどの会社を中心に伺っています。オンラインでの実施も可能です。</dd>
-    <dt>すでに福利厚生サービスに加入していますが。</dt>
-    <dd>併用いただけます。割引型のサービスでは手薄になりがちな「個別のお金の相談」を補う位置づけです。</dd>
-  </dl>
+<section id="profile"><div class="wrap">
+  <div class="sec-head"><div class="en">SPEAKER</div><h2>担当講師</h2></div>
+  <div class="prof">
+    <img src="assets/koseki.jpg" alt="小関 健太" width="240" height="240">
+    <div>
+      <div class="role">ファイナンシャルプランナー／生命保険・損害保険コンサルタント</div>
+      <h3>小関 健太<small>コセキ ケンタ</small></h3>
+      <p class="q">「売って終わりにしない。必要なときに、隣で一緒に考える」</p>
+      <p>新卒でパナソニック電工に入社し、法人営業を約5年経験。2013年に生命保険業界へ転身し、外資系生命保険会社・独立系FP会社を経て現在に至る。保険業界歴約13年。個人約500世帯・法人約50社の相談に携わる。証券外務員一種保有。</p>
+      <p>武蔵小金井を拠点に、多摩地域の企業と、そこで働く方のお金の相談をお受けしています。</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="faq" id="faq"><div class="wrap narrow">
+  <div class="sec-head"><div class="en">FAQ</div><h2>よくあるご質問</h2></div>
+  <details open><summary>結局、保険の営業ではないですか。</summary><p>セミナーでは商品の話をしません。個別相談も、ライフプランや家計の整理が中心です。金融商品のご提案は、ご本人が希望された場合に限ります。</p></details>
+  <details><summary>従業員から苦情が出ないか心配です。</summary><p>ご利用は任意で、こちらから従業員の方へ個別に連絡することはありません。万一のお申し出は、貴社のご担当者さまと当社の両方で受け付けます。</p></details>
+  <details><summary>対応できる地域と会社の規模は。</summary><p>武蔵小金井駅から公共交通機関で約60分以内（多摩地域と、杉並・中野・練馬・新宿方面）の、従業員50〜100名ほどの会社を中心に伺っています。オンラインでの実施も可能です。</p></details>
+  <details><summary>すでに福利厚生サービスに加入しています。</summary><p>併用いただけます。割引型のサービスでは手薄になりがちな「個別のお金の相談」を補う位置づけです。</p></details>
+  <details><summary>内容を自社向けに変えてもらえますか。</summary><p>はい。打ち合わせで貴社の制度（退職金、手当、確定拠出年金など）を伺い、それに合わせて資料を作ります。</p></details>
 </div></section>
 
 <section class="contact" id="contact"><div class="wrap">
-  <h2>まずは15分、内容の見本をご覧ください</h2>
-  <p>お電話またはメールで「セミナーの件」とお伝えください。<br>ご案内が不要な場合は、その旨お知らせいただければ以後ご連絡いたしません。</p>
+  <div class="sec-head" style="margin-bottom:22px"><div class="en" style="color:var(--gold-bright)">CONTACT</div><h2>まずは15分、内容の見本をご覧ください</h2></div>
+  <p>お電話またはメールで「セミナーの件」とお伝えください。<br>オンラインでも、貴社へのご訪問でも承ります。</p>
   <a class="btn" href="mailto:（メールアドレス）?subject=%E3%82%BB%E3%83%9F%E3%83%8A%E3%83%BC%E3%81%AE%E4%BB%B6">メールで問い合わせる</a>
   <div class="info">TEL（電話番号）　／　MAIL（メールアドレス）</div>
 </div></section>
 
 <footer><div class="wrap">
-  <p>株式会社スフェノス　代表取締役（代表者氏名）　（会社所在地）</p>
-  <p>保険募集はファイナンシャルアライアンス株式会社所属の登録募集人として行います。</p>
+  <p>株式会社スフェノス　（会社所在地）</p>
+  <p>保険の募集は、所属する保険代理店の登録募集人として行います。</p>
+  <p>© Sphenos Inc.</p>
 </div></footer>
+
+<div class="sticky"><a class="btn" href="#contact">15分の打ち合わせを申し込む</a></div>
 </body>
 </html>
