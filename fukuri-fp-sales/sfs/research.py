@@ -333,6 +333,7 @@ def rescore(store: Store, settings: dict) -> dict:
                     "最初の一言": plays.PLAYS[plays.select(r)[0]["key"]][4]})
     store.write(S.PRIORITY, pri)
     plays.build_list(store)
+    plays.build_templates_sheet(store, settings)
     stat = {k: sum(1 for r in rows if r["対象区分"] == k) for k in S.TARGET_CLASSES}
     stat.update({f"ランク{k}": sum(1 for r in cand if r["ランク"] == k) for k in "SAB"})
     return stat

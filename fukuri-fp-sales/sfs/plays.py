@@ -8,8 +8,11 @@ from __future__ import annotations
 
 import re
 
+import yaml
+from jinja2 import Environment, StrictUndefined
+
 from . import schema as S
-from .core import Store, is_unknown, to_int
+from .core import ROOT, Store, is_unknown, to_int
 
 CONFIRMED, HYPO = "公開情報に記載あり", "業種・規模からの仮説（要ヒアリング）"
 
@@ -34,7 +37,7 @@ PLAYS = {
                   "再雇用・退職金・年金の説明を総務が個別に受けている負担の軽減",
                   "ベテランが安心して働き続けられる環境づくりと、技能承継期間の確保",
                   "通年（定年到達者が多い年度末の前、10〜1月が通しやすい）",
-                  "50代の社員の方向けに、退職金・再雇用・年金を整理するセミナーを無料で実施できます。総務へのご質問が減ったとのお声をいただく内容です。"),
+                  "50代の社員の方向けに、退職金・再雇用・年金を整理するセミナーを無料で実施できます。総務へのご質問を減らすことを目的にした内容です。"),
     "newhire": ("新入社員研修の1コマ（給与明細・社会保険・NISAの基礎／無料・60分）",
                 "4月研修のコンテンツ。社会人1年目の金銭トラブル予防と、会社の制度説明",
                 "新卒の早期離職の予防。「手取り」だけで他社と比較されないよう、総報酬を最初に伝える",
@@ -147,4 +150,56 @@ def build_list(store: Store) -> list[dict]:
     for i, x in enumerate(rows, 1):
         x["優先順"] = i
     store.write(S.PLAYS, rows)
+    return rows
+
+
+# ---------- 文面（config/messages.yaml） ----------
+_J = Environment(undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
+
+
+def messages() -> dict:
+    with open(ROOT / "config" / "messages.yaml", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def _r(text: str, **v) -> str:
+    return _J.from_string(str(text)).render(**v).strip()
+
+
+def render_messages(row: dict, settings: dict, key: str | None = None) -> dict:
+    """企業×入口提案の 件名・メール・手紙・電話・SNS文面 を返す。"""
+    msg, s = messages(), settings["sender"]
+    key = key or select(row)[0]["key"]
+    p, f = msg["plays"][key], msg["frames"]
+    rep = str(row.get("代表者(公開情報)", "")).split("／")[0]
+    dept = row.get("公開担当部署")
+    v = {"company": row.get("企業名", "○○株式会社"), "city": row.get("市区", "地域"),
+         "rep": "代表者" if is_unknown(rep) else rep,
+         "dept": "総務・人事ご担当者" if is_unknown(dept) else f"{dept} ご担当者",
+         "me": s["name"], "my_company": s["company"]}
+    v.update(subject=p["subject"], hook=_r(p["hook"], **v), body=p["body"].strip(), ask=p["ask"],
+             disclosure=msg["disclosure"], phone=p["phone"].strip(),
+             gate=f"{p['subject'].split('（')[0]}の件で、{v['dept']}さまにお取り次ぎいただけますでしょうか。",
+             opener=PLAYS[key][4], **msg["sns_openers"][key])
+    return {"key": key, "subject": p["subject"], "email": _r(f["email"], **v), "letter": _r(f["letter"], **v),
+            "phone": _r(f["phone"], **v),
+            "common": [{**c, "text": _r(c["text"], **v)} for c in msg["common"]]}
+
+
+def build_templates_sheet(store: Store, settings: dict) -> list[dict]:
+    """12_文面テンプレート を再生成（社名等は○○のままの汎用版）。"""
+    generic = {"企業名": "○○株式会社", "市区": "（市区）", "代表者(公開情報)": "代表取締役 ○○ ○○"}
+    rows = []
+    for key in PLAYS:
+        m = render_messages(generic, settings, key)
+        for ch, k in (("メール", "email"), ("手紙（A4・1枚）", "letter"), ("電話", "phone")):
+            rows.append({"区分": "入口提案", "入口提案": PLAYS[key][0], "チャネル": ch,
+                         "使う場面": PLAYS[key][3], "件名": m["subject"] if k != "phone" else "",
+                         "本文": m[k], "注意点": "送付前に企業名・根拠の一文を各社の公開情報に合わせる。メール末尾に署名・配信停止の案内を付ける"})
+    for c in render_messages(generic, settings, "survey")["common"]:
+        rows.append({"区分": "接点づくり（共通）", "入口提案": "全提案共通", "チャネル": c["channel"],
+                     "使う場面": c["scene"], "件名": "", "本文": c["text"], "注意点": c["note"]})
+    for i, r in enumerate(rows, 1):
+        r["No"] = i
+    store.write(S.TEMPLATES, rows)
     return rows

@@ -83,8 +83,8 @@ def test_referral_gets_priority(loaded, settings):
 def test_kit_contains_all_sections_and_disclosures(loaded, settings):
     store, _ = loaded
     kit = outreach.render_kit(store.read(S.MASTER)[0], settings)
-    for sec in ("1. なぜこの企業", "2. 福利厚生FP相談の導入メリット", "3. 最も適切な接触方法", "4. 初回営業メール案",
-                "5. 電話営業スクリプト", "6. SNSメッセージ案", "7. 社長宛て郵送文案", "8. 想定される反論", "9. 次回フォローアップ"):
+    for sec in ("1. なぜこの企業", "2. 福利厚生FP相談の導入メリット", "3. 最も適切な接触方法", "4. 初回メール案",
+                "5. 電話スクリプト", "6. SNS・紹介で接点をつくる", "7. 手紙案", "8. 想定される反論", "9. 次回フォローアップ"):
         assert sec in kit
     for must in ("ファイナンシャルアライアンス株式会社", "購入は利用の条件ではありません", "承認が未登録", "以後のご連絡は控えます"):
         assert must in kit
@@ -255,3 +255,19 @@ def test_plays_selection_and_list(loaded, settings):
     assert lst[0]["企業名"] == "テスト株式会社1" and lst[0]["優先順"] == 1
     assert all(x["対象区分"] != "対象外" for x in lst)
     assert "0. 入口提案" in outreach.render_kit(m["テスト株式会社1"], settings)
+
+
+def test_messages_per_play_and_templates_sheet(loaded, settings):
+    from sfs import plays
+    store, _ = loaded
+    row = store.read(S.MASTER)[0]
+    for key in plays.PLAYS:
+        m = plays.render_messages(row, settings, key)
+        for k in ("email", "letter", "phone"):
+            assert "{{" not in m[k] and "保険等" in m[k]      # 差し込み漏れなし・提案可能性の明示
+        assert "テスト株式会社1" in m["email"]
+    subj, body = outreach.render_email(row, settings)
+    assert "確定拠出年金" in subj and "配信" not in subj and "以後のご連絡は控えます" in body
+    t = store.read(S.TEMPLATES)
+    assert len(t) == len(plays.PLAYS) * 3 + len(plays.messages()["common"])
+    assert any(x["チャネル"].startswith("SNS") for x in t)

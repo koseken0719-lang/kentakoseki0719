@@ -58,7 +58,7 @@ def context(row: dict, settings: dict) -> dict:
         "has_recruit": not is_unknown(row.get("採用情報")) and not str(row["採用情報"]).startswith("募集なし"),
         "has_cert": not is_unknown(row.get("認定・健康経営")),
         "form_prohibited": str(row.get("営業お断り表記", "")).startswith("あり"),
-        "unknown": is_unknown, "route": plays.route(row),
+        "unknown": is_unknown, "route": plays.route(row), "m": plays.render_messages(row, settings),
         "plays": [{**p, **dict(zip(("name", "need", "angle", "timing", "opener"), plays.PLAYS[p["key"]]))}
                   for p in plays.select(row)[:3]],
     }
@@ -69,11 +69,10 @@ def render_kit(row: dict, settings: dict) -> str:
 
 
 def render_email(row: dict, settings: dict) -> tuple[str, str]:
-    """(件名, 本文)。Gmail下書き用。"""
-    ctx = context(row, settings)
-    env = _env()
-    return (env.get_template("email_subject.j2").render(**ctx).strip(),
-            env.get_template("email_body.j2").render(**ctx))
+    """(件名, 本文)。Gmail下書き用。入口提案（第1候補）の文面＋署名・配信停止の案内。"""
+    m = plays.render_messages(row, settings)
+    footer = _env().get_template("_footer.j2").render(**context(row, settings))
+    return m["subject"], m["email"] + "\n\n" + footer
 
 
 def eligible(store: Store) -> list[dict]:
